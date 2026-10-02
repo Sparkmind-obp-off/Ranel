@@ -1,11 +1,11 @@
 # Ranel — Provider Inventory & Configuration Audit
 
-**Status:** Repository audit complete; external account/configuration audit pending  
+**Status:** Repository audit complete; founder-confirmed provider status recorded; external console verification pending  
 **Audit date:** 2026-10-02  
 **Repository:** `Sparkmind-obp-off/Ranel`, branch `main`  
 **Purpose:** Establish what the checked-in application actually uses before finalizing the Revenue Engine architecture.
 
-> This is a repository/configuration-file audit, not proof of the state of every provider console. No API keys, secret values, account settings, billing settings, or live external integrations were inspected through provider dashboards during this audit.
+> This is a repository/configuration-file audit plus provider-status statements confirmed by the founder. No API keys, secret values, account settings, billing settings, or live external integrations were inspected through provider dashboards during this audit. The founder confirms Duitku is available as an existing merchant/payment provider, but it has not been integrated into Ranel; Neon, GroqCloud, PostHog, and Resend have not yet been set up for Ranel.
 
 ## Executive summary
 
@@ -25,11 +25,11 @@ The current Cloudflare Pages project `ranel` and the production `INQUIRY_WHATSAP
 | Cloudflare D1 | No binding/migration/application use found in the audited configuration and architecture docs | **Not configured in repo** | Do not create yet. Decide whether to keep the existing proposed D1 direction or choose Neon after inspecting current requirements and account limits. |
 | Cloudflare Hyperdrive | No binding/configuration/use found in the audited configuration | **Not configured in repo** | Only consider if using an external PostgreSQL database through Workers and connection pooling is useful. It is not a database. |
 | Cloudflare KV / R2 / Queues / Durable Objects | No bindings or runtime use found in the audited configuration | **Not configured in repo** | Add only when a concrete workflow requires them. |
-| Duitku | No payment SDK, API adapter, webhook route, or payment configuration appears in the current app/package | **Not integrated in this repo** | Keep the existing merchant account. Before implementation, verify PDS v2 credentials, enabled payment methods, callback/webhook security, sandbox/live configuration, fees, settlement and refund/disbursement requirements in the Duitku console. |
-| Neon PostgreSQL | No Neon package, connection binding, schema, or migration found in the audited app | **Not integrated in repo; account status unknown** | Do not create a second database until the existing data/runtime decision is made. |
-| GroqCloud API | No Groq SDK, API client, model configuration, or secret binding found | **Not integrated in repo; account status unknown** | Candidate for the first LLM experiment after deterministic signals and decision records exist. |
-| PostHog | No SDK, analytics snippet, or server-side event integration found; README says no third-party analytics | **Not integrated in repo; account status unknown** | Optional. First define canonical product/checkout events and privacy rules. Do not treat analytics as financial truth. |
-| Resend | No SDK, email client, or email secret binding found | **Not integrated in repo; account status unknown** | Candidate for transactional email once orders and digital fulfillment exist. Verify sending-domain setup and limits first. |
+| Duitku | No payment SDK, API adapter, webhook route, or payment configuration appears in the current app/package | **Founder-confirmed: existing merchant/provider; not integrated in Ranel** | Before implementation, verify PDS v2 credentials, enabled payment methods, callback/webhook security, sandbox/live configuration, fees, settlement and refund/disbursement requirements in the Duitku console. |
+| Neon PostgreSQL | No Neon package, connection binding, schema, or migration found in the audited app | **Founder-confirmed: not yet set up for Ranel; console not inspected** | Do not create a database until the final database decision is approved. |
+| GroqCloud API | No Groq SDK, API client, model configuration, or secret binding found | **Founder-confirmed: not yet set up for Ranel; console not inspected** | Candidate for the first LLM experiment after deterministic signals and decision records exist. Create/use a project only after the LLM boundary and budget are approved. |
+| PostHog | No SDK, analytics snippet, or server-side event integration found; README says no third-party analytics | **Founder-confirmed: not yet set up for Ranel; console not inspected** | Optional. Define canonical product/checkout events and privacy rules before creating a project. Do not treat analytics as financial truth. |
+| Resend | No SDK, email client, or email secret binding found | **Founder-confirmed: not yet set up for Ranel; console not inspected** | Candidate for transactional email once orders and digital fulfillment exist. Verify sending-domain setup and limits first. |
 | WhatsApp | The app builds a fixed `wa.me` link from the runtime `INQUIRY_WHATSAPP_NUMBER` binding; visitors manually review/send | **Manual handoff only** | No WhatsApp Business API automation is implemented. Do not confuse the link with an API integration. |
 | MCP/connectors | No MCP client/server or connector integration found in the app | **Not integrated in repo** | Defer. Prefer direct APIs/webhooks for production business-critical flows; introduce MCP only for a specific controlled tool-access need. |
 | Sentry | No SDK/configuration found | **Not integrated in repo; account status unknown** | Optional; start with Cloudflare logs and health checks, then add if a monitoring gap is demonstrated. |
@@ -59,7 +59,7 @@ Never copy secret values into this inventory or Git. Record only secret **names*
 
 ## Recommended provider readiness sequence
 
-1. **Read-only verification:** inspect Cloudflare project/deployments/bindings and Duitku merchant configuration. Confirm which accounts already exist before creating anything.
+1. **Read-only verification:** inspect Cloudflare project/deployments/bindings and Duitku merchant configuration. This requires an authorized Cloudflare/Duitku console connection or a read-only evidence export; the current connected toolset does not expose those consoles. Do not claim this step is complete until actual console evidence is available.
 2. **Architecture decision:** select the authoritative database and decide the deployment boundaries: Public Pages, private Control deployment, and Core API Worker. These are not yet implemented by the current application.
 3. **Core foundations:** implement canonical event/order/payment states, idempotent webhook processing, audit history, and authorization before connecting payment automation.
 4. **LLM:** create/use a GroqCloud project only when the signal and recommendation interfaces are defined. The LLM proposes interpretation; deterministic rules and Core enforce business truth and approval policy.
@@ -78,7 +78,9 @@ Never copy secret values into this inventory or Git. Record only secret **names*
 
 ## Audit limitations and gate
 
-This audit establishes what is or is not present in the checked-in application/configuration inspected. It **does not** establish whether the user has an account with a provider, whether a secret exists in a dashboard, or whether a feature is enabled at the account level.
+The founder confirms Duitku exists as an external merchant/provider but is not integrated into Ranel. The founder also confirms Neon, GroqCloud, PostHog, and Resend have not yet been set up for Ranel. Those are user-confirmed statements, not independently verified console observations.
+
+This audit establishes what is or is not present in the checked-in application/configuration inspected. It does **not** establish the live state of Cloudflare projects, bindings, secrets, DNS, billing, Duitku credentials/callbacks, or account-level features. The available connected tools in this session can inspect and update GitHub, but do not expose Cloudflare or Duitku console APIs. Therefore no console setting, secret, project, payment configuration, or DNS record was changed.
 
 **Gate:** Do not call the external provider stack “configured” until console checks are recorded. Do not start the Revenue Engine implementation until the founder reviews the provider inventory and approves the final architecture.
 
