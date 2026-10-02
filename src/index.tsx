@@ -14,6 +14,9 @@ const app = new Hono<{ Bindings: Bindings }>();
 app.use("*", async (c, next) => {
   await next();
   c.header("X-Content-Type-Options", "nosniff");
+  c.header("X-Frame-Options", "DENY");
+  // Host-only HTTPS policy: no preload/includeSubDomains or DNS changes.
+  c.header("Strict-Transport-Security", "max-age=31536000");
   c.header("Referrer-Policy", "strict-origin-when-cross-origin");
   c.header(
     "Content-Security-Policy",
@@ -22,6 +25,33 @@ app.use("*", async (c, next) => {
   c.header("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
   // Contact availability must reflect the current runtime configuration.
   if (!c.req.path.startsWith("/static/")) c.header("Cache-Control", "no-store");
+});
+// These are protocol/input contracts for a read-only PUBLIC app, not identity/role authorization.
+const readOnlyPublicPaths = new Set([
+  "/",
+  "/barber",
+  "/contact",
+  "/privacy",
+  "/inquiry",
+]);
+app.use("*", async (c, next) => {
+  // Bound input before query parsing; never echo a rejected URL or body.
+  if (c.req.url.length > 2048)
+    return c.text("Alamat permintaan terlalu panjang.", 414);
+  if (
+    readOnlyPublicPaths.has(c.req.path) &&
+    !["GET", "HEAD"].includes(c.req.method)
+  ) {
+    c.header("Allow", "GET, HEAD");
+    return c.text("Metode tidak didukung. Gunakan GET atau HEAD.", 405);
+  }
+  if (c.req.path === "/contact" || c.req.path === "/inquiry") {
+    const topics = c.req.queries("offer") ?? [];
+    if (topics.length > 1 || topics.some((topic) => topic.length > 64)) {
+      return c.text("Gunakan satu topik inquiry yang valid.", 400);
+    }
+  }
+  await next();
 });
 app.use("/static/*", serveStatic({ root: "./public" }));
 

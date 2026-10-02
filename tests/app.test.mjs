@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import app from "../dist/_worker.js";
 
 const request = (path, env = {}, init = {}) =>
@@ -227,6 +228,107 @@ test("concept scope creates no private or transactional routes", async () => {
   }
 });
 
+test("PUBLIC URLs are bounded before query parsing, without reflecting rejected input", async () => {
+  const prefix = "https://test.invalid/contact?padding=";
+  const path = "/contact?padding=" + "x".repeat(2048 - prefix.length);
+  assert.equal((await request(path)).status, 200);
+  const rejected = await request(path + "x");
+  assert.equal(rejected.status, 414);
+  assert.equal(rejected.headers.get("location"), null);
+  assert.equal(rejected.headers.get("cache-control"), "no-store");
+  assert.doesNotMatch(await rejected.text(), /padding=|xxxxx/);
+});
+
+test("ambiguous and oversized inquiry topics fail closed; short unknown topics still fall back", async () => {
+  for (const route of ["/contact", "/inquiry"]) {
+    for (const query of [
+      "offer=starter&offer=growth",
+      "offer=starter&off%65r=growth",
+      "offer=" + "x".repeat(65),
+    ]) {
+      const response = await request(`${route}?${query}`, {
+        INQUIRY_WHATSAPP_NUMBER: "12025550123",
+      });
+      assert.equal(response.status, 400);
+      assert.equal(response.headers.get("location"), null);
+      assert.doesNotMatch(await response.text(), /xxxxx|starter|growth/);
+    }
+  }
+  assert.equal((await request("/contact?offer=" + "x".repeat(64))).status, 200);
+});
+
+test("PUBLIC methods are GET/HEAD only; rejected verbs cannot submit or redirect", async () => {
+  for (const path of [...routes, "/inquiry"]) {
+    for (const method of ["POST", "PUT", "PATCH", "DELETE", "OPTIONS"]) {
+      const response = await request(
+        path,
+        { INQUIRY_WHATSAPP_NUMBER: "12025550123" },
+        { method, body: "untrusted_payload" },
+      );
+      assert.equal(response.status, 405);
+      assert.equal(response.headers.get("allow"), "GET, HEAD");
+      assert.equal(response.headers.get("location"), null);
+      assert.doesNotMatch(await response.text(), /untrusted_payload/);
+    }
+    const head = await request(path, {}, { method: "HEAD" });
+    assert.equal(head.status, path === "/inquiry" ? 303 : 200);
+    assert.equal(await head.text(), "");
+    assert.equal(head.headers.get("x-frame-options"), "DENY");
+  }
+});
+
+test("native asset security headers mirror the Worker contract without broadening HSTS scope", async () => {
+  const config = readFileSync(
+    new URL("../public/_headers", import.meta.url),
+    "utf8",
+  );
+  assert.match(config, /^\/static\/\*$/m);
+  const response = await request("/");
+  for (const line of config
+    .split("\n")
+    .filter((line) => line.startsWith("  "))) {
+    const separator = line.indexOf(": ");
+    const key = line.slice(2, separator);
+    const value = line.slice(separator + 2);
+    assert.equal(response.headers.get(key), value, key);
+  }
+  assert.doesNotMatch(config, /includeSubDomains|preload/);
+});
+
+test("generic 500 hides exception details and public requests do not establish financial truth", async () => {
+  const env = Object.defineProperty({}, "INQUIRY_WHATSAPP_NUMBER", {
+    get() {
+      throw new Error("fixture_private_details");
+    },
+  });
+  const failure = await request("/contact", env);
+  assert.equal(failure.status, 500);
+  assert.doesNotMatch(
+    await failure.text(),
+    /fixture_private_details|stack|Error:/,
+  );
+  const intent = await request(
+    "/contact?paid=true&amount=1&entitlement=granted",
+  );
+  assert.equal(intent.status, 200);
+  assert.doesNotMatch(
+    await intent.text(),
+    /entitlement=granted|paid=true|payment confirmed/i,
+  );
+  for (const path of [
+    "/api/payments/callback",
+    "/api/entitlements",
+    "/api/refunds",
+    "/api/payouts",
+  ]) {
+    assert.equal(
+      (await request(path, {}, { method: "POST", body: '{"paid":true}' }))
+        .status,
+      404,
+    );
+  }
+});
+
 test("page and redirect security headers omit cookies and disallow framing", async () => {
   for (const route of [...routes, "/inquiry"]) {
     const response = await request(route);
@@ -239,6 +341,11 @@ test("page and redirect security headers omit cookies and disallow framing", asy
       /form-action 'self'/,
     );
     assert.equal(response.headers.get("x-content-type-options"), "nosniff");
+    assert.equal(response.headers.get("x-frame-options"), "DENY");
+    assert.equal(
+      response.headers.get("strict-transport-security"),
+      "max-age=31536000",
+    );
     assert.equal(response.headers.get("set-cookie"), null);
     assert.equal(response.headers.get("cache-control"), "no-store");
   }

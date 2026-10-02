@@ -39,6 +39,13 @@ for (const path of ["/", "/barber", "/contact", "/privacy"]) {
     page.on("requestfailed", (request) => failedRequests.push(request.url()));
     const response = await page.goto(path);
     expect(response?.status()).toBe(200);
+    for (const headers of [response!.headers()]) {
+      expect(headers["x-frame-options"]).toBe("DENY");
+      expect(headers["strict-transport-security"]).toBe("max-age=31536000");
+      expect(headers["content-security-policy"]).toContain(
+        "frame-ancestors 'none'",
+      );
+    }
     await expect(page.locator("h1")).toHaveCount(1);
     await expect(page.locator("html")).toHaveAttribute("lang", "id");
     await expect(page).toHaveTitle(/Ranel/);
@@ -62,6 +69,16 @@ for (const path of ["/", "/barber", "/contact", "/privacy"]) {
     const favicon = await page.request.get("/static/brand-mark.svg");
     expect(favicon.status()).toBe(200);
     expect(favicon.headers()["content-type"]).toContain("image/svg+xml");
+    for (const resource of [css, favicon]) {
+      expect(resource.headers()["x-frame-options"]).toBe("DENY");
+      expect(resource.headers()["strict-transport-security"]).toBe(
+        "max-age=31536000",
+      );
+      expect(resource.headers()["content-security-policy"]).toContain(
+        "frame-ancestors 'none'",
+      );
+      expect(resource.headers()["x-content-type-options"]).toBe("nosniff");
+    }
     const accessibility = await new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
       .analyze();
@@ -266,6 +283,32 @@ test("three pilot products expose deliverables, distinctions and contextual CTAs
       product.id,
     );
   }
+});
+
+test("read-only PUBLIC rejects oversized and ambiguous input without external effects", async ({
+  request,
+}) => {
+  for (const path of ["/contact", "/inquiry"]) {
+    const duplicate = await request.get(`${path}?offer=starter&offer=growth`, {
+      maxRedirects: 0,
+    });
+    expect(duplicate.status()).toBe(400);
+    expect(duplicate.headers()["location"]).toBeUndefined();
+    const method = await request.post(path, {
+      data: "synthetic_no_action",
+      maxRedirects: 0,
+    });
+    expect(method.status()).toBe(405);
+    expect(method.headers()["allow"]).toBe("GET, HEAD");
+    expect(method.headers()["location"]).toBeUndefined();
+    expect(await method.text()).not.toContain("synthetic_no_action");
+    expect(method.headers()["x-frame-options"]).toBe("DENY");
+  }
+  const longURL = await request.get("/contact?padding=" + "x".repeat(2100), {
+    maxRedirects: 0,
+  });
+  expect(longURL.status()).toBe(414);
+  expect(longURL.headers()["location"]).toBeUndefined();
 });
 
 test("inquiry redirects safely preserve all topics without contacting WhatsApp", async ({

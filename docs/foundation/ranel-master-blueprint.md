@@ -78,19 +78,20 @@ Supply follows demonstrated need and verified sourcing.
 
 The core growth loop is:
 
-**Demand → Opportunity → Product → Distribution → Transaction → Delivery → Outcome → Evidence → Improvement → More Demand**
+**Demand → Opportunity → Product → Distribution → Transaction → Fulfillment → Outcome → Learning**
+
+Learning feeds the next Demand cycle. Intelligence, scoring, evidence, and improvement are cross-cutting work/activities, not extra primary system layers or extra canonical cycle stages. This wording follows the latest explicit founder instruction and ADR-010.
 
 Detailed operating loop:
 
-1. **Demand intelligence** finds recurring operator problems, questions, jobs, purchase intent, and workflow gaps.
-2. **Opportunity records** turn raw observations into structured candidate problems.
-3. **Scoring/prioritization** evaluates frequency, urgency, buyer clarity, willingness-to-pay signals, delivery feasibility, margin, and strategic fit.
-4. **Action selection** chooses the smallest testable offer or workflow intervention.
-5. **Distribution** puts the offer where relevant demand exists.
-6. **Transaction** records the commercial event as business truth.
-7. **Delivery** fulfills the entitlement or service promise.
-8. **Outcome evidence** measures actual use, objections, support load, repeat purchase, and economics.
-9. **Learning** changes products, positioning, distribution, and the next opportunity queue.
+1. **Demand** identifies recurring operator problems, questions, purchase intent, and workflow gaps.
+2. **Opportunity** structures observations and evaluates frequency, urgency, buyer clarity, willingness-to-pay evidence, delivery feasibility, margin, and fit.
+3. **Product** selects the smallest testable offer or workflow intervention, within Kits → Systems → Supply.
+4. **Distribution** puts the approved offer where relevant demand exists.
+5. **Transaction** records verified commercial events through deterministic Core rules; a redirect or AI/UI assertion is not payment evidence.
+6. **Fulfillment** delivers the verified entitlement or agreed service promise.
+7. **Outcome** records actual use, objections, support load, repeat purchase, and economics with attributable evidence.
+8. **Learning** proposes improvements to products, positioning, distribution, and the next opportunity queue under founder policy and Core authorization.
 
 A live catalog is not proof of demand. A software build is not proof of revenue.
 
@@ -159,7 +160,7 @@ The Core is the only layer allowed to establish authoritative commercial truth.
 
 ## 7. AI architecture lock
 
-AI is an **intelligence layer above deterministic business truth**, not the source of truth.
+AI is **cross-cutting intelligence across PUBLIC, CONTROL, and CORE**, operating on deterministic business truth, not an additional primary layer or the source of truth.
 
 AI responsibilities:
 - classify and normalize external demand signals;

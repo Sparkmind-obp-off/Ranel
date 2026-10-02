@@ -1,6 +1,6 @@
 # Ranel
 
-**Ranel** is the founder-selected master brand for a practical business-systems and commerce company serving local operators.
+**Ranel** is a digital revenue engine for practical business systems and commerce for local operators. Founder-selected architecture: **PUBLIC → CONTROL → CORE**, with cross-cutting AI subject to policy and deterministic Core authorization—not a fourth primary layer.
 
 > **Working brand line:** Practical systems for better-run businesses.
 >
@@ -13,7 +13,17 @@ Ranel is designed to grow through three connected layers:
 
 The first vertical is **barber businesses**. Other verticals are future options, not simultaneous launch commitments.
 
-## Current Phase 2 — Pilot Product & Demand Validation
+## Final launcher alignment and bounded PUBLIC hardening
+
+Canonical revenue cycle: **Demand → Opportunity → Product → Distribution → Transaction → Fulfillment → Outcome → Learning**. Business model remains **Kits → Systems → Supply**. The lock defines the destination, not implementation/validation evidence.
+
+Current local hardening checks pass: 33 built-worker and 30 browser tests; reviewed PUBLIC release is recorded in the [release runbook](docs/production/release-runbook.md#9-final-launcher-execution--2026-10-02). Existing catalog/contact/brand look preserved. CONTROL/CORE, payment, AI and other providers remain unimplemented/not integrated; no full-engine production-ready claim or automatic next-phase build.
+
+PUBLIC request contract: GET/HEAD only on existing pages and `/inquiry`; other methods 405, URL length over 2048 characters including origin 414, duplicate `offer` or decoded topic over 64 characters 400. Short unknown topics retain general fallback. Requests rejected without body parsing/storage or external redirect. Worker pages/redirects/errors and native `/static/*` assets receive mirrored CSP, nosniff, referrer/permissions, X-Frame-Options DENY and host-only HSTS (no preload/includeSubDomains). These are HTTP/input protections, not identity/role admission or Core authorization. No new sensitive submission endpoint or provider activation.
+
+Duitku remains **production/live target, NOT INTEGRATED**. Public official POP references were checked; merchant identity, API family/callback/signature test vectors and credentials are not verified. No sandbox substitution or live financial action. Provider-console MFA/roles/rate policy/billing/recovery and custom-domain live behavior remain unverified. See the runbook for exact access boundaries and subsystem gaps.
+
+## Phase 2 baseline — Pilot Product & Demand Validation
 
 Three concrete pilot definitions are implemented: **Ranel Barber Starter** (daily foundation), **Ranel Barber Growth** (Starter plus records/retention/review), and **Ranel Barber System** (requirements/flow concept, not available software). Starter/Growth materials are prepared manually after agreement; no ready kit files, fixed prices, subscription, guaranteed growth or engineering commitment claimed.
 
@@ -50,7 +60,8 @@ Only blank templates are committed. Keep real anonymized interaction records in 
 | `/contact` and `/inquiry` with `offer=operations\|retention\|tracking` | Backward-compatible Phase 1B topic names/messages; not silently remapped to new products |
 | `/privacy` | Application data handling and external-service disclosure |
 | `/static/style.css`, `/static/brand-mark.svg` | Locally served brand assets |
-| Other routes/methods | Helpful HTTP 404; no contact submission API |
+| Unsupported methods on existing PUBLIC routes | HTTP 405, Allow GET/HEAD; no submission/transaction |
+| Other routes | Helpful HTTP 404; no contact/private/financial API |
 
 ## Local setup and development
 Use Node.js 22.13+ and npm. The lockfile is committed; there was no previous package manager.
@@ -62,7 +73,7 @@ npm run typecheck
 npm test
 ```
 
-`npm test` builds first and runs the Node test runner against the **built Pages worker** (28 tests in Phase 2). `npm run build` writes `dist/_worker.js`, `_routes.json`, and static assets. `npm run dev` is the Vite content-development entry; it is **not** the verification environment for Cloudflare runtime bindings.
+`npm test` builds first and runs the Node test runner against the **built Pages worker** (33 tests after bounded PUBLIC hardening; Phase 2 had 28). `npm run build` writes `dist/_worker.js`, `_routes.json`, and static assets. `npm run dev` is the Vite content-development entry; it is **not** the verification environment for Cloudflare runtime bindings.
 
 To check actual Pages behavior, use the built preview:
 
@@ -93,7 +104,7 @@ npx playwright install --with-deps chromium
 npm run test:e2e
 ```
 
-27 browser tests cover 320px, 390px (Chromium mobile emulation), and 1440px viewports: route rendering, overflow, metadata, assets, navigation, keyboard focus, FAQ, 404, explicit inquiry state, all topic redirects, and axe WCAG A/AA checks. Local default is unconfigured contact; production is tested with an explicitly configured expectation, not inferred from the UI. Screenshots are generated under ignored `qa-artifacts/` with state-specific filenames. Passing automated checks is not a full accessibility certification, physical-device test, or usability/market study.
+30 browser tests cover 320px, 390px (Chromium mobile emulation), and 1440px viewports: route rendering, overflow, metadata, assets, navigation, keyboard focus, FAQ, 404, explicit inquiry state, all topic redirects, and axe WCAG A/AA checks. Local default is unconfigured contact; production is tested with an explicitly configured expectation, not inferred from the UI. Screenshots are generated under ignored `qa-artifacts/` with state-specific filenames. Passing automated checks is not a full accessibility certification, physical-device test, or usability/market study.
 
 For production QA, privately load the approved destination into `QA_EXPECT_WHATSAPP_NUMBER` (for example with a silent shell prompt; do not place its value in scripts/logs/docs), then:
 
@@ -135,7 +146,7 @@ The synthetic phone-format fixture in tests is not production contact configurat
 - Native Pages static routing via `_routes.json`; assets originate in `public/static`. Explicit catch-all 404 route preserves fallback through the Pages adapter.
 - Data model: three pilot definitions (target/problem/contents/deliverables/how/use/status/exclusions/CTA) in `src/inquiry.ts`, plus preserved legacy topic lookup. Runtime contact configuration stays separate. No customer/lead data model or persistence added.
 - No D1, KV, R2, database, in-memory lead store, forms, accounts, CRM, payments, booking, or messaging automation.
-- Application pages have CSP, anti-framing, content-type, referrer, and permissions headers. No application cookies or personal-data logging. Platform hosting may process technical request information.
+- Application pages/redirects/errors and native assets have CSP, nosniff, anti-framing (CSP plus DENY), host-only HSTS, referrer and permissions headers. Native header contract is `public/_headers`; parity is tested. No application cookies or personal-data logging. Platform hosting may process technical request information.
 
 ## Cloudflare BYOK deployment
 The authorized path is **`cf-byok-deploy`**, not Genspark Hosted Deploy. The newest Phase 1B founder instruction supersedes the older existing-project-only restriction: create **exactly `ranel`** if absent and deploy to **https://ranel.pages.dev**. The sole authenticated account was verified, project creation succeeded, production secret was installed, and production was deployed/checked. Never substitute `runnel` or a suffixed project. Metadata `cloudflare_project_name` and `wrangler.jsonc` now both select `ranel`.

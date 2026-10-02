@@ -9,13 +9,17 @@ Ranel is not just a storefront and not just SaaS.
 
 It is a loop that connects:
 
-**Demand → Intelligence → Opportunity → Offer → Distribution → Transaction → Fulfillment → Outcome → Learning**
+**Demand → Opportunity → Product → Distribution → Transaction → Fulfillment → Outcome → Learning**
+
+Canonical eight-stage cycle, matching the latest explicit founder instruction and ADR-010. Intelligence supports the cycle across PUBLIC → CONTROL → CORE; it is neither a fourth primary layer nor an extra cycle stage. Offer definition belongs to Product; evidence and improvement belong to Outcome/Learning.
 
 The public interface sells. The private system learns and controls. The Core protects business truth.
 
 ## 2. Engine components
 
-### Demand layer
+These are business-cycle stages/activities, not additional primary system layers. The only primary system layers remain PUBLIC, CONTROL, CORE.
+
+### Demand
 Collect recurring signals from:
 - operator conversations;
 - social discussions;
@@ -25,7 +29,7 @@ Collect recurring signals from:
 - customer feedback;
 - market observations.
 
-### Intelligence layer
+### Cross-cutting intelligence (not a separate stage/layer)
 Transform signals into:
 - normalized observations;
 - opportunities;
@@ -34,14 +38,17 @@ Transform signals into:
 - recommendations;
 - experiments.
 
-### Product layer
+### Opportunity
+Structure candidate problems and score frequency, urgency, buyer clarity, willingness-to-pay evidence, feasibility, economics and fit. Interpretation/recommendation is not an authorized command or verified commercial fact.
+
+### Product
 Translate validated opportunities into:
 - kits;
 - services/setup;
 - systems;
 - supply/commerce.
 
-### Distribution layer
+### Distribution
 Potential channels:
 - own website/store;
 - social content;
@@ -53,7 +60,7 @@ Potential channels:
 
 The channel is selected according to where relevant demand actually exists.
 
-### Transaction layer
+### Transaction
 Authoritative events:
 - order created;
 - payment initiated;
@@ -63,7 +70,13 @@ Authoritative events:
 - refund/cancellation;
 - subscription state.
 
-### Learning layer
+### Fulfillment
+Deliver the verified entitlement or agreed service scope. Proposed fulfillment is not completed delivery; preserve manual fallback and record actual completion evidence.
+
+### Outcome
+Record attributable use, objections, support effort and economics. A successful deployment or provider redirect does not prove a customer result.
+
+### Learning
 Measure:
 - conversion;
 - objections;

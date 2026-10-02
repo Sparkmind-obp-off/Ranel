@@ -10,7 +10,7 @@ Ranel's intended Duitku integration target is production/live, not sandbox.
 The founder has explicitly confirmed that the existing Duitku merchant/API access is production-ready. This remains a founder-confirmed fact until provider-console evidence is captured.
 Do not silently switch the integration to sandbox merely to make testing easier.
 
-Official Duitku documentation distinguishes production and sandbox endpoints. For POP, the documented production create-invoice endpoint is https://api-prod.duitku.com/api/merchant/createInvoice, while sandbox uses a separate hostname. citeturn562344search2turn562344search5
+Official source: [Duitku POP API reference](https://docs.duitku.com/pop/en/) ([Indonesian reference](https://docs.duitku.com/pop/id/)). Read-only documentation verification on 2026-10-02 confirmed POP's production create-invoice URL `https://api-prod.duitku.com/api/merchant/createInvoice`. This URL is a contract reference, **not an authorized operation to execute during routine tests**. No create-invoice or merchant API request was made. The exact API family/version enabled for the Ranel merchant remains unverified; do not mix POP, legacy or SNAP contracts.
 
 ## 2. Credential boundary
 Production Duitku credentials are secrets.
@@ -35,8 +35,7 @@ Because the target is live:
 
 ## 5. Request/signature controls
 Use the current Duitku production API contract for the selected product/API family.
-For the documented POP API, Duitku requires merchant code, timestamp, and signature headers; the documented signature is HMAC-SHA256 based. citeturn562344search2
-Never hardcode signatures or credentials.
+The [official POP reference](https://docs.duitku.com/pop/en/) describes merchant code, timestamp and `x-duitku-signature`, with HMAC-SHA256 wording and family-specific examples. This wording was confirmed through public documentation, **not a merchant-console/credential check**. Before implementing an adapter, pin the enabled API family/version, exact signing input/order, key, timestamp units, encoding/casing and verified known-answer test vectors. The request signature must not be assumed to be the callback or SNAP signature. Never hardcode signatures/credentials or treat the prose label alone as an implemented signing contract.
 
 ## 6. Callback/webhook controls
 Treat callback data as untrusted until verified.
@@ -49,7 +48,7 @@ Required:
 6. idempotency;
 7. safe acknowledgement;
 8. auditable state transition.
-Duitku's current SNAP documentation specifies production callback source IPs separately from sandbox and explicitly requires signature validation. citeturn562344search3turn562344search4
+Callback signature algorithm/fields and source-IP controls must be pinned from the selected API family's official documentation and authorized provider evidence before implementation. SNAP-specific callback/IP contracts are **not verified by the POP documentation check**; obtain current references before claiming an allowlist or signature implementation is ready. Never reuse a request-signature rule blindly for callbacks or treat a return URL/UI/AI assertion as a verified payment event.
 
 ## 7. Financial truth
 Never mark an order paid because a browser returned to Ranel, a payment URL opened, the frontend says success, or an LLM inferred success.

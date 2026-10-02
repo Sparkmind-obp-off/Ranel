@@ -38,7 +38,7 @@ Existing app/source, offer content, runtime secret reader, and synthetic unit te
 ## ADR-010 — Ranel master architecture and Revenue Engine lock (2026-10-02)
 **Status:** ACCEPTED; LOCKED at strategic/logical level.
 
-The founder locks the Ranel system boundary as **Public Revenue Surface → Private Control Center → Core Business Truth + Execution**, with an AI intelligence layer providing interpretation and recommendations above deterministic signals and Core truth.
+The founder locks the Ranel system boundary as **Public Revenue Surface → Private Control Center → Core Business Truth + Execution**, with cross-cutting AI intelligence providing interpretation/recommendations across those three primary layers, subject to policy and deterministic Core authorization; AI is not a fourth primary layer.
 
 The business model is **Kits → Systems → Supply**, connected by the Revenue Engine loop **Demand → Opportunity → Product → Distribution → Transaction → Fulfillment → Outcome → Learning**.
 
@@ -50,3 +50,14 @@ See:
 - [AI Operating Model](../foundation/ranel-ai-operating-model.md)
 - [Revenue Engine](../foundation/ranel-revenue-engine.md)
 - [Strategic Roadmap & Gates](../foundation/ranel-roadmap-and-gates.md)
+
+## ADR-011 — Final launcher alignment and bounded PUBLIC hardening (2026-10-02)
+**Status:** Accepted within the existing three-layer lock; not a new architecture or phase authorization.
+
+The latest explicit founder launcher and ADR-010 specify the canonical eight-stage revenue cycle: Demand → Opportunity → Product → Distribution → Transaction → Fulfillment → Outcome → Learning. Master/Revenue Engine had conflicting older strings (Delivery/Evidence/Improvement and Intelligence/Offer); align those documents to the existing decision, preserving intelligence as cross-cutting activities and feedback inside Learning. No business price/product availability or system-layer changes.
+
+Current implementation is PUBLIC only. Add bounded URL/topic input, a GET/HEAD protocol contract, and mirrored security headers for Worker pages/redirects/errors and native Pages assets. These are input/protocol protections, **not identity/role admission or a substitute for future CONTROL/CORE authorization**. Do not expose private/financial endpoints or treat query/UI/AI claims as transaction proof. No database or provider runtime introduced.
+
+Replace unresolvable provider citation markers with traceable official POP documentation. Public documentation confirms target URL/signature wording only; it does not verify merchant account, callback contract, credential scope or integration. Duitku stays production/live; no sandbox substitution, secret access, invoice, payment, refund or payout operation.
+
+Deployment remains routine reviewed redeploy to existing `ranel` under the standing AUTO policy, subject to checks, unambiguous account/config, no new resources/cost, preserved domain/secret configuration and rollback reference. Readiness/evidence recorded per subsystem, not a full-engine production-ready claim.

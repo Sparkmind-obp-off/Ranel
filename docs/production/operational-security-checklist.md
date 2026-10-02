@@ -2,6 +2,12 @@
 
 **Status:** LOCKED baseline; apply before each meaningful production activation.
 
+## Bounded assessment — final launcher execution, 2026-10-02
+
+Assessment applies to the existing **PUBLIC** website/manual inquiry only. Read-only metadata verifies existing `ranel`/main/production and the encrypted inquiry binding; it is not proof of console MFA, token least privilege, billing, recovery or provider eligibility. Those checks remain unverified. Do not tick this checklist globally or infer production readiness of unimplemented CONTROL/CORE/Duitku/AI.
+
+Implemented/tested PUBLIC controls: URL/topic bounds, rejected write methods without body parsing or redirects, safe generic errors, header parity across dynamic pages and native assets, existing fixed-host/allowlisted canonical+legacy inquiry, no logging/storage of customer payloads, and negative fixture tests showing no financial/private endpoint or UI-established paid/entitlement state. This is **not identity/role authorization**, DDoS/rate-limit proof or a Core integration test. Detailed access/evidence/gaps: [release runbook execution record](release-runbook.md#9-final-launcher-execution--2026-10-02).
+
 ## Identity and access
 - [ ] Unique accounts; no shared admin credentials.
 - [ ] MFA enabled where supported.
