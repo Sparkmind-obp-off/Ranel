@@ -1,0 +1,4 @@
+# Set only a founder-approved public business WhatsApp number.
+# International digits only (country code, no +, spaces, or leading zero).
+# Leave empty to show the honest unconfigured-contact state.
+INQUIRY_WHATSAPP_NUMBER=

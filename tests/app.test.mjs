@@ -1,0 +1,171 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import app from "../dist/_worker.js";
+
+const request = (path, env = {}, init = {}) =>
+  app.fetch(new Request(`https://test.invalid${path}`, init), env, {});
+const routes = ["/", "/barber", "/contact", "/privacy"];
+
+for (const route of routes) {
+  test(`${route} renders semantic Indonesian HTML and unique metadata`, async () => {
+    const response = await request(route);
+    assert.equal(response.status, 200);
+    assert.match(response.headers.get("content-type"), /text\/html/);
+    const html = await response.text();
+    assert.match(html, /^<!DOCTYPE html><html lang="id">/);
+    assert.match(html, /<title>[^<]*Ranel[^<]*<\/title>/);
+    assert.match(html, /<meta name="description" content="[^"]{40,}"/);
+    assert.equal((html.match(/<h1[ >]/g) ?? []).length, 1);
+    for (const tag of ["header", "nav", "main", "footer"])
+      assert.match(html, new RegExp(`<${tag}[ >]`));
+    assert.match(html, /href="#main-content"/);
+    assert.match(html, /id="main-content"/);
+    assert.match(html, /href="\/static\/brand-mark.svg"/);
+    assert.doesNotMatch(
+      html,
+      /<script|<form|<button|href="#"|lorem ipsum|localStorage|GoogleAnalytics/i,
+    );
+  });
+}
+
+test("home labels future layers as unavailable", async () => {
+  const html = await (await request("/")).text();
+  assert.match(html, /Kits → Systems → Supply/);
+  assert.equal((html.match(/Belum tersedia/g) ?? []).length, 2);
+  assert.match(html, /Fase awal/);
+});
+
+test("barber has exactly three truthful development offer cards", async () => {
+  const html = await (await request("/barber")).text();
+  assert.equal((html.match(/class="offer-card"/g) ?? []).length, 3);
+  assert.equal((html.match(/Dalam pengembangan/g) ?? []).length, 3);
+  assert.equal((html.match(/Hubungi untuk harga pilot/g) ?? []).length, 3);
+  assert.doesNotMatch(html, /Rp\s?\d|testimoni|dipercaya oleh|beli sekarang/i);
+  for (const id of ["operations", "retention", "tracking"])
+    assert.match(html, new RegExp(`href="/contact\\?offer=${id}"`));
+});
+
+test("all internal HTML links resolve and anchors exist", async () => {
+  for (const route of routes) {
+    const html = await (await request(route)).text();
+    for (const match of html.matchAll(/href="([^"]+)"/g)) {
+      const href = match[1].replaceAll("&amp;", "&");
+      if (href.startsWith("/static/")) continue; // Static asset serving checked through Wrangler/browser.
+      const url = new URL(href, `https://test.invalid${route}`);
+      assert.equal(url.hostname, "test.invalid");
+      const result = await request(url.pathname + url.search);
+      assert.equal(result.status, 200, `broken link ${route} → ${href}`);
+      if (url.hash)
+        assert.ok(
+          (await result.text()).includes(`id="${url.hash.slice(1)}"`),
+          `missing anchor ${href}`,
+        );
+    }
+  }
+});
+
+test("unconfigured contact is honest, with no send CTA", async () => {
+  const html = await (await request("/contact")).text();
+  assert.match(html, /Kontak belum aktif/);
+  assert.match(html, /belum ada cara mengirim inquiry/);
+  assert.match(html, /readonly=""/);
+  assert.doesNotMatch(html, /href="\/inquiry|wa\.me|Buka WhatsApp/);
+});
+
+for (const id of ["operations", "retention", "tracking"]) {
+  test(`selected ${id} offer is preserved on contact and WhatsApp redirect`, async () => {
+    // Synthetic international-format fixture; not a real/verified business contact.
+    const env = { INQUIRY_WHATSAPP_NUMBER: "12025550123" };
+    const response = await request(`/contact?offer=${id}`, env);
+    const html = await response.text();
+    assert.match(html, /Jalur WhatsApp tersedia/);
+    assert.match(html, new RegExp(`href="/inquiry\\?offer=${id}"`));
+    const result = await request(`/inquiry?offer=${id}`, env);
+    assert.equal(result.status, 303);
+    const url = new URL(result.headers.get("location"));
+    assert.equal(url.origin, "https://wa.me");
+    assert.equal(url.pathname, "/12025550123");
+    assert.match(url.searchParams.get("text"), /Halo Ranel/);
+    assert.match(html, /Website ini tidak mengirim atau menyimpan/);
+  });
+}
+
+for (const value of [
+  undefined,
+  "",
+  "+12025550123",
+  "08123456789",
+  "123",
+  " 12025550123 ",
+  "12025550123?redirect=https://evil.invalid",
+  "1".repeat(16),
+]) {
+  test(`invalid/missing contact configuration fails closed (${value === undefined ? "undefined" : value.length})`, async () => {
+    const env = { INQUIRY_WHATSAPP_NUMBER: value };
+    const html = await (await request("/contact?offer=operations", env)).text();
+    assert.match(html, /Kontak belum aktif/);
+    assert.doesNotMatch(html, /href="\/inquiry/);
+    const result = await request("/inquiry?offer=operations", env);
+    assert.equal(result.status, 303);
+    assert.equal(result.headers.get("location"), "/contact?offer=operations");
+  });
+}
+
+test("unknown/malicious offer input falls back without reflection or open redirect", async () => {
+  const input = encodeURIComponent(
+    "<script>alert(1)</script>https://evil.invalid",
+  );
+  const html = await (await request(`/contact?offer=${input}`)).text();
+  assert.doesNotMatch(html, /<script|evil\.invalid|alert\(1\)/);
+  assert.match(html, /rencana kit pilot untuk usaha barber/);
+  const result = await request(
+    `/inquiry?offer=${input}&url=https://evil.invalid`,
+    { INQUIRY_WHATSAPP_NUMBER: "12025550123" },
+  );
+  const url = new URL(result.headers.get("location"));
+  assert.equal(url.origin, "https://wa.me");
+  assert.doesNotMatch(url.searchParams.get("text"), /evil\.invalid/);
+});
+
+test("privacy explains no application persistence and third-party handoff", async () => {
+  const html = await (await request("/privacy")).text();
+  assert.match(html, /Tidak ada akun, database inquiry/);
+  assert.match(html, /kebijakan layanan tersebut/);
+  assert.match(html, /retensi dan penghapusan pesan belum ditetapkan/);
+});
+
+test("404 returns useful navigation and proper status", async () => {
+  const response = await request("/does-not-exist");
+  assert.equal(response.status, 404);
+  assert.match(await response.text(), /Kembali ke beranda/);
+});
+
+test("there is no form submission API and nothing reports successful storage", async () => {
+  const response = await request(
+    "/api/contact",
+    {},
+    { method: "POST", body: "name=test" },
+  );
+  assert.equal(response.status, 404);
+  assert.doesNotMatch(
+    await response.text(),
+    /berhasil dikirim|berhasil disimpan/i,
+  );
+});
+
+test("page and redirect security headers omit cookies and disallow framing", async () => {
+  for (const route of [...routes, "/inquiry"]) {
+    const response = await request(route);
+    assert.match(
+      response.headers.get("content-security-policy"),
+      /frame-ancestors 'none'/,
+    );
+    assert.match(
+      response.headers.get("content-security-policy"),
+      /form-action 'self'/,
+    );
+    assert.equal(response.headers.get("x-content-type-options"), "nosniff");
+    assert.equal(response.headers.get("set-cookie"), null);
+    assert.equal(response.headers.get("cache-control"), "no-store");
+  }
+});
