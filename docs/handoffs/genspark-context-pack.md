@@ -131,6 +131,17 @@ Security, payment, data-integrity, production-availability, or unexpected-cost i
 11. Do not rerun deployment or full QA when a docs-only change is the only change.
 12. Return compact evidence: exact commands, pass/fail counts, identifiers, URLs, and blockers. Avoid long narrative.
 
+## AI production-grade task
+
+For an AI-specific task, read only:
+1. `docs/foundation/ranel-master-blueprint.md`
+2. `docs/foundation/ranel-ai-operating-model.md`
+3. `docs/foundation/ranel-ai-production-grade-checklist.md`
+4. `docs/technology/provider-inventory.md` only for provider state
+5. exact implementation/evaluation files required by the task.
+
+Do not load payments, DR, frontend, or unrelated technology documents unless the AI task creates a real dependency.
+
 ## Production readiness task
 
 For production-grade hardening/readiness work, read only:
