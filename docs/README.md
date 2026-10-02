@@ -51,6 +51,7 @@ Status labels: DECIDED = founder decision; PROPOSED = recommended direction; PEN
 
 
 ## Execution handoffs
+- [Genspark — compact context pack](handoffs/genspark-context-pack.md)
 - [Genspark — read-only provider audit](handoffs/genspark-provider-audit.md)
 
 ## Implementation program
