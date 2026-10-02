@@ -47,3 +47,8 @@ Status labels: DECIDED = founder decision; PROPOSED = recommended direction; PEN
 - [Genspark execution protocol](technology/genspark-execution-protocol.md)
 - [Architecture decision records](technology/architecture-decisions.md)
 - [MVP acceptance checklist](technology/mvp-acceptance-checklist.md)
+
+
+## Implementation program
+- [Phased implementation roadmap](implementation/implementation-roadmap.md)
+- [Phase 1 — Genspark master system prompt](implementation/phase-1/master-system-prompt.md)
