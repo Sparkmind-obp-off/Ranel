@@ -52,3 +52,5 @@ Status labels: DECIDED = founder decision; PROPOSED = recommended direction; PEN
 ## Implementation program
 - [Phased implementation roadmap](implementation/implementation-roadmap.md)
 - [Phase 1 — Genspark master system prompt](implementation/phase-1/master-system-prompt.md)
+- [Phase 1 — execution evidence, acceptance and blockers](implementation/phase-1/evidence.md)
+- [Actual application setup, inquiry configuration and BYOK deployment](../README.md)

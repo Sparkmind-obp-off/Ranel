@@ -1,5 +1,15 @@
 # Environments and Cloudflare Deployment
 
+## Phase 1 implementation update — 2026-10-02
+
+Actual scaffold: Hono + TypeScript + Vite Cloudflare Pages adapter, npm lockfile, Wrangler Pages advanced-mode output (`dist/_worker.js` and native static assets). No database/services provisioned. Authorized deployment is **CF BYOK, existing project only**, as requested by founder. Authentication/listing was verified; production deployment is **BLOCKED** because neither `ranel` nor `runnel` exists in the connected account's Pages projects. Active `ranel.biz.id` zone is not proof of a deployed website. Earlier `runnel` vs latest `ranel` hostname conflict is pending founder confirmation.
+
+[README actual commands, inquiry secrets, BYOK release and rollback instructions](../../README.md#cloudflare-byok-deployment--existing-project-only) · [Phase 1 evidence](../implementation/phase-1/evidence.md).
+
+Do not create a project or deploy to an unrelated existing project. Read/persist metadata only for a verified target; current `cloudflare_project_name` is unset. Run QA before explicit `wrangler pages deploy dist --project-name <verified-existing-name> --branch main`, then verify returned URL, routes/assets, contact, and custom-domain DNS/TLS. No `wrangler login` in Genspark. Stop Pages preview before rebuilding to avoid observing `_routes.json` mid-write. Production deployment and rollback have not been run.
+
+The broader principles below remain guidance for later approved phases, not evidence of services implemented now.
+
 ## Environments
 - Local: development and disposable/test data.
 - Preview: isolated review environment with non-production data and safe credentials.
