@@ -17,122 +17,82 @@ Answers:
 - Locked vs evidence-gated decisions.
 - Agent operating rule.
 
-## Layer 1 — Business
+## Primary system architecture
 
-Read when a task concerns:
-- product;
-- offer;
-- vertical;
-- pricing;
-- revenue;
-- demand;
-- distribution;
-- roadmap gates.
+Ranel has exactly three primary system layers.
 
-Documents:
-- [Business Architecture](ranel-business-architecture.md)
-- [Revenue Engine](ranel-revenue-engine.md)
-- [Roadmap & Gates](ranel-roadmap-and-gates.md)
+### System Layer 1 — Public
+Customer-facing revenue surface.
 
-## Layer 2 — Intelligence / AI
-
-Read when a task concerns:
-- demand intelligence;
-- opportunity discovery;
-- scoring;
-- recommendation;
-- AI prompts/modeling;
-- decision records;
-- AI evaluation;
-- automation policy.
-
-Documents:
-- [AI Operating Model](ranel-ai-operating-model.md)
-- [AI Production-Grade Checklist](ranel-ai-production-grade-checklist.md)
-
-For an AI implementation task, read both AI documents, then only the exact technical/provider files needed.
-
-## Layer 3 — Product / Public
-
-Read when a task concerns:
-- public website;
-- catalog;
-- landing pages;
-- customer entry points;
-- content;
-- current barber offer.
-
-Start with:
+Read for public-site/product-entry work:
 - `README.md`
 - `docs/products/product-catalog.md`
+- exact `src/*` / asset files needed.
 
-Then inspect only the exact `src/*` / asset files needed.
+### System Layer 2 — Control
+Private founder/operator decision center.
 
-## Layer 4 — Control Center
-
-Long-term private interface for:
-- founder/operator visibility;
-- orders/revenue;
-- customers;
-- products;
-- signals;
+Read when implementing:
+- internal workspace;
+- revenue/order/customer views;
+- demand signals;
 - recommendations;
 - automation/system health;
-- audit history.
+- audit/activity.
 
-Current status: **architecturally locked, not yet fully implemented**.
-
-When implementation starts, use:
-- `docs/technology/architecture.md`
+Use:
 - `docs/technology/backend-api-specification.md`
 - `docs/technology/auth-and-access-control.md`
 - `docs/technology/data-model.md`
 - `docs/technology/testing-and-qa.md`
 
-Do not build this layer merely because it is architecturally defined. Its activation remains evidence-gated.
+### System Layer 3 — Core
+Authoritative business truth and execution.
 
-## Layer 5 — Core Business Truth
-
-Authoritative backend for:
-- orders;
-- payments;
+Read when implementing:
+- orders/payments;
 - entitlements;
 - revenue ledger;
 - business rules;
-- authorization;
 - idempotent events;
 - commands;
 - provider adapters;
 - audit history.
 
-Current status: **architecturally locked, implementation pending**.
+Use:
+- `docs/technology/api-and-event-contract.md`
+- `docs/technology/data-model.md`
+- `docs/technology/integration-strategy.md`
+- `docs/technology/security-threat-model.md`
 
-Never let AI or UI directly redefine Core truth.
+**AI is cross-cutting intelligence across Public, Control, and Core. It is not a fourth primary layer.**
 
-## Layer 6 — Provider / Infrastructure
+## Context domains
 
-Read only when the task touches external infrastructure:
-- [Provider Inventory](../technology/provider-inventory.md)
-- [Integration Strategy](../technology/integration-strategy.md)
-- [Deployment](../technology/environments-and-deployment.md)
-- relevant Genspark handoff.
+### Business
+Read for product, offer, vertical, pricing, demand, distribution, and gates:
+- [Business Architecture](ranel-business-architecture.md)
+- [Revenue Engine](ranel-revenue-engine.md)
+- [Roadmap & Gates](ranel-roadmap-and-gates.md)
 
-Current provider facts must be verified from provider evidence before implementation claims are made.
+### AI
+Read for demand intelligence, opportunity discovery, scoring, recommendations, AI implementation, evaluation:
+- [AI Operating Model](ranel-ai-operating-model.md)
+- [AI Production-Grade Checklist](ranel-ai-production-grade-checklist.md)
 
-## Layer 7 — Governance / Evidence
+### Provider / Infrastructure
+Read only when touching external infrastructure:
+- `docs/technology/provider-inventory.md`
+- `docs/technology/duitku-production-integration-contract.md`
+- `docs/technology/environments-and-deployment.md`
+- relevant Genspark handoff
 
-Read when the task concerns:
-- execution permissions;
-- safety;
-- evidence;
-- phase gates;
-- external execution;
-- production release.
-
-Documents:
+### Governance / Evidence
+Read when touching access, safety, execution, production release, or evidence:
 - `docs/governance/decision-capability-execution-model.md`
+- `docs/governance/access-and-permission-model.md`
 - `docs/technology/genspark-execution-protocol.md`
-- `docs/implementation/phase-2/evidence.md`
+- `docs/production/production-readiness-standard.md`
 
 ## Agent loading rule
 
