@@ -4,9 +4,13 @@
 **Purpose:** Close provider-console verification gaps without changing production state.  
 **Canonical repository:** `Sparkmind-obp-off/Ranel`  
 **Branch:** `main`  
-**Starting commit:** `2f7f54ff14bc85e3193f4d5930cb29e8a39df4ec`  
+**Starting state:** use the current `main` HEAD when executing; do not reset or rewind the branch.  
 **Founder authority:** Founder retains final decisions.  
 **Execution rule:** Read-only audit. No provisioning or production mutation.
+
+## 0. Cost-efficient context loading
+
+Read `docs/handoffs/genspark-context-pack.md` first. It contains the compact baseline and routing rules. For this audit, then read only this handoff and `docs/technology/provider-inventory.md` unless a specific uncertainty requires another targeted document. Do not rescan the whole repository.
 
 ## 1. Objective
 
