@@ -277,7 +277,20 @@ Current gaps:
 
 The lock defines the destination and rules. Evidence determines the concrete implementation choices inside that boundary.
 
-## 12. Agent instruction
+## 12. Production readiness controls
+
+The strategic lock is complemented by explicit operational standards:
+- `docs/production/production-readiness-standard.md`
+- `docs/production/release-runbook.md`
+- `docs/production/business-continuity-and-disaster-recovery.md`
+- `docs/production/operational-security-checklist.md`
+- `docs/technology/data-governance-and-retention.md`
+- `docs/technology/api-and-event-contract.md`
+- `docs/foundation/ranel-ai-production-grade-checklist.md`
+
+These documents define release evidence and safety controls. They do not convert unimplemented subsystems into production-ready systems.
+
+## 13. Agent instruction
 
 When receiving a Ranel task:
 1. Read this master blueprint.
