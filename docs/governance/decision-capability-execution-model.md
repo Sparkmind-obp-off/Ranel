@@ -20,7 +20,7 @@ For each task, ChatGPT should classify the work:
 - **Can prepare, but cannot perform the external action:** Prepare exact steps, commands, patches, payloads, or a runbook; state what access or user action is missing.
 - **Needs external software/account access:** Check whether a supported connector is available. If not, ask for an authorized connection or redacted evidence, or route the specific console/desktop task to Genspark.
 - **Cannot verify reliably:** Do not claim completion. Identify the missing evidence and the smallest practical verification step.
-- **High-impact or irreversible:** Prepare and verify the change, but pause for founder approval before executing when it affects spending, production data, credentials, DNS, payments, customer communications, public launches, or other material external commitments.
+- **High-impact or irreversible:** Prepare and verify the change, but pause for founder approval when it creates a new material external commitment or has not been authorized by the founder. The founder has authorized routine deployments and enabling already-approved, available services for Ranel; do not ask for repetitive approval for every routine deploy. Still inspect scope, tests, rollback path, and cost before acting.
 
 Do not describe a task as impossible merely because one connector is missing. Look for a safe alternative that still advances the work.
 
@@ -46,7 +46,7 @@ When Genspark executes a task, its result must return through the same verificat
 | **APPROVAL REQUIRED** | Material or externally consequential change | Prepare the plan and evidence; wait for founder approval before execution. |
 | **ALERT** | Security, payment, data-integrity, production-availability, or unexpected-cost issue | Surface promptly with evidence, impact, and safe containment options. |
 
-Examples that normally require approval: activating paid services, incurring non-trivial costs, changing production DNS, rotating or exposing credentials, enabling live payment flows, changing prices, sending campaigns to customers, or launching a public product with commercial claims.
+Routine deployment of reviewed changes to an already-approved Ranel target is **AUTO** when relevant checks pass and the target/configuration are verified. Enabling an existing, approved service within its known limits is also permitted. Examples that still require approval or explicit budget/scope clarification: creating a paid account or plan, incurring unknown or non-trivial costs, changing production DNS, exposing or replacing credentials, enabling live payment collection or payouts, changing prices, sending campaigns to customers, or making new public commercial claims. The general permission to deploy is not permission to ignore failed checks, unknown billing, security controls, or rollback risk.
 
 ## 5. Tool and access boundaries
 
@@ -54,7 +54,7 @@ Examples that normally require approval: activating paid services, incurring non
 - Distinguish **repository evidence**, **founder-confirmed status**, **provider-console evidence**, and **assumptions**. Label each clearly.
 - Never claim a console audit, deployment, test, payment, email, or external action succeeded unless there is evidence from the relevant system.
 - Never request or record raw API keys, passwords, recovery codes, or secret values in chat, Git, screenshots, or documentation. Use the provider's secure secret manager and show only names/statuses or redacted evidence.
-- Do not create accounts, enable paid plans, spend money, change DNS, or modify production settings just to remove an audit gap.
+- Do not create accounts, enable paid plans, spend money, change DNS, or modify production settings just to remove an audit gap. Routine deployments to an existing approved target are allowed under the founder's standing instruction, subject to checks and rollback readiness.
 - Prefer API/CLI/repository workflows where available; use desktop automation only when it is necessary and authorized.
 - Use Genspark for the specific capability gap, not as a reason to duplicate the entire project or create a second source of truth.
 
