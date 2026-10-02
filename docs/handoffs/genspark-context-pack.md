@@ -16,6 +16,20 @@ Canonical source of truth:
 - GitHub documents/code are canonical.
 - Genspark is an execution/capability layer; its reports are not accepted as proof until evidence is returned and reviewed.
 
+## CANONICAL FOUNDATION LAYER
+
+Read these only when the task touches the corresponding layer:
+
+- `docs/foundation/ranel-master-blueprint.md` — complete locked strategic/system context.
+- `docs/foundation/ranel-business-architecture.md` — business layers and gates.
+- `docs/foundation/ranel-ai-operating-model.md` — AI/demand intelligence and decision loop.
+- `docs/foundation/ranel-revenue-engine.md` — revenue engine and transaction/economics loop.
+- `docs/foundation/ranel-roadmap-and-gates.md` — staged implementation and evidence gates.
+- `docs/technology/architecture.md` — technical architecture detail.
+- `docs/business/business-model.md` — detailed business-model rationale.
+
+**Preferred loading order:** Master Blueprint → one affected foundation layer → exact implementation files → tests/evidence.
+
 ## CURRENT VERIFIED BASELINE
 
 ### Product / phase
