@@ -96,17 +96,23 @@ A live catalog is not proof of demand. A software build is not proof of revenue.
 
 ## 6. Technical architecture lock
 
-Ranel is a three-layer system:
+Ranel has exactly three primary system layers:
+
+1. PUBLIC LAYER
+2. CONTROL LAYER
+3. CORE LAYER
+
+AI is cross-cutting intelligence across these three layers, not a fourth primary layer.
 
 ```
-PUBLIC REVENUE SURFACE
-        ↓
-PRIVATE CONTROL CENTER
-        ↓
-CORE BUSINESS TRUTH + EXECUTION
+PUBLIC
+  ↓
+CONTROL
+  ↓
+CORE
 ```
 
-### Public Revenue Surface
+### 1. Public Layer
 Customer-facing:
 - brand/landing pages
 - catalog
@@ -120,7 +126,7 @@ Customer-facing:
 
 Public surfaces should expose only what is safe and intentionally public.
 
-### Private Control Center
+### 2. Control Layer
 Founder/operator-facing:
 - revenue overview
 - orders
@@ -137,7 +143,7 @@ Founder/operator-facing:
 
 The Control Center is a decision environment, not merely a CRUD dashboard.
 
-### Core Business Truth + Execution
+### 3. Core Layer
 Authoritative backend:
 - order/payment state
 - entitlement state
@@ -257,7 +263,7 @@ Current gaps:
 **LOCKED**
 - Ranel master brand direction.
 - Kits → Systems → Supply business model.
-- Public → Control Center → Core architecture.
+- Public → Control → Core architecture.
 - AI as intelligence/recommendation layer, not business truth.
 - demand → opportunity → action → outcome learning loop.
 - evidence-gated expansion.
@@ -302,3 +308,7 @@ When receiving a Ranel task:
 7. Record evidence.
 8. Return a compact report.
 9. Do not reopen settled architecture unless new evidence creates a concrete conflict.
+
+## 14. Access and production control
+
+External AI/software execution follows `docs/governance/access-and-permission-model.md` and `docs/handoffs/genspark-execution-profile.md`. Duitku is a production/live integration target under `docs/technology/duitku-production-integration-contract.md`. Production credentials are handled only through secure secret mechanisms; live payment creation or customer transactions are separately gated actions.
