@@ -47,9 +47,10 @@ Read these only when the task touches the corresponding layer:
 - Production: `https://ranel.pages.dev`
 - Cloudflare Pages project: `ranel`
 - Production branch: `main`
-- Current documented immutable deployment: `https://68793aeb.ranel.pages.dev`
-- Deployment ID: `68793aeb-029c-40a1-b0e2-8b3ca55c224b`
-- Deployed application SHA: `a4915bad908268acc6df1efce4f0e2e2707e0c6a`
+- Current documented immutable PUBLIC deployment: `https://a071fcab.ranel.pages.dev`
+- Deployment ID: `a071fcab-4df7-466d-be7e-68d56274f780`
+- Deployed application SHA: `c90c1994839e1bee4fa676ed25ea848da66731ad`
+- Current scope: Phase 2 catalog/manual inquiry preserved plus bounded PUBLIC header/input hardening; [execution evidence](../production/release-runbook.md#9-final-launcher-execution--2026-10-02). CONTROL/CORE/payment/AI remain gated; no broader activation.
 - Later docs-only commits do not change the deployed application provenance.
 - `ranel.biz.id` has been observed in Cloudflare metadata, but DNS/TLS/redirect/browser behavior is not treated as independently verified.
 - Do not mutate the custom domain/DNS unless a separate scope explicitly authorizes it.

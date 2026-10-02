@@ -1,15 +1,16 @@
 # Environments and Cloudflare Deployment
 
-## Current release — Phase 2, 2026-10-02
+## Current release — bounded PUBLIC hardening, 2026-10-02
 
 **Deployment: VERIFIED.** Project exactly **`ranel`**, production branch **`main`**, production **https://ranel.pages.dev**. The newest founder instruction authorizes creating that exact Pages project if absent; it supersedes Phase 1's earlier existing-project-only restriction. Authenticated discovery found one authorized account and no `ranel` project; creation succeeded without account switching or project-name substitution.
 
 - Scaffold preserved: Hono + TypeScript + Vite Pages advanced-mode output in `dist/`, `_worker.js`, `_routes.json`, native static assets.
 - Runtime configuration: `INQUIRY_WHATSAPP_NUMBER` is encrypted in **production**, read through `c.env`; preview contact configuration remains unset. No number inserted into application source, assets, or `wrangler.jsonc`; no new backend/database.
-- Deployed application SHA: `a4915bad908268acc6df1efce4f0e2e2707e0c6a`.
-- Deployment ID: `68793aeb-029c-40a1-b0e2-8b3ca55c224b`.
-- Immutable URL: https://68793aeb.ranel.pages.dev.
-- Cloudflare creation time: `2026-10-02T05:53:00.871959Z`; final stage `success`, environment `production`, trigger SHA verified.
+- Deployed application SHA: `c90c1994839e1bee4fa676ed25ea848da66731ad`.
+- Deployment ID: `a071fcab-4df7-466d-be7e-68d56274f780`.
+- Immutable URL: https://a071fcab.ranel.pages.dev.
+- Cloudflare creation time: `2026-10-02T10:25:38.112262Z`; final stage `success`, environment `production`, trigger SHA verified.
+- Scope: PUBLIC protocol/header protections, existing catalog/manual inquiry preserved; no new providers, phase expansion, secret/DNS/account changes. [Current execution evidence](../production/release-runbook.md#9-final-launcher-execution--2026-10-02).
 - Project metadata `cloudflare_project_name` and Wrangler config both select `ranel`.
 
 [Actual setup/QA/contact/release commands](../../README.md#cloudflare-byok-deployment) · [Phase 1B release evidence](../implementation/phase-1b-release-deployment/evidence.md) · [Original Phase 1 checkpoint](../implementation/phase-1/evidence.md).
@@ -54,4 +55,4 @@ Cloudflare D1/R2 or other services remain proposed only when actual requirements
 
 ## Documentation sync rule
 
-This file is the deployment runbook, while the latest deployed release provenance is authoritative in `docs/implementation/phase-2/evidence.md`. When a later release occurs, update this section in the same change set as the release evidence.
+This file is the deployment configuration guide. Current bounded hardening provenance is authoritative in `docs/production/release-runbook.md` §9; `docs/implementation/phase-2/evidence.md` retains the historical Phase 2 release. When a later release occurs, update this section in the same change set as the release evidence.

@@ -111,7 +111,7 @@ VALIDATED = attributable customer/business evidence exists.
 ## 9. Final launcher execution — 2026-10-02
 
 ### Status and bounded scope
-**PARTIAL at local checkpoint:** canonical documentation aligned and PUBLIC hardening locally verified; reviewed PUBLIC redeploy/live smoke pending. This does not activate CONTROL, CORE, Duitku, AI, analytics or fulfillment, and is not a full-engine production-ready claim. Starting repo HEAD `9d3aa9780033286cc0fd46a733ca98b54dd1e56c` after a clean fast-forward from `817c105`; incoming changes were documentation only.
+**PASS for scoped canonical alignment/PUBLIC hardening; overall engine readiness remains PARTIAL.** Reviewed PUBLIC redeploy and live smoke/browser checks verified. CONTROL/CORE/providers/AI remain gated, not production-ready merely because PUBLIC is live. This does not activate CONTROL, CORE, Duitku, AI, analytics or fulfillment, and is not a full-engine production-ready claim. Starting repo HEAD `9d3aa9780033286cc0fd46a733ca98b54dd1e56c` after a clean fast-forward from `817c105`; incoming changes were documentation only.
 
 ### Access actually used
 | Access class | Actor/environment/target | Operation and limit |
@@ -137,16 +137,29 @@ Technical access is not L6 authorization. No new paid resource/plan or material 
 - `npm ci`: success, 164 locked packages; package/lock/Vite/Wrangler configs unchanged.
 - `npm run lint`, `npm run typecheck`: exit 0.
 - `npm test`: **33 passed / 0 failed / 0 skipped**, including URL/topic boundaries, encoded duplicate topics, method/HEAD contract, generic 500 secrecy, ignored UI financial assertions and absence of financial endpoints. All synthetic/deterministic, no fake provider payment success.
-- Build via `npm test`: **67.37 kB** Worker, 53 transformed modules; native header config copied.
+- Build via `npm test` and standalone `npm run build` from the committed source: **67.37 kB** Worker, 53 transformed modules; native header config copied.
 - `npm audit`: **0 vulnerabilities**.
 - Local `npm run test:e2e`: **30 passed / 0 failed**, reported 1.2 min, 320/390/1440 px; pages/assets headers, safe negative public requests, full catalog/contact/legacy journey, metadata/keyboard/axe regressions. No external messaging redirect followed.
 - Baseline Cloudflare read-only metadata: deployment `68793aeb-029c-40a1-b0e2-8b3ca55c224b`, SHA `a4915bad908268acc6df1efce4f0e2e2707e0c6a`, successful production/main; existing domains `ranel.pages.dev`, `ranel.biz.id`; inquiry encrypted binding present. This is the immediate rollback reference, **not a tested rollback**.
-- Initial curl retries during PM2 startup ended at readiness; no application/security test failure in this execution. Live release identifiers/smoke and touched-file/artefact secret review recorded after deployment, not inferred from local success.
+- Initial curl retries during PM2 startup ended at readiness; no application/security test failure in this execution.
+- Scoped touched-file/build secret review: **18 files, 0 matches** against configured credentials; changed-document local links valid; no whole-repository scan. Dependencies, deployment config, catalog data and visual assets unchanged. Canonical eight-stage strings match in Master/Revenue Engine/ADR; Duitku contract retains production/live, not-implemented and live-action-not-authorized status with traceable official references.
+- Production configured `npm run test:e2e`: **30 passed / 0 failed**, **54.1 s**, same mobile/desktop viewports and axe A/AA checks. Header parity proven on actual Pages assets and Worker routes, native types/content preserved, canonical/legacy manual inquiry intent unchanged; no messaging redirect followed.
+
+### Verified PUBLIC release
+- Target: existing `ranel`, `main`, **https://ranel.pages.dev**; CF BYOK under standing routine-deploy AUTO authorization, no new resource/plan/provider.
+- Source commit, pushed before deploy: **`c90c1994839e1bee4fa676ed25ea848da66731ad`**.
+- Actual command: `npx wrangler pages deploy dist --project-name ranel --branch main --commit-hash "$(git rev-parse HEAD)"`.
+- Deployment ID: **`a071fcab-4df7-466d-be7e-68d56274f780`**.
+- Immutable URL: **https://a071fcab.ranel.pages.dev**.
+- Cloudflare creation: **`2026-10-02T10:25:38.112262Z`**, CLI completion `10:25:42Z`; authenticated API verified exact source SHA, production/main, success stage, unchanged domain list and encrypted inquiry binding type. Secret values not dumped; no secret update/rotation invoked.
+- Both origins: `/`, `/barber`, `/contact`, `/privacy`, CSS/SVG **200**, missing route **404**, all checked headers including native assets match; built CSS/SVG bytes match. Negative PUBLIC checks: write-method **405**/Allow, duplicate-topic **400**, long URL **414**, no Location on rejection. Correct canonical/legacy/general/unknown inquiry **303** covered by live E2E with approved destination compared privately and redirects not followed.
+- No provider financial endpoint called, no Control/Core application created or falsely certified. No DNS/custom-domain, credentials, prices, paid plan, public commercial promise or campaign mutation. Metadata `cloudflare_project_name=ranel` retained.
+- Closing documentation-only commit updates current provenance without another deploy/full QA. Its final HEAD/remote equality and clean tree are returned in the execution report; deployed source SHA above remains authoritative. Immediate rollback reference is the previously verified Phase 2 deployment listed above; rollback **not executed/tested**.
 
 ### Remaining subsystem gates (not silently built)
 | Subsystem/control | State and smallest required evidence |
 |---|---|
-| PUBLIC website/catalog/inquiry | Existing tested surface; reviewed header/input release verified separately below |
+| PUBLIC website/catalog/inquiry | DEPLOYED/VERIFIED for this scoped release; not demand/revenue validation or full engine readiness |
 | CONTROL | NOT IMPLEMENTED; needs a bounded private workflow and tested identity/role/record contract before activation |
 | CORE | NOT IMPLEMENTED; needs approved persistence/authorization, deterministic order/ledger/entitlement/command/event rules and recovery contract |
 | Duitku production/live | TARGET LOCKED, NOT INTEGRATED; merchant/account/API family/callback/signature/limits evidence required; real money actions need explicit live-action authorization |

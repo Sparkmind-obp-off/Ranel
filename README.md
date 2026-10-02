@@ -17,7 +17,7 @@ The first vertical is **barber businesses**. Other verticals are future options,
 
 Canonical revenue cycle: **Demand → Opportunity → Product → Distribution → Transaction → Fulfillment → Outcome → Learning**. Business model remains **Kits → Systems → Supply**. The lock defines the destination, not implementation/validation evidence.
 
-Current local hardening checks pass: 33 built-worker and 30 browser tests; reviewed PUBLIC release is recorded in the [release runbook](docs/production/release-runbook.md#9-final-launcher-execution--2026-10-02). Existing catalog/contact/brand look preserved. CONTROL/CORE, payment, AI and other providers remain unimplemented/not integrated; no full-engine production-ready claim or automatic next-phase build.
+**Scoped PUBLIC hardening: DEPLOYED/VERIFIED. Overall engine: PARTIAL.** 33 built-worker, 30 local and 30 production browser tests pass; current reviewed release is recorded in the [release runbook](docs/production/release-runbook.md#9-final-launcher-execution--2026-10-02). Existing catalog/contact/brand look preserved. CONTROL/CORE, payment, AI and other providers remain unimplemented/not integrated; no full-engine production-ready claim or automatic next-phase build.
 
 PUBLIC request contract: GET/HEAD only on existing pages and `/inquiry`; other methods 405, URL length over 2048 characters including origin 414, duplicate `offer` or decoded topic over 64 characters 400. Short unknown topics retain general fallback. Requests rejected without body parsing/storage or external redirect. Worker pages/redirects/errors and native `/static/*` assets receive mirrored CSP, nosniff, referrer/permissions, X-Frame-Options DENY and host-only HSTS (no preload/includeSubDomains). These are HTTP/input protections, not identity/role admission or Core authorization. No new sensitive submission endpoint or provider activation.
 
@@ -45,8 +45,8 @@ Only blank templates are committed. Keep real anonymized interaction records in 
 - Local Pages preview: `http://localhost:3000`.
 - Temporary sandbox preview: https://3000-iy1qof0t6pdsmm8bh8q31-82b888ba.sandbox.novita.ai — verified HTTP 200 for homepage/barber; not a production URL and may expire.
 - Production URL: **https://ranel.pages.dev**; project exactly `ranel`, production branch `main`.
-- Current immutable deployment: https://68793aeb.ranel.pages.dev; ID `68793aeb-029c-40a1-b0e2-8b3ca55c224b`.
-- Deployed commit: `a4915bad908268acc6df1efce4f0e2e2707e0c6a`; created `2026-10-02T05:53:00.871959Z`, Cloudflare stage `success`. Subsequent documentation-only commits do not change this deployment's provenance. Previous Phase 1B deployment remains recorded in its historical evidence.
+- Current immutable deployment: https://a071fcab.ranel.pages.dev; ID `a071fcab-4df7-466d-be7e-68d56274f780`.
+- Deployed commit: `c90c1994839e1bee4fa676ed25ea848da66731ad`; created `2026-10-02T10:25:38.112262Z`, Cloudflare stage `success`. Subsequent documentation-only commits do not change this provenance. Previous Phase 2/1B releases remain recorded in their historical evidence; current execution details are in the release runbook.
 - Custom-domain observation: initial release lookup listed only `ranel.pages.dev`; final read-only lookup at `2026-10-02T04:41:33Z` also listed `ranel.biz.id`, with Cloudflare status **active** and creation time `2026-10-02T04:32:09.411016Z`. The release agent did **not** attach it or change DNS; the actor is not verified. Its actual DNS/TLS/redirect/browser behavior was not tested in this phase. Phase 2 retained both observed domain names without domain/DNS mutation; it changed only the application deployment, as recorded above.
 
 | Route | Purpose |

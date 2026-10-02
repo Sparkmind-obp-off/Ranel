@@ -79,7 +79,7 @@ Production deployment does not equal validation. A product is commercially valid
 
 ## 3. Current Ranel readiness matrix
 
-The final-launcher execution record in [release runbook §9](release-runbook.md#9-final-launcher-execution--2026-10-02) assesses the existing PUBLIC surface only. URL/topic limits, read-only methods, safe errors and Worker/native-asset header parity are tested locally. Live release evidence is recorded there after deployment. These are not identity admission, Core authorization or merchant/payment integration verification. CONTROL/CORE/provider/AI/data gates below remain unchanged and block activation of those subsystems—not routine hardening of a read-only catalog.
+The final-launcher execution record in [release runbook §9](release-runbook.md#9-final-launcher-execution--2026-10-02) assesses the existing PUBLIC surface only. URL/topic limits, read-only methods, safe errors and Worker/native-asset header parity are verified locally and on the reviewed live PUBLIC release (33 unit tests, 30 local + 30 production browser tests). Actual source/deployment/rollback evidence is recorded there. These are not identity admission, Core authorization or merchant/payment integration verification. CONTROL/CORE/provider/AI/data gates below remain unchanged and block activation of those subsystems—not routine hardening of a read-only catalog.
 
 | Area | Current state |
 |---|---|

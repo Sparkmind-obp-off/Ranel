@@ -246,8 +246,9 @@ The currently shipped Ranel implementation is a public Phase 2 barber pilot/cata
 Current production:
 - `https://ranel.pages.dev`
 - Cloudflare Pages project: `ranel`
-- current documented immutable release: `https://68793aeb.ranel.pages.dev`
-- application deployment SHA: `a4915bad908268acc6df1efce4f0e2e2707e0c6a`
+- current documented immutable PUBLIC release: `https://a071fcab.ranel.pages.dev`
+- application deployment SHA: `c90c1994839e1bee4fa676ed25ea848da66731ad`
+- scope: preserved Phase 2 catalog/manual inquiry plus bounded PUBLIC input/header hardening; [verified execution evidence](../production/release-runbook.md#9-final-launcher-execution--2026-10-02). No Control/Core/payment/AI activation.
 
 Current gaps:
 - private Control Center not implemented;
