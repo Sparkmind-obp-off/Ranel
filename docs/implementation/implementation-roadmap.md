@@ -112,3 +112,14 @@ For each phase, maintain:
 - explicit gate decision: PASS, BLOCKED, or NOT RUN.
 
 A phase cannot be marked PASS solely because code was generated.
+
+## Phase 1B — Release Configuration & Production Deployment
+
+**Status:** In progress after Phase 1 local QA.  
+**Goal:** Configure the founder-approved business inquiry destination, create the intended Cloudflare Pages project if absent, deploy the existing app, and verify the live release.
+
+**Fixed decisions:** WhatsApp destination is founder-provided and normalized to international digits for a WhatsApp link; target project is exactly `ranel`, target default hostname `https://ranel.pages.dev`. Do not use `runnel`. Do not change custom-domain DNS in this phase.
+
+**Gate:** Contact configuration is verified without sending a real test message; the intended project exists in the correct authenticated account; deployment and key routes/assets are verified; checks and evidence are recorded; no credentials are exposed. If account permissions or identity are ambiguous, stop before creating resources and report the exact blocker.
+
+**Execution prompt:** [Phase 1B master system prompt](phase-1b-release-deployment/master-system-prompt.md)
