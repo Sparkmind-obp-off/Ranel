@@ -177,6 +177,7 @@ Actual demand collection and choosing one deliverable manual pilot are the next 
 7. [90-day roadmap](docs/roadmap.md)
 8. [Legal and brand clearance](docs/governance/legal-and-brand-clearance.md)
 9. [Documentation index](docs/README.md)
+10. [Decision, capability and execution routing](docs/governance/decision-capability-execution-model.md)
 
 This project remains separate from the private Bosku Cukur / Bozq One System. Prefer a narrow paid pilot and manual delivery before substantial software: **discover → sell a small paid pilot → deliver manually → measure → standardize → automate only where justified**. Never present unverified brand clearance, legal status, integrations, domain delivery, or business outcomes as confirmed.
 
