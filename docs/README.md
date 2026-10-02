@@ -33,6 +33,9 @@
 - [Business Continuity & Disaster Recovery](production/business-continuity-and-disaster-recovery.md)
 - [Operational Security Checklist](production/operational-security-checklist.md)
 
+## Governance and access
+- [Access & Permission Model](governance/access-and-permission-model.md)
+
 ## Governance and technology
 - [Legal and brand clearance](governance/legal-and-brand-clearance.md)
 - [Privacy and security baseline](governance/privacy-and-security.md)
@@ -57,6 +60,7 @@ Status labels: DECIDED = founder decision; PROPOSED = recommended direction; PEN
 - [Authentication and access control](technology/auth-and-access-control.md)
 - [Integration strategy](technology/integration-strategy.md)
 - [Provider inventory and configuration audit](technology/provider-inventory.md)
+- [Duitku production integration contract](technology/duitku-production-integration-contract.md)
 - [Testing and QA](technology/testing-and-qa.md)
 - [Environments and Cloudflare deployment](technology/environments-and-deployment.md)
 - [Observability and incident response](technology/observability-and-incidents.md)
@@ -67,6 +71,7 @@ Status labels: DECIDED = founder decision; PROPOSED = recommended direction; PEN
 
 
 ## Execution handoffs
+- [Genspark — final execution launcher](handoffs/genspark-final-launcher.md)
 - [Genspark — compact context pack](handoffs/genspark-context-pack.md)
 - [Genspark — read-only provider audit](handoffs/genspark-provider-audit.md)
 
