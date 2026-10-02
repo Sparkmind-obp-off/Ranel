@@ -4,7 +4,7 @@
 
 28 built-worker tests and 27 browser tests cover the new Starter/Growth/System catalog, distinct canonical product drafts, transparent System concept scope, complete card details/CTAs and lack of private/transactional engines. Legacy operations/retention/tracking exact drafts, invalid/missing config, unknown input, fixed-host redirect, no-form/persistence and security headers remain regression gates. FAQ selection is scoped to FAQ, separate from the new product-detail accordions.
 
-Local install/lint/typecheck/unit/build/audit and mobile/desktop browser gates pass; final live configured results and credential/link checks are recorded in [Phase 2 evidence](../implementation/phase-2/evidence.md). Use the unchanged production QA variables privately, and never follow WhatsApp redirects or send real messages. No dependencies or tests removed. This checks readiness, not customer demand.
+Local install/lint/typecheck/28 unit/build/audit and 27 local + 27 configured production browser gates pass; four public routes/assets/404 and canonical+legacy inquiry smoke passed on both origins. Credential/source/build/local-link checks also passed; actual release results are recorded in [Phase 2 evidence](../implementation/phase-2/evidence.md). Use the unchanged production QA variables privately, and never follow WhatsApp redirects or send real messages. No dependencies or tests removed. This checks readiness, not customer demand.
 
 ## Historical Phase 1B release suite — 2026-10-02
 

@@ -17,12 +17,12 @@ The first vertical is **barber businesses**. Other verticals are future options,
 
 Three concrete pilot definitions are implemented: **Ranel Barber Starter** (daily foundation), **Ranel Barber Growth** (Starter plus records/retention/review), and **Ranel Barber System** (requirements/flow concept, not available software). Starter/Growth materials are prepared manually after agreement; no ready kit files, fixed prices, subscription, guaranteed growth or engineering commitment claimed.
 
-Local gates pass (28 built-worker tests; 27 browser tests). Production Phase 2 release verification is recorded separately in [Phase 2 evidence](docs/implementation/phase-2/evidence.md); the earlier Phase 1B release remains the baseline until redeploy/verification. [Pilot catalog](docs/products/product-catalog.md) · [Implementation/operating method](docs/implementation/phase-2/implementation-notes.md) · [Blank demand-evidence template](docs/templates/demand-evidence.md).
+**Phase 2 gate: PASS for catalog/evidence-collection readiness. Production: VERIFIED** at https://ranel.pages.dev, released 2026-10-02 via CF BYOK to existing `ranel`. 28 built-worker tests, 27 local and 27 production browser tests pass; existing contact, legacy topics and domain/config boundaries preserved. Actual results/provenance are in [Phase 2 evidence](docs/implementation/phase-2/evidence.md). [Pilot catalog](docs/products/product-catalog.md) · [Implementation/operating method](docs/implementation/phase-2/implementation-notes.md) · [Blank demand-evidence template](docs/templates/demand-evidence.md).
 
 Only blank templates are committed. Keep real anonymized interaction records in Git-ignored `demand-records/` or an already-approved private store, with restricted contacts separate. Manual entry and follow-up permission are required; no website lead storage or automation exists. No real inquiries/sales are fabricated, and demand is **not validated** by publishing the catalog. Execute one complete Phase 2, no sub-phases; do not start Phase 3 automatically.
 
 ## Phase 1B baseline (preserved)
-- **Phase 1B gate: PASS. Production deployment: VERIFIED** at https://ranel.pages.dev, released 2026-10-02 via CF BYOK. Public pages and founder-approved runtime WhatsApp handoff are verified; no actual message was sent during QA.
+- **Historical Phase 1B gate: PASS.** Its public foundation and approved runtime WhatsApp handoff are preserved in Phase 2; no actual message sent during QA. Current release metadata is below; original Phase 1B evidence remains linked.
 - Existing baseline was documentation only, at `bef5456` on `main`. No framework, package manager, application, or adapter existed to preserve. Existing strategy documents remain in place.
 - One lightweight Hono/TypeScript application now lives in this repository, as explicitly requested in the Phase 1 implementation prompt. See [decision log](docs/governance/decision-log.md) for the change from the older documentation-only/separate-codebase wording.
 - Trademark/company clearance, product-market fit, prices, kit deliverability, demand, and business results are **not verified**.
@@ -35,9 +35,9 @@ Only blank templates are committed. Keep real anonymized interaction records in 
 - Local Pages preview: `http://localhost:3000`.
 - Temporary sandbox preview: https://3000-iy1qof0t6pdsmm8bh8q31-82b888ba.sandbox.novita.ai — verified HTTP 200 for homepage/barber; not a production URL and may expire.
 - Production URL: **https://ranel.pages.dev**; project exactly `ranel`, production branch `main`.
-- Immutable deployment: https://a9f812e4.ranel.pages.dev; ID `a9f812e4-3c47-4d2b-9c73-2d8728c6992c`.
-- Deployed commit: `9a4989f53a60ef04adebf2633a9dafe836c8359b`; created `2026-10-02T04:29:05.332293Z`, Cloudflare stage `success`. Subsequent documentation-only commits do not change this deployment's provenance.
-- Custom-domain observation: initial release lookup listed only `ranel.pages.dev`; final read-only lookup at `2026-10-02T04:41:33Z` also listed `ranel.biz.id`, with Cloudflare status **active** and creation time `2026-10-02T04:32:09.411016Z`. The release agent did **not** attach it or change DNS; the actor is not verified. Its actual DNS/TLS/redirect/browser behavior was not tested in this phase. The Pages deployment ID/SHA did not change.
+- Current immutable deployment: https://68793aeb.ranel.pages.dev; ID `68793aeb-029c-40a1-b0e2-8b3ca55c224b`.
+- Deployed commit: `a4915bad908268acc6df1efce4f0e2e2707e0c6a`; created `2026-10-02T05:53:00.871959Z`, Cloudflare stage `success`. Subsequent documentation-only commits do not change this deployment's provenance. Previous Phase 1B deployment remains recorded in its historical evidence.
+- Custom-domain observation: initial release lookup listed only `ranel.pages.dev`; final read-only lookup at `2026-10-02T04:41:33Z` also listed `ranel.biz.id`, with Cloudflare status **active** and creation time `2026-10-02T04:32:09.411016Z`. The release agent did **not** attach it or change DNS; the actor is not verified. Its actual DNS/TLS/redirect/browser behavior was not tested in this phase. Phase 2 retained both observed domain names without domain/DNS mutation; it changed only the application deployment, as recorded above.
 
 | Route | Purpose |
 |---|---|
@@ -154,7 +154,7 @@ For subsequent releases:
 
 First project creation was executed once, after authenticated lookup confirmed absence: `npx wrangler pages project create ranel --production-branch main --compatibility-date 2025-09-20`. Do not re-create it on routine deploys.
 
-**Do not attach `ranel.biz.id` or modify DNS as part of Phase 1B.** Custom-domain work requires a separate authorized follow-up; an active zone alone is not proof of routing/TLS. An optional read-only DNS snapshot attempt received HTTP 403, so no record-diff comparison is claimed.
+**Do not attach, remove or modify `ranel.biz.id`/DNS as part of this catalog release.** Custom-domain work requires a separate authorized follow-up; an active zone alone is not proof of routing/TLS. An optional read-only DNS snapshot attempt received HTTP 403, so no record-diff comparison is claimed.
 
 Rollback: use the `ranel` Pages deployment history to restore a prior known-good deployment, or build a known-good Git revision and redeploy to the same project. No database rollback is needed. Production deployment is verified; **rollback has not been exercised**.
 
