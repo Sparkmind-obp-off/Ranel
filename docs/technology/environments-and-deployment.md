@@ -1,15 +1,15 @@
 # Environments and Cloudflare Deployment
 
-## Current release — Phase 1B, 2026-10-02
+## Current release — Phase 2, 2026-10-02
 
 **Deployment: VERIFIED.** Project exactly **`ranel`**, production branch **`main`**, production **https://ranel.pages.dev**. The newest founder instruction authorizes creating that exact Pages project if absent; it supersedes Phase 1's earlier existing-project-only restriction. Authenticated discovery found one authorized account and no `ranel` project; creation succeeded without account switching or project-name substitution.
 
 - Scaffold preserved: Hono + TypeScript + Vite Pages advanced-mode output in `dist/`, `_worker.js`, `_routes.json`, native static assets.
 - Runtime configuration: `INQUIRY_WHATSAPP_NUMBER` is encrypted in **production**, read through `c.env`; preview contact configuration remains unset. No number inserted into application source, assets, or `wrangler.jsonc`; no new backend/database.
-- Deployed SHA: `9a4989f53a60ef04adebf2633a9dafe836c8359b`.
-- Deployment ID: `a9f812e4-3c47-4d2b-9c73-2d8728c6992c`.
-- Immutable URL: https://a9f812e4.ranel.pages.dev.
-- Cloudflare creation time: `2026-10-02T04:29:05.332293Z`; final stage `success`, environment `production`, trigger SHA verified.
+- Deployed application SHA: `a4915bad908268acc6df1efce4f0e2e2707e0c6a`.
+- Deployment ID: `68793aeb-029c-40a1-b0e2-8b3ca55c224b`.
+- Immutable URL: https://68793aeb.ranel.pages.dev.
+- Cloudflare creation time: `2026-10-02T05:53:00.871959Z`; final stage `success`, environment `production`, trigger SHA verified.
 - Project metadata `cloudflare_project_name` and Wrangler config both select `ranel`.
 
 [Actual setup/QA/contact/release commands](../../README.md#cloudflare-byok-deployment) · [Phase 1B release evidence](../implementation/phase-1b-release-deployment/evidence.md) · [Original Phase 1 checkpoint](../implementation/phase-1/evidence.md).
@@ -51,3 +51,7 @@ Rollback remains **NOT TESTED**: use `ranel` deployment history to restore a pri
 ## Future approved phases only
 
 Cloudflare D1/R2 or other services remain proposed only when actual requirements justify them. Separate environments/data, commit/test migrations, use platform secrets, review deployment diff, verify core journeys/logs, and record release evidence. Application rollback does not roll back future database changes; prefer compatible migrations and tested restore/export procedures. No such services were provisioned in Phase 1 or Phase 1B.
+
+## Documentation sync rule
+
+This file is the deployment runbook, while the latest deployed release provenance is authoritative in `docs/implementation/phase-2/evidence.md`. When a later release occurs, update this section in the same change set as the release evidence.
