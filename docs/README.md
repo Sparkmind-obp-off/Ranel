@@ -27,6 +27,12 @@
 - [Operating model](operations/operating-model.md)
 - [90-day roadmap](roadmap.md)
 
+## Production readiness
+- [Production Readiness Standard](production/production-readiness-standard.md)
+- [Production Release Runbook](production/release-runbook.md)
+- [Business Continuity & Disaster Recovery](production/business-continuity-and-disaster-recovery.md)
+- [Operational Security Checklist](production/operational-security-checklist.md)
+
 ## Governance and technology
 - [Legal and brand clearance](governance/legal-and-brand-clearance.md)
 - [Privacy and security baseline](governance/privacy-and-security.md)
@@ -46,6 +52,8 @@ Status labels: DECIDED = founder decision; PROPOSED = recommended direction; PEN
 - [UI/UX specification](technology/ui-ux-specification.md)
 - [User journeys](technology/user-journeys.md)
 - [Data model and database](technology/data-model.md)
+- [Data Governance & Retention](technology/data-governance-and-retention.md)
+- [API & Event Contract](technology/api-and-event-contract.md)
 - [Authentication and access control](technology/auth-and-access-control.md)
 - [Integration strategy](technology/integration-strategy.md)
 - [Provider inventory and configuration audit](technology/provider-inventory.md)
