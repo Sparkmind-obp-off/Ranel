@@ -46,8 +46,11 @@ Read when a task concerns:
 - AI evaluation;
 - automation policy.
 
-Document:
+Documents:
 - [AI Operating Model](ranel-ai-operating-model.md)
+- [AI Production-Grade Checklist](ranel-ai-production-grade-checklist.md)
+
+For an AI implementation task, read both AI documents, then only the exact technical/provider files needed.
 
 ## Layer 3 — Product / Public
 
