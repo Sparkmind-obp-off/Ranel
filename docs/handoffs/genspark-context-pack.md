@@ -131,6 +131,16 @@ Security, payment, data-integrity, production-availability, or unexpected-cost i
 11. Do not rerun deployment or full QA when a docs-only change is the only change.
 12. Return compact evidence: exact commands, pass/fail counts, identifiers, URLs, and blockers. Avoid long narrative.
 
+## Production readiness task
+
+For production-grade hardening/readiness work, read only:
+1. `docs/production/production-readiness-standard.md`
+2. `docs/production/release-runbook.md`
+3. the one affected control document (security, data, API/events, AI, DR)
+4. exact implementation files/tests needed for the task.
+
+Do not open the entire technology folder by default.
+
 ## TASK ROUTER
 
 | Task | Read first | Then only as needed |
