@@ -29,7 +29,7 @@ The first vertical is **barber businesses**. Other verticals are future options,
 - Production URL: **https://ranel.pages.dev**; project exactly `ranel`, production branch `main`.
 - Immutable deployment: https://a9f812e4.ranel.pages.dev; ID `a9f812e4-3c47-4d2b-9c73-2d8728c6992c`.
 - Deployed commit: `9a4989f53a60ef04adebf2633a9dafe836c8359b`; created `2026-10-02T04:29:05.332293Z`, Cloudflare stage `success`. Subsequent documentation-only commits do not change this deployment's provenance.
-- Optional custom domain: `ranel.biz.id`, **not attached**. No custom-domain/DNS change was made; its site DNS/TLS/redirect behavior is not verified. The Pages project reports only `ranel.pages.dev` in its domain list.
+- Custom-domain observation: initial release lookup listed only `ranel.pages.dev`; final read-only lookup at `2026-10-02T04:41:33Z` also listed `ranel.biz.id`, with Cloudflare status **active** and creation time `2026-10-02T04:32:09.411016Z`. The release agent did **not** attach it or change DNS; the actor is not verified. Its actual DNS/TLS/redirect/browser behavior was not tested in this phase. The Pages deployment ID/SHA did not change.
 
 | Route | Purpose |
 |---|---|
@@ -151,12 +151,12 @@ Rollback: use the `ranel` Pages deployment history to restore a prior known-good
 
 ## Known gaps and next necessary action
 - Inquiry destination and manual-link behavior are verified. Actual WhatsApp registration, message sending/receipt, and availability are not tested; no real message was sent per founder instruction.
-- Custom-domain `ranel.biz.id` attachment/DNS/TLS/redirects: not done; optional separate task.
+- Custom-domain setup was not performed by this release agent. `ranel.biz.id` appeared active in Cloudflare during final read-only checks, outside the agent's actions; actor and DNS/TLS/redirect/browser behavior remain unverified. Do not undo or reattach it blindly.
 - Real-device Safari/Firefox testing, full manual accessibility assessment, legal/privacy operations, and 3–5 operator usability sessions: not completed.
 - Kit contents, pilot pricing, support window, delivery/refund terms, and evidence of value: must be agreed later; website completion is not validation.
 - `/products`, `/about`, `/terms`, and every Phase 2+ feature are intentionally not implemented or linked in this narrow release.
 
-No Phase 1B release blocker remains. Optional custom-domain setup requires a separate request. Do not begin Phase 2 automatically; a live website is not demand or market validation.
+No Phase 1B release blocker remains. Any custom-domain verification/change requires a separate request and inspection of its now-observed state. Do not begin Phase 2 automatically; a live website is not demand or market validation.
 
 ## Strategy documentation
 1. [Brand platform](docs/brand/brand-platform.md)

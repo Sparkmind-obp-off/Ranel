@@ -4,7 +4,7 @@
 
 **Current release: PASS (Phase 1B). Production deployment: VERIFIED at https://ranel.pages.dev.** The founder's newer instruction authorized creation of exactly `ranel` and approved the public business inquiry destination. The original blockers below are historical, superseded by the [Phase 1B release evidence](../phase-1b-release-deployment/evidence.md), not erased.
 
-Project creation, production runtime secret, deployment `a9f812e4-3c47-4d2b-9c73-2d8728c6992c`, deployed SHA `9a4989f53a60ef04adebf2633a9dafe836c8359b`, both production/immutable HTTP smoke, and 24 production browser tests are verified. Configured/manual WhatsApp URL and draft are checked without following the external link or sending messages. Actual message delivery/receipt is still not tested or claimed, as required in Phase 1B. No custom-domain/DNS changes, no Phase 2 work.
+Project creation, production runtime secret, deployment `a9f812e4-3c47-4d2b-9c73-2d8728c6992c`, deployed SHA `9a4989f53a60ef04adebf2633a9dafe836c8359b`, both production/immutable HTTP smoke, and 24 production browser tests are verified. Configured/manual WhatsApp URL and draft are checked without following the external link or sending messages. Actual message delivery/receipt is still not tested or claimed, as required in Phase 1B. No custom-domain/DNS changes by this release agent, no Phase 2 work. A concurrent `ranel.biz.id` addition was observed in final read-only checks and is disclosed in the Phase 1B evidence; actor and custom-domain live health are unverified.
 
 ## Original Phase 1 checkpoint (preserved)
 

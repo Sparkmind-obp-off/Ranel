@@ -34,7 +34,9 @@
 
 ## Custom domain — deferred, no DNS changes
 
-`ranel.biz.id` is optional follow-up, **not attached** in Phase 1B. No DNS creation/update/deletion, custom-domain attachment, or canonical redirect was performed. Project domain list contains only `ranel.pages.dev`. Optional read-only DNS-record snapshot received HTTP 403, so no before/after DNS record comparison is claimed; the release never required DNS-write privileges.
+This release agent performed **no DNS creation/update/deletion, custom-domain attachment, or canonical redirect**. Initial post-deploy lookup listed only `ranel.pages.dev`. A final read-only lookup at `2026-10-02T04:41:33Z` found `ranel.biz.id` added, status **active**, created `2026-10-02T04:32:09.411016Z`. The actor is unknown; the deployment ID/SHA and `pages.dev` health stayed unchanged. This is an observed concurrent state change, not custom-domain work performed by this agent. Its live DNS/TLS/redirect/browser behavior was not tested.
+
+Optional read-only DNS-record snapshot received HTTP 403, so no before/after DNS record comparison is claimed; the release never required DNS-write privileges. Do not undo or repeat the observed attachment without a separate authorized request.
 
 A later separately authorized task must inspect current records, ownership/account permission, Pages domain setup, certificate/HTTPS, and redirects before declaring the custom domain live. An active zone alone does not establish site routing or TLS.
 

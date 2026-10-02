@@ -1,6 +1,6 @@
 # Phase 1B — Production release evidence
 
-Date: **2026-10-02 UTC**. Scope: release configuration, exact Pages project creation, production deployment and verification only. No Phase 2 work, custom-domain attachment, DNS writes, or WhatsApp message sending.
+Date: **2026-10-02 UTC**. Scope: release configuration, exact Pages project creation, production deployment and verification only. No Phase 2 work, custom-domain attachment/DNS writes by this release agent, or WhatsApp message sending. A concurrent custom-domain addition was observed later and is reported separately below.
 
 ## 1. Status
 
@@ -55,7 +55,7 @@ Secret input was private; its value is intentionally not reproduced here.
 - Deployed SHA: **`9a4989f53a60ef04adebf2633a9dafe836c8359b`**.
 - Cloudflare API verified project `ranel`, branch `main`, environment `production`, canonical hostname `ranel.pages.dev`, trigger SHA, and final stage **success**.
 - Metadata `cloudflare_project_name` read initially unset, set to `ranel`, then persisted after successful deployment. Wrangler `name` is also exactly `ranel`.
-- Project domain list: **only `ranel.pages.dev`**. No custom domain attached or DNS write performed.
+- Initial project domain list: **only `ranel.pages.dev`**. Final read-only check at `2026-10-02T04:41:33Z` also showed `ranel.biz.id`, status **active**, created `2026-10-02T04:32:09.411016Z`. This agent did not attach it or perform any DNS write; the actor is unknown. Production deployment ID/SHA stayed unchanged; custom-domain DNS/TLS/redirect/browser health is not verified here.
 
 ## 6. HTTP and browser verification
 
@@ -110,6 +110,7 @@ Configured production test invocation used `QA_BASE_URL=https://ranel.pages.dev`
 - A default Python `urllib` homepage probe returned **403 / Cloudflare error 1010**. Recheck reproduced 403 for that user-agent and **200** with a browser user-agent. Independent curl, Chromium, Playwright API smoke, and full production browser suite passed. This is an edge user-agent/security limitation, not falsely reported as a successful Python check; Cloudflare security settings were not weakened.
 - Automated/visual checks are not physical-device Safari/Firefox tests, exhaustive accessibility certification, legal review, WhatsApp registration/receipt verification, or business validation.
 - Production rollback is documented but not exercised; no storage/migration rollback applies.
+- A final provenance assertion expecting an unchanged one-domain list failed because the list had gained `ranel.biz.id` concurrently. Read-only inspection confirmed its active status/creation time, with unchanged `ranel` default hostname, deployment ID/SHA, production environment, success stage and contact secret. Rechecked actual release invariants successfully; no removal/reattachment or DNS writes attempted. Actor and custom-domain live health remain unverified; evidence corrected instead of hiding the changed state.
 
 ## 8. Files changed
 
@@ -137,10 +138,10 @@ Configured production test invocation used `QA_BASE_URL=https://ranel.pages.dev`
 | Key routes and assets | PASS — 200/303/404 as appropriate, exact asset content |
 | Relevant install/lint/typecheck/unit/build/E2E/audit rerun | PASS — all successful final application checks; probe limitations listed separately |
 | Release evidence/limits committed to GitHub | PASS — documentation follow-up commit records this evidence and limits; final HEAD/remote SHA confirmation supplied in the release report |
-| No custom-domain DNS changes | PASS — no write operations; project has default hostname only |
+| No custom-domain DNS changes by this release agent | PASS — no domain/DNS write operations; concurrent active domain addition observed and disclosed, not undone |
 
 ## 10. Remaining scope and production confirmation
 
 **Production is live and verified at https://ranel.pages.dev.** No Phase 1B release blocker remains. Actual WhatsApp account status/message delivery is not independently tested because founder prohibited real message testing. The user must review/send manually; no fake confirmation, lead persistence or automated messaging.
 
-`ranel.biz.id` is **not configured/attached by this phase**, no DNS writes made, and TLS/routing/redirects for that domain remain a separate optional task. Kit contents/prices/readiness, operator usability, legal/privacy operations, demand and business outcomes remain unvalidated. No Phase 2 work authorized or started.
+`ranel.biz.id` was **not configured/attached by this release agent**, and no DNS writes were performed. It nevertheless appeared active in a final read-only Cloudflare lookup, created during the release window by an unverified actor. Its actual TLS/routing/redirect/browser health remains untested and requires a separately authorized inspection; do not undo or reattach it blindly. Kit contents/prices/readiness, operator usability, legal/privacy operations, demand and business outcomes remain unvalidated. No Phase 2 work authorized or started.
