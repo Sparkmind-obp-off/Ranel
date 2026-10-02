@@ -85,7 +85,7 @@ LLM must interpret/recommend. It must not become the financial or payment source
 
 The repository audit currently says:
 - **Cloudflare:** public Pages target exists; broader account/resource state needs console verification.
-- **Duitku:** founder-confirmed existing merchant/provider; **not integrated in Ranel**.
+- **Duitku:** founder-confirmed existing **production/live** merchant/provider; **not integrated in Ranel**. Production/live is the intended Ranel target; do not silently substitute sandbox.
 - **Neon:** founder-confirmed not yet set up for Ranel.
 - **GroqCloud:** founder-confirmed not yet set up for Ranel.
 - **PostHog:** founder-confirmed not yet set up for Ranel.
@@ -233,6 +233,9 @@ For Genspark tasks, return:
 10. NEXT ACTION — smallest enabled next step
 
 ## FINAL PRINCIPLE
+
+Ready-to-run launcher: docs/handoffs/genspark-final-launcher.md.
+
 
 **One repo, one source of truth, one bounded task at a time.**
 Genspark should execute from this context pack and targeted documents, not rediscover Ranel from zero on every task.
