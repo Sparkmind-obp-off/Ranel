@@ -1,6 +1,6 @@
 # Technical Implementation Overview
 
-**Status:** Proposed baseline. Genspark.ai is the implementation assistant; GitHub is the source of truth; Cloudflare is the intended runtime.
+**Status:** LOCKED implementation framework. Concrete provider/database choices and subsystem activation remain evidence-gated. Genspark.ai is an execution assistant; GitHub is the source of truth.
 
 ## Build sequence
 1. Public website and inquiry form.
@@ -19,7 +19,11 @@
 - Operations: tests, deployments, logs, backups, incident response.
 - Governance: privacy, secrets, permissions, auditability, release gates.
 
-## Proposed baseline
-Prefer one modular full-stack application. TypeScript and a Cloudflare-compatible framework are proposed, but confirm the actual scaffold and deployment adapter before locking the stack. Use Workers for server-side logic and D1 only when structured persistence is needed. R2, KV, Queues, Durable Objects, and external services are optional, not default requirements.
+## Current implementation baseline
+The current public release is a Hono + TypeScript + Vite application on Cloudflare Pages. The long-term system uses separate logical boundaries: Public Revenue Surface, private Control Center, and Core Business Truth + Execution. These may be deployed separately when activated. Do not force all layers into one runtime just for architectural simplicity. Exact infrastructure products remain evidence-gated.
 
 No enterprise ERP, microservices, autonomous AI agent, unverified payment integration, automated WhatsApp API, or unnecessary personal-data collection in the first release.
+
+## Current-state rule
+
+The implementation framework is locked, but the future Control Center/Core are not automatically authorized by this document. Build only the smallest subsystem justified by an evidence gate.
