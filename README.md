@@ -47,3 +47,10 @@ This is the canonical documentation home for Ranel: brand decisions, business mo
 ## Suggested sequence
 **Discover → sell a small paid pilot → deliver manually → measure → standardize → automate only where justified.**
 See [the 90-day roadmap](docs/roadmap.md).
+
+
+## Technical blueprint
+The repository now includes proposed specifications for [implementation layers](docs/technology/implementation-overview.md), [system architecture](docs/technology/architecture.md), [frontend](docs/technology/frontend-specification.md), [backend/API](docs/technology/backend-api-specification.md), [UI/UX](docs/technology/ui-ux-specification.md), and [user journeys](docs/technology/user-journeys.md). These are implementation guidance, not evidence of a deployed application.
+
+## Domain and PDKI status
+Founder reports that `ranel.biz.id` has been purchased and that a PDKI search returned an empty result/note. This is recorded as founder-reported status; it is not a guarantee of trademark registration or legal clearance.
