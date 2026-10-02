@@ -28,3 +28,12 @@
 - [Customer interview template](templates/customer-interview-notes.md)
 
 Status labels: DECIDED = founder decision; PROPOSED = recommended direction; PENDING = needs verification; VERIFIED = supported by recorded evidence. Documentation does not prove that a product is built, integrated, legally cleared, or commercially validated.
+
+
+## Technical specifications added
+- [Technical implementation overview](technology/implementation-overview.md)
+- [System architecture](technology/architecture.md)
+- [Frontend specification](technology/frontend-specification.md)
+- [Backend/API specification](technology/backend-api-specification.md)
+- [UI/UX specification](technology/ui-ux-specification.md)
+- [User journeys](technology/user-journeys.md)
