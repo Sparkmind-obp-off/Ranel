@@ -5,7 +5,7 @@
 **Repository:** `Sparkmind-obp-off/Ranel`, branch `main`  
 **Purpose:** Establish what the checked-in application actually uses before finalizing the Revenue Engine architecture.
 
-> This is a repository/configuration-file audit plus provider-status statements confirmed by the founder. No API keys, secret values, account settings, billing settings, or live external integrations were inspected through provider dashboards during this audit. The founder confirms Duitku is available as an existing merchant/payment provider, but it has not been integrated into Ranel; Neon, GroqCloud, PostHog, and Resend have not yet been set up for Ranel.
+> This is a repository/configuration-file audit plus provider-status statements confirmed by the founder. No API keys, secret values, account settings, billing settings, or live external integrations were inspected through provider dashboards during this audit. The founder confirms Duitku is an existing **production/live merchant/payment provider** and is the intended production target for Ranel, but it has not been integrated into Ranel; Neon, GroqCloud, PostHog, and Resend have not yet been set up for Ranel.
 
 ## Executive summary
 
@@ -25,7 +25,7 @@ The current Cloudflare Pages project `ranel` and the production `INQUIRY_WHATSAP
 | Cloudflare D1 | No binding/migration/application use found in the audited configuration and architecture docs | **Not configured in repo** | Do not create yet. Decide whether to keep the existing proposed D1 direction or choose Neon after inspecting current requirements and account limits. |
 | Cloudflare Hyperdrive | No binding/configuration/use found in the audited configuration | **Not configured in repo** | Only consider if using an external PostgreSQL database through Workers and connection pooling is useful. It is not a database. |
 | Cloudflare KV / R2 / Queues / Durable Objects | No bindings or runtime use found in the audited configuration | **Not configured in repo** | Add only when a concrete workflow requires them. |
-| Duitku | No payment SDK, API adapter, webhook route, or payment configuration appears in the current app/package | **Founder-confirmed: existing merchant/provider; not integrated in Ranel** | Before implementation, verify PDS v2 credentials, enabled payment methods, callback/webhook security, sandbox/live configuration, fees, settlement and refund/disbursement requirements in the Duitku console. |
+| Duitku | No payment SDK, API adapter, webhook route, or payment configuration appears in the current app/package | **Founder-confirmed: production/live merchant; not integrated in Ranel** | Use production/live as the target environment. Verify the exact API family/version, live credentials, enabled methods, callback/webhook security, fees, settlement/refund behavior and limits before activation. Do not silently downgrade to sandbox. |
 | Neon PostgreSQL | No Neon package, connection binding, schema, or migration found in the audited app | **Founder-confirmed: not yet set up for Ranel; console not inspected** | Do not create a database until the final database decision is approved. |
 | GroqCloud API | No Groq SDK, API client, model configuration, or secret binding found | **Founder-confirmed: not yet set up for Ranel; console not inspected** | Candidate for the first LLM experiment after deterministic signals and decision records exist. Create/use a project only after the LLM boundary and budget are approved. |
 | PostHog | No SDK, analytics snippet, or server-side event integration found; README says no third-party analytics | **Founder-confirmed: not yet set up for Ranel; console not inspected** | Optional. Define canonical product/checkout events and privacy rules before creating a project. Do not treat analytics as financial truth. |
@@ -50,7 +50,7 @@ The current Cloudflare Pages project `ranel` and the production `INQUIRY_WHATSAP
 - Cloudflare account, current Pages project, deployments, environment bindings, secret names, usage and billing limits.
 - Whether any separate Cloudflare projects or Workers already exist outside this repository.
 - Whether D1/Hyperdrive/R2/KV/Queues are enabled in the account.
-- Duitku merchant status, PDS v2 configuration, enabled methods, callback URL, webhook/signature requirements, settlement/refund/disbursement capabilities and sandbox access.
+- Duitku merchant status, production API configuration, enabled methods, callback URL, webhook/signature requirements, settlement/refund/disbursement capabilities and live-account limits.
 - Whether Neon, GroqCloud, PostHog, Resend, Sentry, or Make accounts already exist, and their current free-tier/billing state.
 - Whether the email sending domain has been verified.
 - Current GitHub Actions/secrets/environment settings, if any, and whether deployment is triggered automatically or manually.
@@ -59,7 +59,7 @@ Never copy secret values into this inventory or Git. Record only secret **names*
 
 ## Recommended provider readiness sequence
 
-1. **Read-only verification:** inspect Cloudflare project/deployments/bindings and Duitku merchant configuration. This requires an authorized Cloudflare/Duitku console connection or a read-only evidence export; the current connected toolset does not expose those consoles. Do not claim this step is complete until actual console evidence is available.
+1. **Read-only verification:** inspect Cloudflare project/deployments/bindings and the live Duitku merchant/API configuration. Treat the production/live target as the intended environment even before console verification. This requires an authorized Cloudflare/Duitku console connection or a read-only evidence export; the current connected toolset does not expose those consoles. Do not claim this step is complete until actual console evidence is available.
 2. **Architecture decision:** select the authoritative database and decide the deployment boundaries: Public Pages, private Control deployment, and Core API Worker. These are not yet implemented by the current application.
 3. **Core foundations:** implement canonical event/order/payment states, idempotent webhook processing, audit history, and authorization before connecting payment automation.
 4. **LLM:** create/use a GroqCloud project only when the signal and recommendation interfaces are defined. The LLM proposes interpretation; deterministic rules and Core enforce business truth and approval policy.
@@ -78,7 +78,7 @@ Never copy secret values into this inventory or Git. Record only secret **names*
 
 ## Audit limitations and gate
 
-The founder confirms Duitku exists as an external merchant/provider but is not integrated into Ranel. The founder also confirms Neon, GroqCloud, PostHog, and Resend have not yet been set up for Ranel. Those are user-confirmed statements, not independently verified console observations.
+The founder confirms Duitku exists as an external **production/live** merchant/provider but is not integrated into Ranel. The founder also confirms Neon, GroqCloud, PostHog, and Resend have not yet been set up for Ranel. Those are user-confirmed statements, not independently verified console observations.
 
 This audit establishes what is or is not present in the checked-in application/configuration inspected. It does **not** establish the live state of Cloudflare projects, bindings, secrets, DNS, billing, Duitku credentials/callbacks, or account-level features. The available connected tools in this session can inspect and update GitHub, but do not expose Cloudflare or Duitku console APIs. Therefore no console setting, secret, project, payment configuration, or DNS record was changed.
 
