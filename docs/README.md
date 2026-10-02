@@ -1,5 +1,13 @@
 # Ranel Documentation Index
 
+## Canonical foundation
+- [Master Blueprint](foundation/ranel-master-blueprint.md)
+- [Layered Context Map](foundation/ranel-context-map.md)
+- [Business Architecture Lock](foundation/ranel-business-architecture.md)
+- [AI Operating Model](foundation/ranel-ai-operating-model.md)
+- [Revenue Engine Blueprint](foundation/ranel-revenue-engine.md)
+- [Strategic Roadmap & Gates](foundation/ranel-roadmap-and-gates.md)
+
 ## Brand
 - [Brand platform](brand/brand-platform.md)
 - [Visual identity direction](brand/brand-identity.md)
