@@ -1,6 +1,6 @@
 # Frontend Specification
 
-## Initial public routes
+## Target public route model
 - `/` — Ranel overview.
 - `/barber` — barber vertical landing page.
 - `/products` — available offers only, not product hypotheses.
@@ -25,3 +25,7 @@ Layout/navigation; content sections and offer cards; accessible forms; feedback/
 
 ## Acceptance
 Every page has a clear primary action, responsive layout, accessible controls, meaningful metadata, no broken links, and no major console errors in release testing.
+
+## Current verified public release
+
+Current production scope is the Phase 2 public baseline: `/`, `/barber`, `/contact`, `/privacy`, `/inquiry` and supporting static assets. See `README.md` and Phase 2 evidence before adding or assuming routes.
