@@ -1,6 +1,12 @@
 # Testing and Quality Assurance
 
-## Actual Phase 1 suite — 2026-10-02
+## Current Phase 1B release suite — 2026-10-02
+
+The preserved built-worker suite remains **24 tests**. Browser suite is now **24 tests**, adding all-topic no-follow redirect checks and explicit configured/unconfigured expectations. `npm ci`, lint, typecheck, unit tests, build, local unconfigured E2E and configured production E2E all ran successfully; `npm audit` reported zero vulnerabilities. Production https://ranel.pages.dev and its immutable deployment passed route/asset/404/redirect smoke checks; production browser checks passed at 320/390/1440 px with no detected axe A/AA violations.
+
+Use `QA_BASE_URL`, `QA_CONTACT_STATE=configured` and privately supplied `QA_EXPECT_WHATSAPP_NUMBER` for production. Do not follow WhatsApp redirects or send real messages during release QA. UI readiness and exact destination are verified, while account registration/message receipt remain untested. Cloudflare blocks a default Python user-agent with error 1010; browser/curl/Playwright checks succeed. Full evidence and commands: [Phase 1B report](../implementation/phase-1b-release-deployment/evidence.md), [README browser QA](../../README.md#browser-qa). No app/dependency/test removal; no Phase 2 work.
+
+## Historical Phase 1 suite — 2026-10-02
 
 `npm run lint`, `npm run typecheck`, `npm test` (build + 24 built-worker tests), and `npm run test:e2e` (21 Playwright/axe tests against an already-running Pages preview) are the current scripts. `npm run build` and `npm audit` also completed successfully. All final runs pass; evidence, initial failures and fixes, and unverified production checks are recorded in [Phase 1 evidence](../implementation/phase-1/evidence.md). [README](../../README.md#browser-qa) documents Chromium dependency installation and preview startup.
 

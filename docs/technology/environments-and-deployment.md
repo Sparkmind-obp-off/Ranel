@@ -1,24 +1,51 @@
 # Environments and Cloudflare Deployment
 
-## Phase 1 implementation update — 2026-10-02
+## Current release — Phase 1B, 2026-10-02
 
-Actual scaffold: Hono + TypeScript + Vite Cloudflare Pages adapter, npm lockfile, Wrangler Pages advanced-mode output (`dist/_worker.js` and native static assets). No database/services provisioned. Authorized deployment is **CF BYOK, existing project only**, as requested by founder. Authentication/listing was verified; production deployment is **BLOCKED** because neither `ranel` nor `runnel` exists in the connected account's Pages projects. Active `ranel.biz.id` zone is not proof of a deployed website. Earlier `runnel` vs latest `ranel` hostname conflict is pending founder confirmation.
+**Deployment: VERIFIED.** Project exactly **`ranel`**, production branch **`main`**, production **https://ranel.pages.dev**. The newest founder instruction authorizes creating that exact Pages project if absent; it supersedes Phase 1's earlier existing-project-only restriction. Authenticated discovery found one authorized account and no `ranel` project; creation succeeded without account switching or project-name substitution.
 
-[README actual commands, inquiry secrets, BYOK release and rollback instructions](../../README.md#cloudflare-byok-deployment--existing-project-only) · [Phase 1 evidence](../implementation/phase-1/evidence.md).
+- Scaffold preserved: Hono + TypeScript + Vite Pages advanced-mode output in `dist/`, `_worker.js`, `_routes.json`, native static assets.
+- Runtime configuration: `INQUIRY_WHATSAPP_NUMBER` is encrypted in **production**, read through `c.env`; preview contact configuration remains unset. No number inserted into application source, assets, or `wrangler.jsonc`; no new backend/database.
+- Deployed SHA: `9a4989f53a60ef04adebf2633a9dafe836c8359b`.
+- Deployment ID: `a9f812e4-3c47-4d2b-9c73-2d8728c6992c`.
+- Immutable URL: https://a9f812e4.ranel.pages.dev.
+- Cloudflare creation time: `2026-10-02T04:29:05.332293Z`; final stage `success`, environment `production`, trigger SHA verified.
+- Project metadata `cloudflare_project_name` and Wrangler config both select `ranel`.
 
-Do not create a project or deploy to an unrelated existing project. Read/persist metadata only for a verified target; current `cloudflare_project_name` is unset. Run QA before explicit `wrangler pages deploy dist --project-name <verified-existing-name> --branch main`, then verify returned URL, routes/assets, contact, and custom-domain DNS/TLS. No `wrangler login` in Genspark. Stop Pages preview before rebuilding to avoid observing `_routes.json` mid-write. Production deployment and rollback have not been run.
+[Actual setup/QA/contact/release commands](../../README.md#cloudflare-byok-deployment) · [Phase 1B release evidence](../implementation/phase-1b-release-deployment/evidence.md) · [Original Phase 1 checkpoint](../implementation/phase-1/evidence.md).
 
-The broader principles below remain guidance for later approved phases, not evidence of services implemented now.
+## Reproducible BYOK workflow
 
-## Environments
-- Local: development and disposable/test data.
-- Preview: isolated review environment with non-production data and safe credentials.
-- Production: real users/data, protected configuration, controlled releases.
+1. Use `cf-byok-deploy`; in Genspark call `setup_cloudflare_api_key` before Wrangler, then `npx wrangler whoami`. Never print tokens or use `wrangler login` here. Stop if account selection is ambiguous or permissions fail.
+2. Inspect Git HEAD/remote/working tree, `package.json`, Vite/Wrangler config, metadata, and `npx wrangler pages project list`. Routine redeploys target existing `ranel` only; do not create a second project.
+3. First creation was executed only after absence and founder authorization were verified:
+   ```sh
+   npx wrangler pages project create ranel --production-branch main --compatibility-date 2025-09-20
+   ```
+4. Set/update `INQUIRY_WHATSAPP_NUMBER` privately via `npx wrangler pages secret put INQUIRY_WHATSAPP_NUMBER --project-name ranel`. Supply approved normalized digits through a masked prompt/secure stdin. `secret list` reveals names/encrypted status only; never dump project environment values or redirect destinations into general logs. Contact is public business information, not an API credential, but stays consistently runtime-configured.
+5. Stop local preview before rebuilding. Run `npm ci`, `npm run lint`, `npm run typecheck`, `npm test`, `npm run build`, `npm audit`; restart Pages preview through PM2, then `npm run test:e2e`. Review source/diff/secret handling and commit/push to `origin/main`.
+6. Deploy reviewed built output with explicit provenance:
+   ```sh
+   npx wrangler pages deploy dist --project-name ranel --branch main --commit-hash "$(git rev-parse HEAD)"
+   ```
+7. Verify immutable URL plus production hostname, homepage/barber/contact/privacy, CSS/SVG, HTTP 404, and `/inquiry` general/all kit/unknown-topic redirects. Use `maxRedirects: 0` to check WhatsApp destination/message without contacting WhatsApp. Confirm the configured contact state and approved destination privately. A redirect is not proof of sending/receipt.
+8. Run live browser QA with `QA_BASE_URL=https://ranel.pages.dev`, `QA_CONTACT_STATE=configured`, and privately exported `QA_EXPECT_WHATSAPP_NUMBER`. Compare destination without printing it. The same suite defaults to unconfigured local behavior; no automatic inference or removed tests.
+9. Verify Cloudflare project/account/environment/stage/SHA without dumping secret fields. Persist metadata and record release ID/time/SHA/outcomes in evidence. Documentation-only follow-up commits are distinct from the deployed SHA.
 
-## Domain
-Canonical domain intended: `ranel.biz.id` (founder reports it was purchased). Configure DNS/TLS through authorized accounts. Choose one canonical hostname and redirect consistently. Verify DNS, HTTPS, redirects, and certificate before launch. Never commit registrar or Cloudflare credentials.
+## Custom domain — deferred, no DNS changes
 
-## Deployment
-Use a framework adapter/deployment method verified for the actual repository scaffold. Workers can serve server-side logic and, where supported, frontend assets. D1 is proposed only if persistence is needed. Verify compatibility and account limits before provisioning.
+`ranel.biz.id` is optional follow-up, **not attached** in Phase 1B. No DNS creation/update/deletion, custom-domain attachment, or canonical redirect was performed. Project domain list contains only `ranel.pages.dev`. Optional read-only DNS-record snapshot received HTTP 403, so no before/after DNS record comparison is claimed; the release never required DNS-write privileges.
 
-Keep secrets in platform secret management; separate preview/production bindings and data. Release sequence: review diff → checks/tests/build → migration test → preview deploy → smoke test/log review → confirm rollback → production deploy → verify domain/core journeys → record SHA, URL, time, and evidence. Application rollback does not automatically roll back database changes; prefer backward-compatible migrations and a tested restore/export strategy.
+A later separately authorized task must inspect current records, ownership/account permission, Pages domain setup, certificate/HTTPS, and redirects before declaring the custom domain live. An active zone alone does not establish site routing or TLS.
+
+## Environments and rollback
+
+- Local: built Pages preview, no production secrets. Vite dev is for content work, not binding verification.
+- Preview: separate settings; production contact not copied there automatically. The immutable **production deployment** URL is not a preview environment.
+- Production: public site and approved manual WhatsApp handoff; no persistence, provider form, accounts, payments, or automation.
+
+Rollback remains **NOT TESTED**: use `ranel` deployment history to restore a prior known-good release, or rebuild/redeploy a known-good Git revision to the same project. No database rollback is applicable. Application launch does not establish demand, kit readiness, legal clearance, or WhatsApp account registration/message delivery.
+
+## Future approved phases only
+
+Cloudflare D1/R2 or other services remain proposed only when actual requirements justify them. Separate environments/data, commit/test migrations, use platform secrets, review deployment diff, verify core journeys/logs, and record release evidence. Application rollback does not roll back future database changes; prefer compatible migrations and tested restore/export procedures. No such services were provisioned in Phase 1 or Phase 1B.

@@ -1,5 +1,13 @@
 # Phase 1 — Execution evidence
 
+## Phase 1B release update — 2026-10-02
+
+**Current release: PASS (Phase 1B). Production deployment: VERIFIED at https://ranel.pages.dev.** The founder's newer instruction authorized creation of exactly `ranel` and approved the public business inquiry destination. The original blockers below are historical, superseded by the [Phase 1B release evidence](../phase-1b-release-deployment/evidence.md), not erased.
+
+Project creation, production runtime secret, deployment `a9f812e4-3c47-4d2b-9c73-2d8728c6992c`, deployed SHA `9a4989f53a60ef04adebf2633a9dafe836c8359b`, both production/immutable HTTP smoke, and 24 production browser tests are verified. Configured/manual WhatsApp URL and draft are checked without following the external link or sending messages. Actual message delivery/receipt is still not tested or claimed, as required in Phase 1B. No custom-domain/DNS changes, no Phase 2 work.
+
+## Original Phase 1 checkpoint (preserved)
+
 Recorded: **2026-10-02 (UTC)**. This records actual implementation/verification, not a production launch or market validation.
 
 ## 1. Status

@@ -56,3 +56,4 @@ Status labels: DECIDED = founder decision; PROPOSED = recommended direction; PEN
 - [Actual application setup, inquiry configuration and BYOK deployment](../README.md)
 
 - [Phase 1B — Release configuration and deployment prompt](implementation/phase-1b-release-deployment/master-system-prompt.md)
+- [Phase 1B — production release evidence and acceptance](implementation/phase-1b-release-deployment/evidence.md)

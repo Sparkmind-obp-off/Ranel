@@ -13,21 +13,23 @@ Ranel is designed to grow through three connected layers:
 
 The first vertical is **barber businesses**. Other verticals are future options, not simultaneous launch commitments.
 
-## Current status — Phase 1
-- **Gate: PARTIAL. Production deployment: BLOCKED.** The public website is implemented and tested locally; inquiry cannot reach a business contact until the founder configures an approved destination.
+## Current status — Phase 1 / Phase 1B release
+- **Phase 1B gate: PASS. Production deployment: VERIFIED** at https://ranel.pages.dev, released 2026-10-02 via CF BYOK. Public pages and founder-approved runtime WhatsApp handoff are verified; no actual message was sent during QA.
 - Existing baseline was documentation only, at `bef5456` on `main`. No framework, package manager, application, or adapter existed to preserve. Existing strategy documents remain in place.
 - One lightweight Hono/TypeScript application now lives in this repository, as explicitly requested in the Phase 1 implementation prompt. See [decision log](docs/governance/decision-log.md) for the change from the older documentation-only/separate-codebase wording.
 - Trademark/company clearance, product-market fit, prices, kit deliverability, demand, and business results are **not verified**.
 - Kits are **in development**, not ready to buy. Systems/Supply are not available.
-- No production release, live WhatsApp recipient, or customer inquiry delivery is claimed.
-- [Phase 1 evidence and acceptance checklist](docs/implementation/phase-1/evidence.md).
+- Production contact UI is active; links resolve to the approved business destination with the intended draft. WhatsApp registration and actual message delivery/receipt are not independently tested or claimed.
+- [Phase 1 historical implementation evidence](docs/implementation/phase-1/evidence.md) · [Phase 1B production release evidence](docs/implementation/phase-1b-release-deployment/evidence.md).
 
 ## URLs and entry points
 - Repository: https://github.com/Sparkmind-obp-off/Ranel (`main`).
 - Local Pages preview: `http://localhost:3000`.
 - Temporary sandbox preview: https://3000-iy1qof0t6pdsmm8bh8q31-82b888ba.sandbox.novita.ai — verified HTTP 200 for homepage/barber; not a production URL and may expire.
-- Intended domain per latest prompt: `ranel.biz.id`. Its Cloudflare zone is active in the connected account, but site DNS/TLS/hosting and canonical redirects are **not verified**.
-- Production URL: **none verified**. `runnel` and `ranel` Pages project lookups returned HTTP 404 in the connected account. No new project was created and no existing site was overwritten.
+- Production URL: **https://ranel.pages.dev**; project exactly `ranel`, production branch `main`.
+- Immutable deployment: https://a9f812e4.ranel.pages.dev; ID `a9f812e4-3c47-4d2b-9c73-2d8728c6992c`.
+- Deployed commit: `9a4989f53a60ef04adebf2633a9dafe836c8359b`; created `2026-10-02T04:29:05.332293Z`, Cloudflare stage `success`. Subsequent documentation-only commits do not change this deployment's provenance.
+- Optional custom domain: `ranel.biz.id`, **not attached**. No custom-domain/DNS change was made; its site DNS/TLS/redirect behavior is not verified. The Pages project reports only `ranel.pages.dev` in its domain list.
 
 | Route | Purpose |
 |---|---|
@@ -82,21 +84,31 @@ npx playwright install --with-deps chromium
 npm run test:e2e
 ```
 
-21 browser tests cover 320px, 390px (Chromium mobile emulation), and 1440px viewports: route rendering, overflow, metadata, assets, navigation, keyboard focus, FAQ, 404, inquiry-unconfigured state, and axe WCAG A/AA checks. `QA_BASE_URL` optionally selects another already-running preview. Screenshots are generated under `qa-artifacts/` and ignored by Git. Passing automated checks is not a full accessibility certification, physical-device test, or usability/market study.
+24 browser tests cover 320px, 390px (Chromium mobile emulation), and 1440px viewports: route rendering, overflow, metadata, assets, navigation, keyboard focus, FAQ, 404, explicit inquiry state, all topic redirects, and axe WCAG A/AA checks. Local default is unconfigured contact; production is tested with an explicitly configured expectation, not inferred from the UI. Screenshots are generated under ignored `qa-artifacts/` with state-specific filenames. Passing automated checks is not a full accessibility certification, physical-device test, or usability/market study.
+
+For production QA, privately load the approved destination into `QA_EXPECT_WHATSAPP_NUMBER` (for example with a silent shell prompt; do not place its value in scripts/logs/docs), then:
+
+```sh
+QA_BASE_URL=https://ranel.pages.dev QA_CONTACT_STATE=configured npm run test:e2e
+```
+
+Export `QA_EXPECT_WHATSAPP_NUMBER` before this command and unset it afterward. Tests compare the recipient without printing it and use `maxRedirects: 0` so they never contact WhatsApp. Default local tests retain the unconfigured-state assertions. No tests or assertions were removed to make production pass.
 
 ## Inquiry configuration
-**No business number was found in repository configuration.** Never infer one from GitHub or Cloudflare account identity.
+The founder supplied and approved a public business inquiry number in Phase 1B. It is configured once as the **production runtime secret** `INQUIRY_WHATSAPP_NUMBER`, not embedded in application source/build assets. The public business destination is not itself a secret; encrypted runtime configuration provides one consistent update point. Never infer a replacement number from account identity.
 
 | Name | Purpose |
 |---|---|
 | `INQUIRY_WHATSAPP_NUMBER` | Founder-approved **public business** WhatsApp destination, held in runtime configuration |
 | `CLOUDFLARE_API_TOKEN` | BYOK deployment credential; never a browser variable or committed value |
-| `CF_PAGES_PROJECT` | Operator's shell variable selecting the verified existing project during deployment |
-| `QA_BASE_URL` | Optional browser-test origin; not production application configuration |
+| `CF_PAGES_PROJECT` | Optional operator shell variable for the verified target; production project is exactly `ranel` |
+| `QA_BASE_URL` | Browser-test origin; default local preview, production `https://ranel.pages.dev` |
+| `QA_CONTACT_STATE` | `configured` for explicit active-contact QA; omitted for the unconfigured local baseline |
+| `QA_EXPECT_WHATSAPP_NUMBER` | Privately supplied expected destination for configured QA only; not application configuration |
 
 Local configuration: copy `.dev.vars.example` to `.dev.vars` and set the approved number there. The value must be international digits only, with country code, no `+`, spaces, or leading zero; 8–15 digits, starting 1–9. Restart the **Pages** preview after changing it. Blank/invalid configuration fails closed. Format validation does **not** prove account ownership or WhatsApp registration; the founder must verify both.
 
-Production configuration: after verifying the correct existing Pages project, use `npx wrangler pages secret put INQUIRY_WHATSAPP_NUMBER --project-name "$CF_PAGES_PROJECT"` or the project's production secret settings. Supply the value privately, never in source, chat evidence, `wrangler.jsonc`, or a committed environment file. Set preview separately only if explicitly approved. Deploy/redeploy and verify the handoff with the real business recipient.
+To update the number later, first obtain founder approval and normalize to international digits. Run `npx wrangler pages secret put INQUIRY_WHATSAPP_NUMBER --project-name ranel`; enter it privately through the masked prompt or secure stdin, not as a literal command argument. Wrangler targets production; secret listing shows the name/encrypted status only. Deploy/redeploy the reviewed build, then verify the active contact page and `/inquiry` Location without following it or sending a message. Never print the secret value or put it in source, `wrangler.jsonc`, screenshots, or committed environment files. Cloudflare preview configuration is intentionally unset; the immutable production deployment still uses production configuration.
 
 Behavior:
 1. Browse barber offers and open contact for a chosen topic.
@@ -116,32 +128,35 @@ The synthetic phone-format fixture in tests is not production contact configurat
 - No D1, KV, R2, database, in-memory lead store, forms, accounts, CRM, payments, booking, or messaging automation.
 - Application pages have CSP, anti-framing, content-type, referrer, and permissions headers. No application cookies or personal-data logging. Platform hosting may process technical request information.
 
-## Cloudflare BYOK deployment — existing project only
-The authorized path is **`cf-byok-deploy`**, not Genspark Hosted Deploy. The skill was activated and BYOK authentication verified, but production deployment is **BLOCKED**: no matching existing Pages project was found. There is a naming conflict between the earlier `runnel.biz.id`/`runnel.page.dev` message and the newer Ranel/`ranel.biz.id` prompt. Pages default hostnames use `pages.dev`; do not invent a target or create a suffixed/new project.
+## Cloudflare BYOK deployment
+The authorized path is **`cf-byok-deploy`**, not Genspark Hosted Deploy. The newest Phase 1B founder instruction supersedes the older existing-project-only restriction: create **exactly `ranel`** if absent and deploy to **https://ranel.pages.dev**. The sole authenticated account was verified, project creation succeeded, production secret was installed, and production was deployed/checked. Never substitute `runnel` or a suffixed project. Metadata `cloudflare_project_name` and `wrangler.jsonc` now both select `ranel`.
 
-When the founder identifies the exact existing project/account:
-1. In Genspark, load the token from Deploy panel using `setup_cloudflare_api_key`, then run `npx wrangler whoami`. Never use `wrangler login` here.
-2. Read project metadata (`cloudflare_project_name`) and list existing projects with `npx wrangler pages project list`. Confirm name, account, production branch, current domains, and permission to update that specific site. Record the verified name through `meta_info`; do not set a guessed default.
-3. Set `CF_PAGES_PROJECT` to that verified existing name in the shell. Add the verified name to `wrangler.jsonc` if desired. Current config intentionally omits it to avoid mis-targeting. **Do not run `pages project create`.**
-4. Stop preview, review diff/secrets, then run actual lint/typecheck/tests/build. Configure the approved inquiry secret separately as above.
-5. Push reviewed commits to `origin/main`, then deploy with explicit target:
+For subsequent releases:
+1. Load BYOK credentials with `setup_cloudflare_api_key` in Genspark, then verify `npx wrangler whoami`. Never run `wrangler login` or expose the token. Use the authorized account; stop if account selection is ambiguous.
+2. Inspect `origin/main`, working tree, verified metadata and `npx wrangler pages project list`. The existing production target is `ranel`, branch `main`; do not create another app/project.
+3. Stop local Pages preview before `npm ci`, lint/typecheck/test/build. Restart it and run local E2E; review diff and secrets. Production-only config does not make the local unconfigured fallback disappear.
+4. Configure any approved contact update privately using the single runtime secret. No database/build-time contact substitution is needed.
+5. Commit/push reviewed release changes, build from the intended clean SHA, and deploy explicitly:
    ```sh
-   npx wrangler pages deploy dist --project-name "$CF_PAGES_PROJECT" --branch main
+   npx wrangler pages deploy dist --project-name ranel --branch main --commit-hash "$(git rev-parse HEAD)"
    ```
-6. Verify the actual returned deployment URL, all public routes/assets, 404, contact availability, and real WhatsApp handoff. A link test is not evidence of receipt. Persist final verified metadata and update phase evidence with SHA/time/URL.
-7. Attach a custom domain **only after founder resolves the hostname conflict** and verifies account/DNS authorization. Use Pages custom-domain settings, inspect required DNS records, then verify HTTPS, certificate, and canonical redirects. An active zone alone does not establish a live site.
+6. Check the returned immutable URL and https://ranel.pages.dev: `/`, `/barber`, `/contact`, `/privacy`, CSS/SVG, 404 and all `/inquiry` topics. Inspect redirects without following them. Run production configured E2E as above; verify account/project/environment/SHA through Cloudflare metadata without logging env values.
+7. Persist project metadata and record date, deployment ID, deployed SHA, test outcomes and limitations. Documentation-only follow-up commits need not trigger another production deployment.
 
-Rollback after a future release: use the existing Pages project's deployment history to roll back to its previous known-good deployment, or build a known-good Git revision and redeploy to the same verified project. No database rollback is needed. **Production deployment/rollback has not been exercised.**
+First project creation was executed once, after authenticated lookup confirmed absence: `npx wrangler pages project create ranel --production-branch main --compatibility-date 2025-09-20`. Do not re-create it on routine deploys.
+
+**Do not attach `ranel.biz.id` or modify DNS as part of Phase 1B.** Custom-domain work requires a separate authorized follow-up; an active zone alone is not proof of routing/TLS. An optional read-only DNS snapshot attempt received HTTP 403, so no record-diff comparison is claimed.
+
+Rollback: use the `ranel` Pages deployment history to restore a prior known-good deployment, or build a known-good Git revision and redeploy to the same project. No database rollback is needed. Production deployment is verified; **rollback has not been exercised**.
 
 ## Known gaps and next necessary action
-- Inquiry delivery: blocked until an approved business destination is configured and actually tested.
-- Production project and intended hostname: founder confirmation needed; no deploy attempted to a guessed target.
-- Custom-domain DNS/TLS/canonical behavior: not verified.
+- Inquiry destination and manual-link behavior are verified. Actual WhatsApp registration, message sending/receipt, and availability are not tested; no real message was sent per founder instruction.
+- Custom-domain `ranel.biz.id` attachment/DNS/TLS/redirects: not done; optional separate task.
 - Real-device Safari/Firefox testing, full manual accessibility assessment, legal/privacy operations, and 3–5 operator usability sessions: not completed.
 - Kit contents, pilot pricing, support window, delivery/refund terms, and evidence of value: must be agreed later; website completion is not validation.
 - `/products`, `/about`, `/terms`, and every Phase 2+ feature are intentionally not implemented or linked in this narrow release.
 
-**Next:** identify the exact existing Cloudflare Pages project/account and resolve the intended hostname, while supplying the approved public business inquiry destination. Do not begin Phase 2.
+No Phase 1B release blocker remains. Optional custom-domain setup requires a separate request. Do not begin Phase 2 automatically; a live website is not demand or market validation.
 
 ## Strategy documentation
 1. [Brand platform](docs/brand/brand-platform.md)
