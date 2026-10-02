@@ -40,6 +40,7 @@ Status labels: DECIDED = founder decision; PROPOSED = recommended direction; PEN
 - [Data model and database](technology/data-model.md)
 - [Authentication and access control](technology/auth-and-access-control.md)
 - [Integration strategy](technology/integration-strategy.md)
+- [Provider inventory and configuration audit](technology/provider-inventory.md)
 - [Testing and QA](technology/testing-and-qa.md)
 - [Environments and Cloudflare deployment](technology/environments-and-deployment.md)
 - [Observability and incident response](technology/observability-and-incidents.md)
