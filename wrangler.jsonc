@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  // Intentionally no project name: the authorized EXISTING project must be verified first.
+  // Phase 1B: founder-authorized exact project; do not substitute a suffixed name.
+  "name": "ranel",
   "pages_build_output_dir": "./dist",
   "compatibility_date": "2025-09-20"
 }

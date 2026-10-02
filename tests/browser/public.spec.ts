@@ -1,5 +1,30 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, type APIResponse } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { inquiryMessage } from "../../src/inquiry";
+
+// Explicit expected state: never infer readiness from what the UI happens to show.
+const contactConfigured = process.env.QA_CONTACT_STATE === "configured";
+
+function verifyInquiryRedirect(response: APIResponse, offer?: string) {
+  expect(response.status()).toBe(303);
+  const location = response.headers()["location"];
+  if (!contactConfigured) {
+    expect(location).toBe(`/contact${offer ? `?offer=${offer}` : ""}`);
+    return;
+  }
+  const destination = new URL(location);
+  expect(destination.origin).toBe("https://wa.me");
+  expect(/^[1-9]\d{7,14}$/.test(destination.pathname.slice(1))).toBe(true);
+  // Compare booleans so failure output never prints the configured recipient.
+  const expectedRecipient = process.env.QA_EXPECT_WHATSAPP_NUMBER;
+  expect(
+    typeof expectedRecipient === "string" && expectedRecipient.length > 0,
+  ).toBe(true);
+  expect(destination.pathname.slice(1) === expectedRecipient).toBe(true);
+  expect(destination.searchParams.get("text")).toBe(inquiryMessage(offer));
+  expect(destination.searchParams.size).toBe(1);
+  expect(destination.search.includes(" ")).toBe(false);
+}
 
 for (const path of ["/", "/barber", "/contact", "/privacy"]) {
   test(`${path}: layout, metadata, accessibility, keyboard, assets, no browser errors`, async ({
@@ -59,14 +84,14 @@ for (const path of ["/", "/barber", "/contact", "/privacy"]) {
     expect(errors).toEqual([]);
     expect(failedRequests).toEqual([]);
     await page.screenshot({
-      path: `qa-artifacts/${testInfo.project.name}-${path === "/" ? "home" : path.slice(1)}.png`,
+      path: `qa-artifacts/${contactConfigured ? "configured" : "unconfigured"}-${testInfo.project.name}-${path === "/" ? "home" : path.slice(1)}.png`,
       fullPage: true,
       scale: "css",
     });
   });
 }
 
-test("visitor follows home → barber → chosen offer → honest unconfigured contact", async ({
+test("visitor follows home → barber → chosen offer → honest contact state", async ({
   page,
 }) => {
   await page.goto("/");
@@ -83,10 +108,32 @@ test("visitor follows home → barber → chosen offer → honest unconfigured c
   await expect(page.locator("#inquiry-message")).toHaveValue(
     /Customer Retention Kit/,
   );
-  await expect(
-    page.getByRole("heading", { name: "Kami belum membuka jalur inquiry." }),
-  ).toBeVisible();
-  await expect(page.locator('a[href^="/inquiry"]')).toHaveCount(0);
+  if (contactConfigured) {
+    await expect(
+      page.getByRole("heading", { name: "Lanjutkan di WhatsApp." }),
+    ).toBeVisible();
+    await expect(
+      page.getByText("Kontak belum aktif", { exact: true }),
+    ).toHaveCount(0);
+    await expect(
+      page.getByRole("link", { name: "Buka WhatsApp untuk diskusi" }),
+    ).toHaveAttribute("href", "/inquiry?offer=retention");
+    await expect(
+      page.getByText("Website ini tidak mengirim atau menyimpan pesan Anda.", {
+        exact: false,
+      }),
+    ).toBeVisible();
+    // Do not follow the external URL, open WhatsApp, or send a real message.
+    verifyInquiryRedirect(
+      await page.request.get("/inquiry?offer=retention", { maxRedirects: 0 }),
+      "retention",
+    );
+  } else {
+    await expect(
+      page.getByRole("heading", { name: "Kami belum membuka jalur inquiry." }),
+    ).toBeVisible();
+    await expect(page.locator('a[href^="/inquiry"]')).toHaveCount(0);
+  }
   await expect(page.locator("form")).toHaveCount(0);
   await expect(page.locator("textarea")).toHaveAttribute("readonly", "");
   await page
@@ -124,13 +171,34 @@ test("all rendered internal links, hash targets and assets resolve", async ({
         elements.map((element) => (element as HTMLAnchorElement).href),
       );
     for (const link of [...new Set(links)]) {
-      const response = await page.request.get(link);
-      expect(response.status(), `${path} → ${link}`).toBe(200);
       const url = new URL(link);
+      const response = await page.request.get(link, { maxRedirects: 0 });
+      if (url.pathname === "/inquiry") {
+        verifyInquiryRedirect(
+          response,
+          url.searchParams.get("offer") ?? undefined,
+        );
+        continue;
+      }
+      expect(response.status(), `${path} → ${link}`).toBe(200);
       if (url.hash) {
         const body = await response.text();
         expect(body).toContain(`id="${url.hash.slice(1)}"`);
       }
     }
   }
+});
+
+test("inquiry redirects safely preserve all topics without contacting WhatsApp", async ({
+  request,
+}) => {
+  for (const offer of [undefined, "operations", "retention", "tracking"]) {
+    const path = `/inquiry${offer ? `?offer=${offer}` : ""}`;
+    verifyInquiryRedirect(await request.get(path, { maxRedirects: 0 }), offer);
+  }
+  const response = await request.get(
+    "/inquiry?offer=unknown&url=https://invalid.example",
+    { maxRedirects: 0 },
+  );
+  verifyInquiryRedirect(response);
 });
