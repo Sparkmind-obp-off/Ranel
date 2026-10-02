@@ -50,6 +50,9 @@ Status labels: DECIDED = founder decision; PROPOSED = recommended direction; PEN
 - [MVP acceptance checklist](technology/mvp-acceptance-checklist.md)
 
 
+## Execution handoffs
+- [Genspark — read-only provider audit](handoffs/genspark-provider-audit.md)
+
 ## Implementation program
 - [Phased implementation roadmap](implementation/implementation-roadmap.md)
 - [Phase 1 — Genspark master system prompt](implementation/phase-1/master-system-prompt.md)
