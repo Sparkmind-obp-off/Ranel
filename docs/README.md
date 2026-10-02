@@ -54,3 +54,5 @@ Status labels: DECIDED = founder decision; PROPOSED = recommended direction; PEN
 - [Phase 1 — Genspark master system prompt](implementation/phase-1/master-system-prompt.md)
 - [Phase 1 — execution evidence, acceptance and blockers](implementation/phase-1/evidence.md)
 - [Actual application setup, inquiry configuration and BYOK deployment](../README.md)
+
+- [Phase 1B — Release configuration and deployment prompt](implementation/phase-1b-release-deployment/master-system-prompt.md)
