@@ -75,6 +75,7 @@ Status labels: DECIDED = founder decision; PROPOSED = recommended direction; PEN
 - [Genspark — compact context pack](handoffs/genspark-context-pack.md)
 - [Genspark — read-only provider audit](handoffs/genspark-provider-audit.md)
 - [Genspark — Duitku read-only verification & Core contract](handoffs/genspark-duitku-core-contract.md)
+- [Genspark — Duitku production commerce implementation](handoffs/genspark-duitku-production-commerce-implementation.md)
 
 ## Implementation program
 - [Phased implementation roadmap](implementation/implementation-roadmap.md)
