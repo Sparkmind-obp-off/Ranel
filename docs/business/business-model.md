@@ -1,5 +1,11 @@
 # Ranel — Business Model
 
+**Status:** LOCKED business model; activation and pricing remain evidence-gated.
+
+## Canonical model
+
+See [Ranel Master Blueprint](../foundation/ranel-master-blueprint.md) and [Business Architecture Lock](../foundation/ranel-business-architecture.md). This file retains the detailed business-model rationale.
+
 ## Thesis
 Build a low-capital business by solving narrow operational problems for small operators. Use digital products and manual services to learn before investing in custom software or inventory.
 
