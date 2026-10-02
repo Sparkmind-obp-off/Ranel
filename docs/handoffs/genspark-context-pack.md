@@ -18,6 +18,9 @@ Canonical source of truth:
 
 ## CANONICAL FOUNDATION LAYER
 
+First routing map: `docs/foundation/ranel-context-map.md`. Use it to select the smallest context layer for the task.
+
+
 Read these only when the task touches the corresponding layer:
 
 - `docs/foundation/ranel-master-blueprint.md` — complete locked strategic/system context.
