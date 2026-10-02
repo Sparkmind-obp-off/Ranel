@@ -34,3 +34,19 @@ The Pages adapter's fallback handling does not preserve the custom not-found han
 **Status:** ACCEPTED; PRODUCTION VERIFIED. New explicit founder instruction supersedes ADR-008's historical existing-project-only blocker: create exactly `ranel` if absent in the authenticated authorized account, deploy via CF BYOK to `https://ranel.pages.dev`, and defer `ranel.biz.id`/DNS. No suffix or `runnel` substitution. Authenticated discovery found one account and no target; creation, deployment, and exact hostname/SHA were verified.
 
 Existing app/source, offer content, runtime secret reader, and synthetic unit tests are unchanged. Store the founder-approved business destination in the production runtime secret only, leaving preview configuration unset. Browser QA now declares expected contact state explicitly and checks all redirect topics using `maxRedirects: 0`; no WhatsApp requests or messages sent. No database/new backend/provider added. Runtime config verification, release metadata, production smoke/browser tests, and remaining limits are recorded in [Phase 1B evidence](../implementation/phase-1b-release-deployment/evidence.md). Original decisions/checkpoints remain historical, not silently rewritten.
+
+## ADR-010 — Ranel master architecture and Revenue Engine lock (2026-10-02)
+**Status:** ACCEPTED; LOCKED at strategic/logical level.
+
+The founder locks the Ranel system boundary as **Public Revenue Surface → Private Control Center → Core Business Truth + Execution**, with an AI intelligence layer providing interpretation and recommendations above deterministic signals and Core truth.
+
+The business model is **Kits → Systems → Supply**, connected by the Revenue Engine loop **Demand → Opportunity → Product → Distribution → Transaction → Fulfillment → Outcome → Learning**.
+
+This ADR supersedes any older wording that described the overall architecture as merely proposed, while preserving historical ADRs as historical records. It does not automatically select a production database, provider, model, custom domain configuration, payment integration, or implementation timeline. Those remain evidence-gated implementation decisions inside the locked boundary.
+
+See:
+- [Master Blueprint](../foundation/ranel-master-blueprint.md)
+- [Business Architecture Lock](../foundation/ranel-business-architecture.md)
+- [AI Operating Model](../foundation/ranel-ai-operating-model.md)
+- [Revenue Engine](../foundation/ranel-revenue-engine.md)
+- [Strategic Roadmap & Gates](../foundation/ranel-roadmap-and-gates.md)
