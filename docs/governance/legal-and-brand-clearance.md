@@ -25,3 +25,10 @@ Class 9: software/apps and relevant digital products. Class 35: business, retail
 “Ranel is our selected working brand name; formal trademark and domain checks are in progress.”
 
 Do not claim “registered trademark”, “legally cleared”, or “official domain” without evidence.
+
+
+## Founder-reported update
+- `ranel.biz.id`: purchased.
+- PDKI: founder checked the name and reports the relevant search/note was empty.
+- Keep search date, exact search terms, relevant classes, and screenshots privately as evidence if available. This repository records the report but does not independently verify it.
+- Do not describe Ranel as a registered trademark unless authoritative registration evidence confirms it.
