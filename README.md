@@ -13,7 +13,15 @@ Ranel is designed to grow through three connected layers:
 
 The first vertical is **barber businesses**. Other verticals are future options, not simultaneous launch commitments.
 
-## Current status — Phase 1 / Phase 1B release
+## Current Phase 2 — Pilot Product & Demand Validation
+
+Three concrete pilot definitions are implemented: **Ranel Barber Starter** (daily foundation), **Ranel Barber Growth** (Starter plus records/retention/review), and **Ranel Barber System** (requirements/flow concept, not available software). Starter/Growth materials are prepared manually after agreement; no ready kit files, fixed prices, subscription, guaranteed growth or engineering commitment claimed.
+
+Local gates pass (28 built-worker tests; 27 browser tests). Production Phase 2 release verification is recorded separately in [Phase 2 evidence](docs/implementation/phase-2/evidence.md); the earlier Phase 1B release remains the baseline until redeploy/verification. [Pilot catalog](docs/products/product-catalog.md) · [Implementation/operating method](docs/implementation/phase-2/implementation-notes.md) · [Blank demand-evidence template](docs/templates/demand-evidence.md).
+
+Only blank templates are committed. Keep real anonymized interaction records in Git-ignored `demand-records/` or an already-approved private store, with restricted contacts separate. Manual entry and follow-up permission are required; no website lead storage or automation exists. No real inquiries/sales are fabricated, and demand is **not validated** by publishing the catalog. Execute one complete Phase 2, no sub-phases; do not start Phase 3 automatically.
+
+## Phase 1B baseline (preserved)
 - **Phase 1B gate: PASS. Production deployment: VERIFIED** at https://ranel.pages.dev, released 2026-10-02 via CF BYOK. Public pages and founder-approved runtime WhatsApp handoff are verified; no actual message was sent during QA.
 - Existing baseline was documentation only, at `bef5456` on `main`. No framework, package manager, application, or adapter existed to preserve. Existing strategy documents remain in place.
 - One lightweight Hono/TypeScript application now lives in this repository, as explicitly requested in the Phase 1 implementation prompt. See [decision log](docs/governance/decision-log.md) for the change from the older documentation-only/separate-codebase wording.
@@ -34,11 +42,12 @@ The first vertical is **barber businesses**. Other verticals are future options,
 | Route | Purpose |
 |---|---|
 | `/` | Indonesian-first brand overview and Kits → Systems → Supply status |
-| `/barber` | Audience, possible problem areas, three development-stage offer categories, proposed process, FAQ |
+| `/barber` | Three pilot definitions, audience/problems/contents/deliverables/status, comparison, manual process and FAQ |
 | `/barber#rencana-kit` | Jump to the proposed kit catalog |
 | `/contact` | Contact availability and a read-only, unsent message draft |
-| `/contact?offer=operations\|retention\|tracking` | Select a proposed kit and adapt the draft |
-| `/inquiry?offer=operations\|retention\|tracking` | HTTP 303 to WhatsApp only if configuration is valid; otherwise back to contact |
+| `/contact?offer=starter\|growth\|system` | Select a current product and adapt the draft; System has an explicit concept-only notice |
+| `/inquiry?offer=starter\|growth\|system` | HTTP 303 to approved WhatsApp with product context if config valid; otherwise back to contact |
+| `/contact` and `/inquiry` with `offer=operations\|retention\|tracking` | Backward-compatible Phase 1B topic names/messages; not silently remapped to new products |
 | `/privacy` | Application data handling and external-service disclosure |
 | `/static/style.css`, `/static/brand-mark.svg` | Locally served brand assets |
 | Other routes/methods | Helpful HTTP 404; no contact submission API |
@@ -53,7 +62,7 @@ npm run typecheck
 npm test
 ```
 
-`npm test` builds first and runs the Node test runner against the **built Pages worker** (24 tests at the recorded execution). `npm run build` writes `dist/_worker.js`, `_routes.json`, and static assets. `npm run dev` is the Vite content-development entry; it is **not** the verification environment for Cloudflare runtime bindings.
+`npm test` builds first and runs the Node test runner against the **built Pages worker** (28 tests in Phase 2). `npm run build` writes `dist/_worker.js`, `_routes.json`, and static assets. `npm run dev` is the Vite content-development entry; it is **not** the verification environment for Cloudflare runtime bindings.
 
 To check actual Pages behavior, use the built preview:
 
@@ -84,7 +93,7 @@ npx playwright install --with-deps chromium
 npm run test:e2e
 ```
 
-24 browser tests cover 320px, 390px (Chromium mobile emulation), and 1440px viewports: route rendering, overflow, metadata, assets, navigation, keyboard focus, FAQ, 404, explicit inquiry state, all topic redirects, and axe WCAG A/AA checks. Local default is unconfigured contact; production is tested with an explicitly configured expectation, not inferred from the UI. Screenshots are generated under ignored `qa-artifacts/` with state-specific filenames. Passing automated checks is not a full accessibility certification, physical-device test, or usability/market study.
+27 browser tests cover 320px, 390px (Chromium mobile emulation), and 1440px viewports: route rendering, overflow, metadata, assets, navigation, keyboard focus, FAQ, 404, explicit inquiry state, all topic redirects, and axe WCAG A/AA checks. Local default is unconfigured contact; production is tested with an explicitly configured expectation, not inferred from the UI. Screenshots are generated under ignored `qa-artifacts/` with state-specific filenames. Passing automated checks is not a full accessibility certification, physical-device test, or usability/market study.
 
 For production QA, privately load the approved destination into `QA_EXPECT_WHATSAPP_NUMBER` (for example with a silent shell prompt; do not place its value in scripts/logs/docs), then:
 
@@ -124,7 +133,7 @@ The synthetic phone-format fixture in tests is not production contact configurat
 - Vite + Hono Pages/dev adapters + Wrangler: build and Cloudflare-compatible preview/deployment, chosen because baseline had no scaffold.
 - TypeScript + Workers types: static checks. ESLint/typescript-eslint: lint. Playwright/axe: development-only browser/accessibility testing.
 - Native Pages static routing via `_routes.json`; assets originate in `public/static`. Explicit catch-all 404 route preserves fallback through the Pages adapter.
-- Data model: three static proposed offer records (`id`, labels, description, draft contents) in `src/inquiry.ts`. Runtime contact configuration is separate from the catalog.
+- Data model: three pilot definitions (target/problem/contents/deliverables/how/use/status/exclusions/CTA) in `src/inquiry.ts`, plus preserved legacy topic lookup. Runtime contact configuration stays separate. No customer/lead data model or persistence added.
 - No D1, KV, R2, database, in-memory lead store, forms, accounts, CRM, payments, booking, or messaging automation.
 - Application pages have CSP, anti-framing, content-type, referrer, and permissions headers. No application cookies or personal-data logging. Platform hosting may process technical request information.
 
@@ -154,9 +163,9 @@ Rollback: use the `ranel` Pages deployment history to restore a prior known-good
 - Custom-domain setup was not performed by this release agent. `ranel.biz.id` appeared active in Cloudflare during final read-only checks, outside the agent's actions; actor and DNS/TLS/redirect/browser behavior remain unverified. Do not undo or reattach it blindly.
 - Real-device Safari/Firefox testing, full manual accessibility assessment, legal/privacy operations, and 3–5 operator usability sessions: not completed.
 - Kit contents, pilot pricing, support window, delivery/refund terms, and evidence of value: must be agreed later; website completion is not validation.
-- `/products`, `/about`, `/terms`, and every Phase 2+ feature are intentionally not implemented or linked in this narrow release.
+- `/products`, `/about`, `/terms`, CRM/admin/auth/payments/booking/loyalty/automation remain unimplemented; the current public offer scope is only the Phase 2 catalog and manual inquiry/evidence method.
 
-No Phase 1B release blocker remains. Any custom-domain verification/change requires a separate request and inspection of its now-observed state. Do not begin Phase 2 automatically; a live website is not demand or market validation.
+Actual demand collection and choosing one deliverable manual pilot are the next necessary business actions. Any custom-domain verification/change requires separate authorization. A later phase is conditional on operator evidence and must not start automatically; a live catalog is not demand or market validation.
 
 ## Strategy documentation
 1. [Brand platform](docs/brand/brand-platform.md)

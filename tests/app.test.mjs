@@ -35,14 +35,31 @@ test("home labels future layers as unavailable", async () => {
   assert.match(html, /Fase awal/);
 });
 
-test("barber has exactly three truthful development offer cards", async () => {
+test("barber presents exactly three defined pilot products with truthful scope and price labels", async () => {
   const html = await (await request("/barber")).text();
   assert.equal((html.match(/class="offer-card"/g) ?? []).length, 3);
-  assert.equal((html.match(/Dalam pengembangan/g) ?? []).length, 3);
-  assert.equal((html.match(/Hubungi untuk harga pilot/g) ?? []).length, 3);
+  assert.equal((html.match(/class="product-delivery"/g) ?? []).length, 3);
+  assert.equal((html.match(/class="product-details"/g) ?? []).length, 3);
+  assert.equal(
+    (html.match(/Harga pilot — diskusikan kebutuhan/g) ?? []).length,
+    3,
+  );
   assert.doesNotMatch(html, /Rp\s?\d|testimoni|dipercaya oleh|beli sekarang/i);
-  for (const id of ["operations", "retention", "tracking"])
+  for (const [id, name] of [
+    ["starter", "Ranel Barber Starter"],
+    ["growth", "Ranel Barber Growth"],
+    ["system", "Ranel Barber System"],
+  ]) {
+    assert.match(html, new RegExp(`<h3>${name}</h3>`));
     assert.match(html, new RegExp(`href="/contact\\?offer=${id}"`));
+    assert.match(html, new RegExp(`id="offer-${id}"`));
+  }
+  assert.match(html, /Pilot — diskusi cakupan/);
+  assert.match(html, /Konsep — belum tersedia/);
+  assert.match(html, /Fondasi \+ catatan &amp; review/);
+  assert.match(html, /Seluruh fondasi Starter/);
+  assert.match(html, /Bukan dashboard atau aplikasi aktif/);
+  assert.match(html, /sebelum pekerjaan atau pembayaran/);
 });
 
 test("all internal HTML links resolve and anchors exist", async () => {
@@ -85,7 +102,15 @@ for (const id of ["operations", "retention", "tracking"]) {
     const url = new URL(result.headers.get("location"));
     assert.equal(url.origin, "https://wa.me");
     assert.equal(url.pathname, "/12025550123");
-    assert.match(url.searchParams.get("text"), /Halo Ranel/);
+    const names = {
+      operations: "Barber Operations Starter Kit",
+      retention: "Customer Retention Kit",
+      tracking: "Simple Business Tracking Kit",
+    };
+    assert.equal(
+      url.searchParams.get("text"),
+      `Halo Ranel, saya ingin berdiskusi tentang ${names[id]}. Boleh jelaskan rencana isi, cakupan, dan harga pilotnya?`,
+    );
     assert.match(html, /Website ini tidak mengirim atau menyimpan/);
   });
 }
@@ -151,6 +176,55 @@ test("there is no form submission API and nothing reports successful storage", a
     await response.text(),
     /berhasil dikirim|berhasil disimpan/i,
   );
+});
+
+for (const [id, name] of [
+  ["starter", "Ranel Barber Starter"],
+  ["growth", "Ranel Barber Growth"],
+  ["system", "Ranel Barber System"],
+]) {
+  test(`pilot ${id} preserves product context, readiness and safe handoff`, async () => {
+    const env = { INQUIRY_WHATSAPP_NUMBER: "12025550123" };
+    const html = await (await request(`/contact?offer=${id}`, env)).text();
+    assert.match(html, new RegExp(name));
+    assert.match(html, new RegExp(`href="/inquiry\\?offer=${id}"`));
+    assert.doesNotMatch(html, /<form|berhasil dikirim|berhasil disimpan/);
+    const response = await request(`/inquiry?offer=${id}`, env);
+    assert.equal(response.status, 303);
+    const url = new URL(response.headers.get("location"));
+    assert.equal(url.origin, "https://wa.me");
+    assert.equal(url.pathname, "/12025550123");
+    const message =
+      id === "system"
+        ? `Halo Ranel, saya ingin membahas konsep ${name}. Boleh diskusikan kebutuhan, pemetaan alur, dan batas cakupannya? Saya memahami aplikasi dan fitur digitalnya belum tersedia.`
+        : `Halo Ranel, saya tertarik dengan pilot ${name}. Boleh jelaskan isi yang diterima, cakupan, harga pilot, waktu, dan dukungannya sebelum kesepakatan?`;
+    assert.equal(url.searchParams.get("text"), message);
+    assert.equal(url.searchParams.size, 1);
+    const fallback = await request(`/inquiry?offer=${id}`);
+    assert.equal(fallback.status, 303);
+    assert.equal(fallback.headers.get("location"), `/contact?offer=${id}`);
+    if (id === "system") {
+      assert.match(
+        html,
+        /aplikasi, dashboard, booking, database, loyalty, dan otomasi belum tersedia/,
+      );
+      assert.match(html, /Tidak ada akses demo/);
+    }
+  });
+}
+
+test("concept scope creates no private or transactional routes", async () => {
+  for (const path of [
+    "/admin",
+    "/login",
+    "/dashboard",
+    "/booking",
+    "/api/customers",
+    "/api/payments",
+    "/api/leads",
+  ]) {
+    assert.equal((await request(path)).status, 404);
+  }
 });
 
 test("page and redirect security headers omit cookies and disallow framing", async () => {

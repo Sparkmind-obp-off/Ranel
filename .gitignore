@@ -11,6 +11,8 @@ dist/
 .pm2/
 coverage/
 qa-artifacts/
+# Private manual demand records; only blank templates belong in Git.
+/demand-records/
 playwright-report/
 test-results/
 *.tar.gz

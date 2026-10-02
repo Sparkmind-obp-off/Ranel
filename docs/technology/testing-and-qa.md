@@ -1,6 +1,12 @@
 # Testing and Quality Assurance
 
-## Current Phase 1B release suite — 2026-10-02
+## Current Phase 2 suite — 2026-10-02
+
+28 built-worker tests and 27 browser tests cover the new Starter/Growth/System catalog, distinct canonical product drafts, transparent System concept scope, complete card details/CTAs and lack of private/transactional engines. Legacy operations/retention/tracking exact drafts, invalid/missing config, unknown input, fixed-host redirect, no-form/persistence and security headers remain regression gates. FAQ selection is scoped to FAQ, separate from the new product-detail accordions.
+
+Local install/lint/typecheck/unit/build/audit and mobile/desktop browser gates pass; final live configured results and credential/link checks are recorded in [Phase 2 evidence](../implementation/phase-2/evidence.md). Use the unchanged production QA variables privately, and never follow WhatsApp redirects or send real messages. No dependencies or tests removed. This checks readiness, not customer demand.
+
+## Historical Phase 1B release suite — 2026-10-02
 
 The preserved built-worker suite remains **24 tests**. Browser suite is now **24 tests**, adding all-topic no-follow redirect checks and explicit configured/unconfigured expectations. `npm ci`, lint, typecheck, unit tests, build, local unconfigured E2E and configured production E2E all ran successfully; `npm audit` reported zero vulnerabilities. Production https://ranel.pages.dev and its immutable deployment passed route/asset/404/redirect smoke checks; production browser checks passed at 320/390/1440 px with no detected axe A/AA violations.
 

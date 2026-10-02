@@ -57,3 +57,6 @@ Status labels: DECIDED = founder decision; PROPOSED = recommended direction; PEN
 
 - [Phase 1B — Release configuration and deployment prompt](implementation/phase-1b-release-deployment/master-system-prompt.md)
 - [Phase 1B — production release evidence and acceptance](implementation/phase-1b-release-deployment/evidence.md)
+- [Phase 2 — implementation decisions and manual demand method](implementation/phase-2/implementation-notes.md)
+- [Phase 2 — execution evidence and release gate](implementation/phase-2/evidence.md)
+- [Blank demand-evidence template (real records stay private)](templates/demand-evidence.md)

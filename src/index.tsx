@@ -131,20 +131,46 @@ function OfferCards() {
         <article class="offer-card" id={`offer-${offer.id}`} key={offer.id}>
           <div class="card-top">
             <span class="index">{offer.number}</span>
-            <span class="status-label">Dalam pengembangan</span>
+            <span class="status-label">{offer.status}</span>
           </div>
           <h3>{offer.name}</h3>
           <p class="card-intro">{offer.short}</p>
           <p>{offer.description}</p>
+          <p class="product-target">
+            <strong>Untuk:</strong> {offer.target}
+          </p>
+          <p>{offer.problem}</p>
+          <h4>
+            {offer.id === "system"
+              ? "Area konsep, bukan fitur aktif"
+              : "Isi pilot"}
+          </h4>
           <ul>
             {offer.items.map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
+          <dl class="product-delivery">
+            <dt>Yang Anda terima</dt>
+            <dd>{offer.receives}</dd>
+          </dl>
+          <details class="product-details">
+            <summary>Cara pakai & batas cakupan</summary>
+            <dl>
+              <dt>Cara kerja</dt>
+              <dd>{offer.how}</dd>
+              <dt>Contoh penggunaan</dt>
+              <dd>{offer.useCase}</dd>
+              <dt>Tidak termasuk</dt>
+              <dd>{offer.exclusions}</dd>
+              <dt>Status pilot</dt>
+              <dd>{offer.statusNote}</dd>
+            </dl>
+          </details>
           <div class="card-bottom">
-            <p class="small">Hubungi untuk harga pilot</p>
+            <p class="small">Harga pilot — diskusikan kebutuhan</p>
             <a class="text-link" href={`/contact?offer=${offer.id}`}>
-              Bahas rencana kit <Arrow />
+              {offer.cta} <Arrow />
             </a>
           </div>
         </article>
@@ -208,8 +234,8 @@ app.get("/", (c) =>
               </a>
             </div>
             <p class="hero-note">
-              <span class="tiny-dot" aria-hidden="true" /> Fase awal · Kit
-              sedang dirancang untuk diskusi pilot
+              <span class="tiny-dot" aria-hidden="true" /> Fase awal · Starter &
+              Growth untuk diskusi pilot; System masih konsep
             </p>
           </div>
           <aside
@@ -317,7 +343,7 @@ app.get("/", (c) =>
               catatan usaha.
             </p>
             <Action href="/barber" secondary>
-              Kenali rencana kit barber
+              Kenali katalog pilot barber
             </Action>
           </div>
           <aside class="feature-note">
@@ -343,25 +369,26 @@ app.get("/barber", (c) =>
     "<!DOCTYPE html>" +
     (
       <Layout
-        title="Kit untuk usaha barber — Ranel"
-        description="Jelajahi rancangan kit pilot Ranel untuk barber mandiri dan barbershop kecil: SOP, follow-up pelanggan, dan pencatatan sederhana. Belum tersedia untuk pembelian."
+        title="Ranel Barber Starter, Growth & System — Katalog pilot"
+        description="Pilih cakupan pilot Ranel Barber: Starter untuk dasar operasional, Growth untuk pencatatan dan retensi, System untuk pemetaan konsep digital. Harga dibahas sesuai kebutuhan."
         path="/barber"
       >
         <section class="hero barber-hero" aria-labelledby="barber-title">
           <div>
-            <p class="eyebrow">Ranel untuk barber / Rencana pilot</p>
+            <p class="eyebrow">Ranel untuk barber / Katalog pilot</p>
             <h1 id="barber-title">
               Cara kerja lebih jelas.
               <br />
               <span>Tanpa sistem yang berlebihan.</span>
             </h1>
             <p class="hero-description">
-              Kit praktis yang sedang dirancang untuk barber mandiri, barbershop
-              independen, dan operator barber kecil. Mulai dari satu bagian
-              usaha yang ingin ditata.
+              Tiga cakupan untuk usaha barber: rapikan fondasi dengan Starter,
+              tambah catatan dan review dengan Growth, atau petakan kebutuhan
+              digital lewat konsep System. Pilih yang relevan, bukan yang paling
+              besar.
             </p>
             <div class="hero-actions">
-              <Action href="#rencana-kit">Lihat rencana kit</Action>
+              <Action href="#rencana-kit">Lihat katalog pilot</Action>
               <a class="text-link" href="/contact">
                 Informasi diskusi pilot <Arrow />
               </a>
@@ -370,15 +397,17 @@ app.get("/barber", (c) =>
           <aside class="scope-note">
             <p class="eyebrow">Status penawaran</p>
             <h2>
-              Masih dalam
+              Pilot dengan
               <br />
-              pengembangan.
+              cakupan yang jelas.
             </h2>
             <p>
-              Kit belum siap dibeli. Isi akhir, format, harga pilot, waktu
-              pengerjaan, dan dukungan dibahas sebelum ada kesepakatan.
+              Starter dan Growth dibahas sebagai paket pilot manual; bahan
+              disiapkan setelah kesepakatan. System hanya pemetaan konsep, belum
+              aplikasi aktif. Harga, waktu, dukungan, dan ketentuan pembatalan
+              disepakati lebih dulu.
             </p>
-            <span class="status-label">Bukan produk siap pakai</span>
+            <span class="status-label">Tanpa checkout otomatis</span>
           </aside>
         </section>
         <section class="section needs-section" aria-labelledby="needs-title">
@@ -431,10 +460,8 @@ app.get("/barber", (c) =>
         >
           <div class="section-heading">
             <div>
-              <p class="eyebrow">
-                Rancangan penawaran / Bukan katalog siap jual
-              </p>
-              <h2 id="catalog-title">Tiga titik awal yang praktis.</h2>
+              <p class="eyebrow">Katalog pilot / Mulai dari kebutuhan</p>
+              <h2 id="catalog-title">Starter. Growth. System.</h2>
             </div>
             <p>
               Mulai dari yang paling relevan.
@@ -442,10 +469,23 @@ app.get("/barber", (c) =>
               Tidak harus mengambil semuanya.
             </p>
           </div>
+          <div class="product-path" aria-label="Perbedaan cakupan produk">
+            {offers.map((offer) => (
+              <a key={offer.id} href={`#offer-${offer.id}`}>
+                <span class="index">{offer.number}</span>
+                <strong>{offer.name.replace("Ranel Barber ", "")}</strong>
+                <span>{offer.focus}</span>
+                <span class="small">{offer.status}</span>
+              </a>
+            ))}
+          </div>
           <OfferCards />
           <p class="catalog-note">
-            Isi di atas adalah rancangan awal. Belum ada harga yang disetujui
-            atau janji peningkatan pendapatan maupun kunjungan pelanggan.
+            Tidak harus naik paket. Starter/Growth adalah penawaran pilot dengan
+            deliverable yang disepakati, bukan file yang sudah tersedia untuk
+            unduh. System adalah konsep, bukan software yang sudah dibangun.
+            Tidak ada harga tetap, langganan wajib, atau jaminan peningkatan
+            kunjungan maupun pendapatan.
           </p>
         </section>
         <section
@@ -454,7 +494,7 @@ app.get("/barber", (c) =>
         >
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Alur yang direncanakan</p>
+              <p class="eyebrow">Alur pilot manual</p>
               <h2 id="process-title">
                 Diskusikan dulu.
                 <br />
@@ -505,11 +545,22 @@ app.get("/barber", (c) =>
             </p>
           </details>
           <details>
-            <summary>Apakah kit sudah bisa dibeli?</summary>
+            <summary>Apa perbedaan Starter, Growth, dan System?</summary>
             <p>
-              Belum. Ketiga kategori masih dalam pengembangan. Diskusi
-              diperlukan untuk menentukan kebutuhan, kesiapan, cakupan, dan
-              harga pilot.
+              Starter menata dasar kerja harian. Growth mencakup Starter plus
+              catatan pelanggan, follow-up berizin, dan review sederhana. System
+              memetakan kebutuhan digital sebelum membangun; dashboard, booking,
+              loyalty, database, dan otomasi belum tersedia.
+            </p>
+          </details>
+          <details>
+            <summary>Bagaimana penawaran pilot disepakati?</summary>
+            <p>
+              Diskusikan kebutuhan lewat WhatsApp. Isi, format
+              dokumen/spreadsheet, harga pilot, waktu, dukungan, dan pembatalan
+              perlu disepakati tertulis sebelum pekerjaan atau pembayaran.
+              Website tidak menjual atau mengirim file secara otomatis. System
+              dibatasi pada dokumen pemetaan konsep.
             </p>
           </details>
           <details>
@@ -560,11 +611,19 @@ app.get("/contact", (c) => {
           </h1>
           <p class="hero-description">
             {offer
-              ? `Anda memilih rencana ${offer.name}.`
+              ? `Anda tertarik pada ${offer.name}.`
               : "Cari tahu rencana kit yang paling relevan untuk usaha barber Anda."}{" "}
             Isi, harga, kesiapan, dan waktu pilot perlu dikonfirmasi terlebih
             dahulu.
           </p>
+          {offer?.id === "system" && (
+            <p class="contact-scope-note">
+              Anda membahas konsep System. Yang dibahas adalah pemetaan
+              kebutuhan; aplikasi, dashboard, booking, database, loyalty, dan
+              otomasi belum tersedia. Tidak ada akses demo atau pembangunan
+              otomatis.
+            </p>
+          )}
           <div class="contact-grid">
             <section
               class={`contact-status ${ready ? "ready" : ""}`}

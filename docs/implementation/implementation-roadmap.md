@@ -48,7 +48,15 @@ This roadmap describes intended work. A phase is complete only when its acceptan
 - Deployment is verified only if access and configuration permit it; otherwise provide exact blocker and manual steps.
 - Genspark returns a file/change summary, test evidence, deployment status, and unresolved issues.
 
-## Phase 2 — Lead Handling & Sales Workflow
+## Current Phase 2 — Pilot Product & Demand Validation
+
+**Scope updated by newest founder execution prompt, 2026-10-02.** Execute one complete phase, without sub-phases: define Starter/Growth/System → extend `/barber` → preserve manual WhatsApp inquiry → establish a private manual evidence method → QA/push/deploy existing `ranel` → verify and report. No prices, customers, sales, product-market fit or digital-feature availability invented. Starter/Growth are manual scoped pilot offers; System is concept definition, not engineering authorization.
+
+[Current pilot catalog](../products/product-catalog.md) · [Implementation/method](phase-2/implementation-notes.md) · [Phase 2 evidence](phase-2/evidence.md) · [Blank demand template](../templates/demand-evidence.md).
+
+Gate: three understandable scopes/targets/deliverables/statuses/CTAs, honest public catalog, backward-compatible inquiry, responsive/accessibility/security checks, documented evidence-readiness and verified production release. Actual demand requires real interactions after release. Later proposed phases below are not authorized automatically.
+
+## Historical proposed Phase 2 — Lead Handling & Sales Workflow
 
 **Goal:** Make inquiry follow-up consistent before introducing a full CRM.
 

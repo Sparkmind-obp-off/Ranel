@@ -762,6 +762,84 @@ textarea {
 .error-section .button {
   margin-top: 20px;
 }
+/* Phase 2: extend the existing cards; comparison is a short path, not a pricing table. */
+.product-path {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.product-path a {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  text-decoration: none;
+  font-size: 0.83rem;
+  min-width: 0;
+}
+.product-path a:hover {
+  background: #e6e9de;
+}
+.product-path strong {
+  font-size: 1.25rem;
+  font-weight: 550;
+}
+.product-path .small {
+  font-size: 0.7rem;
+}
+.offer-card h4,
+.product-delivery dt,
+.product-details dt {
+  font-size: 0.78rem;
+  font-weight: 650;
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+.offer-card .product-target {
+  color: var(--ink);
+}
+.product-delivery {
+  margin: 0 0 20px;
+}
+.product-delivery dd,
+.product-details dd {
+  margin: 0;
+  font-size: 0.83rem;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.product-details {
+  border-top: 1px solid var(--line);
+  padding: 14px 0;
+  margin-bottom: 18px;
+}
+.product-details summary {
+  font-size: 0.8rem;
+}
+.product-details dl {
+  margin-bottom: 0;
+}
+.product-details dt:not(:first-child) {
+  margin-top: 16px;
+}
+.contact-scope-note {
+  max-width: 800px;
+  padding: 18px 20px;
+  border-left: 3px solid var(--olive);
+  background: #e6e9de;
+  font-size: 0.88rem;
+}
+@media (max-width: 760px) {
+  .product-path {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .product-path a {
+    padding: 16px 20px;
+  }
+}
 @media (min-width: 1400px) {
   .site-header,
   .site-footer,

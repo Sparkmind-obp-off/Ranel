@@ -98,15 +98,15 @@ test("visitor follows home → barber → chosen offer → honest contact state"
   await page.getByRole("link", { name: "Jelajahi penawaran barber" }).click();
   await expect(page).toHaveURL(/\/barber$/);
   await page
-    .getByRole("link", { name: "Lihat rencana kit", exact: true })
+    .getByRole("link", { name: "Lihat katalog pilot", exact: true })
     .click();
   await expect(page).toHaveURL(/#rencana-kit$/);
   const cards = page.locator(".offer-card");
   await expect(cards).toHaveCount(3);
-  await cards.nth(1).getByRole("link", { name: "Bahas rencana kit" }).click();
-  await expect(page).toHaveURL(/\/contact\?offer=retention$/);
+  await cards.nth(1).getByRole("link", { name: "Bahas pilot Growth" }).click();
+  await expect(page).toHaveURL(/\/contact\?offer=growth$/);
   await expect(page.locator("#inquiry-message")).toHaveValue(
-    /Customer Retention Kit/,
+    /Ranel Barber Growth/,
   );
   if (contactConfigured) {
     await expect(
@@ -117,7 +117,7 @@ test("visitor follows home → barber → chosen offer → honest contact state"
     ).toHaveCount(0);
     await expect(
       page.getByRole("link", { name: "Buka WhatsApp untuk diskusi" }),
-    ).toHaveAttribute("href", "/inquiry?offer=retention");
+    ).toHaveAttribute("href", "/inquiry?offer=growth");
     await expect(
       page.getByText("Website ini tidak mengirim atau menyimpan pesan Anda.", {
         exact: false,
@@ -125,8 +125,8 @@ test("visitor follows home → barber → chosen offer → honest contact state"
     ).toBeVisible();
     // Do not follow the external URL, open WhatsApp, or send a real message.
     verifyInquiryRedirect(
-      await page.request.get("/inquiry?offer=retention", { maxRedirects: 0 }),
-      "retention",
+      await page.request.get("/inquiry?offer=growth", { maxRedirects: 0 }),
+      "growth",
     );
   } else {
     await expect(
@@ -137,10 +137,10 @@ test("visitor follows home → barber → chosen offer → honest contact state"
   await expect(page.locator("form")).toHaveCount(0);
   await expect(page.locator("textarea")).toHaveAttribute("readonly", "");
   await page
-    .getByRole("link", { name: "Simple Business Tracking Kit", exact: true })
+    .getByRole("link", { name: "Ranel Barber System", exact: true })
     .click();
   await expect(page.locator("#inquiry-message")).toHaveValue(
-    /Simple Business Tracking Kit/,
+    /Ranel Barber System/,
   );
   await page.getByRole("link", { name: "Baca informasi privasi" }).click();
   await expect(page).toHaveURL(/\/privacy$/);
@@ -150,10 +150,11 @@ test("FAQ works with keyboard; unknown route is a useful 404", async ({
   page,
 }) => {
   await page.goto("/barber");
-  const question = page.locator("summary").first();
+  const faq = page.locator(".faq-section");
+  const question = faq.locator("summary").first();
   await question.focus();
   await page.keyboard.press("Enter");
-  await expect(page.locator("details").first()).toHaveAttribute("open", "");
+  await expect(faq.locator("details").first()).toHaveAttribute("open", "");
   const response = await page.goto("/not-a-page");
   expect(response?.status()).toBe(404);
   await page.getByRole("link", { name: "Kembali ke beranda" }).click();
@@ -189,10 +190,96 @@ test("all rendered internal links, hash targets and assets resolve", async ({
   }
 });
 
+test("three pilot products expose deliverables, distinctions and contextual CTAs", async ({
+  page,
+}) => {
+  const products = [
+    {
+      id: "starter",
+      name: "Ranel Barber Starter",
+      cta: "Bahas pilot Starter",
+      status: "Pilot — diskusi cakupan",
+    },
+    {
+      id: "growth",
+      name: "Ranel Barber Growth",
+      cta: "Bahas pilot Growth",
+      status: "Pilot — diskusi cakupan",
+    },
+    {
+      id: "system",
+      name: "Ranel Barber System",
+      cta: "Bahas konsep System",
+      status: "Konsep — belum tersedia",
+    },
+  ];
+  for (const product of products) {
+    await page.goto("/barber");
+    const card = page.locator(`#offer-${product.id}`);
+    await expect(
+      card.getByRole("heading", { name: product.name, exact: true }),
+    ).toBeVisible();
+    await expect(card.locator(".status-label")).toHaveText(product.status);
+    await expect(card.locator(".product-target")).toContainText("Untuk:");
+    await expect(card.locator(".product-delivery")).toContainText(
+      "Yang Anda terima",
+    );
+    await expect(card.locator(".product-delivery dd")).not.toBeEmpty();
+    await expect(
+      card.getByText("Harga pilot — diskusikan kebutuhan", { exact: true }),
+    ).toBeVisible();
+    await card.getByText("Cara pakai & batas cakupan", { exact: true }).click();
+    for (const label of [
+      "Cara kerja",
+      "Contoh penggunaan",
+      "Tidak termasuk",
+      "Status pilot",
+    ]) {
+      await expect(
+        card.locator(".product-details dt").filter({ hasText: label }),
+      ).toBeVisible();
+    }
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+    if (product.id === "growth")
+      await expect(card).toContainText("Seluruh fondasi Starter");
+    if (product.id === "system") {
+      await expect(card).toContainText("Bukan dashboard atau aplikasi aktif");
+      await expect(card).toContainText("Fitur digital belum dibangun");
+    }
+    await card.getByRole("link", { name: product.cta, exact: true }).click();
+    await expect(page).toHaveURL(new RegExp(`/contact\\?offer=${product.id}$`));
+    await expect(page.locator("#inquiry-message")).toHaveValue(
+      new RegExp(product.name),
+    );
+    if (product.id === "system")
+      await expect(page.locator(".contact-scope-note")).toContainText(
+        "belum tersedia",
+      );
+    verifyInquiryRedirect(
+      await page.request.get(`/inquiry?offer=${product.id}`, {
+        maxRedirects: 0,
+      }),
+      product.id,
+    );
+  }
+});
+
 test("inquiry redirects safely preserve all topics without contacting WhatsApp", async ({
   request,
 }) => {
-  for (const offer of [undefined, "operations", "retention", "tracking"]) {
+  for (const offer of [
+    undefined,
+    "starter",
+    "growth",
+    "system",
+    "operations",
+    "retention",
+    "tracking",
+  ]) {
     const path = `/inquiry${offer ? `?offer=${offer}` : ""}`;
     verifyInquiryRedirect(await request.get(path, { maxRedirects: 0 }), offer);
   }
