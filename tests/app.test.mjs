@@ -137,6 +137,7 @@ for (const id of ["operations", "retention", "tracking"]) {
     const response = await request(`/contact?offer=${id}`, env);
     const html = await response.text();
     assert.match(html, /Jalur WhatsApp tersedia/);
+    assert.match(html, /href="mailto:farasmuhadzib@gmail\.com"/);
     assert.match(html, new RegExp(`href="/inquiry\\?offer=${id}"`));
     const result = await request(`/inquiry?offer=${id}`, env);
     assert.equal(result.status, 303);

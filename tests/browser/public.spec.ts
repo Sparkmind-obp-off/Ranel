@@ -151,7 +151,8 @@ test("visitor follows home → barber → chosen offer → honest contact state"
     ).toBeVisible();
     await expect(page.locator('a[href^="/inquiry"]')).toHaveCount(0);
   }
-  await expect(page.locator('a[href="mailto:farasmuhadzib@gmail.com"]')).toBeVisible();
+  await expect(page.locator('footer a[href="mailto:farasmuhadzib@gmail.com"]')).toBeVisible();
+  if (!contactConfigured) await expect(page.locator('main a[href="mailto:farasmuhadzib@gmail.com"]')).toBeVisible();
   await expect(page.locator("form")).toHaveCount(0);
   await expect(page.locator("textarea")).toHaveAttribute("readonly", "");
   await page
@@ -310,7 +311,11 @@ test("legal hub and eight policies are accessible, dated and truthful on each vi
     await expect(page.locator('.legal-status')).toContainText('Penjualan online dan pembayaran belum dibuka');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()).violations).toEqual([]);
-    await expect(page.locator('a[href^="mailto:"], script, form')).toHaveCount(0);
+    await expect(page.locator('script, form')).toHaveCount(0);
+    await expect(page.locator('.legal-identity a[href="mailto:farasmuhadzib@gmail.com"]')).toBeVisible();
+    await expect(page.locator('.legal-identity')).toContainText('AHU-066746.AH.01.30.Tahun 2025');
+    await expect(page.locator('.legal-identity')).toContainText('1 Desember 2025');
+    await expect(page.locator('.legal-identity')).toContainText('bukan verifikasi legal independen');
     const method = await page.request.post('/legal' + (slug ? '/' + slug : ''), {data: 'fixture_no_action'});
     expect(method.status()).toBe(405);
   }
