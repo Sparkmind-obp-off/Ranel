@@ -1,26 +1,64 @@
-# Pricing and Unit Economics
+# Ranel — Pricing and Unit Economics
 
-Prices are not set yet. Price based on customer value, scope, delivery cost, and willingness to pay—not arbitrary competitor imitation.
+## Approved initial package prices
 
-## Formats to test
-- Starter: self-serve digital deliverable.
-- Setup: deliverable plus guided configuration.
-- Ongoing: recurring support or system only if ongoing value exists.
+Founder-approved current market-test prices:
 
-Do not add tiers merely to make a pricing table look complete.
+| Package | Price | Model |
+|---|---:|---|
+| Ranel Barber Starter | Rp39.000 | One-time |
+| Ranel Barber Growth | Rp79.000 | One-time |
+| Ranel Barber System | Rp149.000 | One-time |
 
-## Contribution calculation
-Record gross price, discounts/refunds, marketplace/payment fees, supplier costs, attributable hosting/tool costs, delivery/support hours, taxes, and other direct costs.
+Currency: **IDR**. No recurring fee or default discount is implied.
+
+These prices are approved for the current initial market test. **Price validation remains open**; public competitor listings are reference points, not conversion proof.
+
+## Unit economics
+
+For each paid order, record:
+- gross price;
+- discounts/refunds;
+- marketplace/payment fees;
+- supplier costs, if any;
+- attributable hosting/tool costs;
+- delivery and support hours;
+- taxes;
+- other direct costs.
 
 **Contribution before fixed overhead = net collected revenue − direct variable costs.**
 
 Track founder time separately even if it is not initially paid as salary.
 
+## Delivery model
+
+Early fulfillment is bounded/manual. Delivery effort must be measured before introducing automation or recurring support.
+
 ## Recurring-offer gate
+
 A subscription is appropriate only when value is ongoing, usage or service is recurring, support expectations are defined, cancellation is straightforward, and delivery is reliable.
 
-## Pricing interview
-Ask what the customer currently spends in money and time, alternatives considered, who approves purchases, and what result would justify continuing. Do not ask only “What price feels fair?”
+The current Barber Starter/Growth/System prices do **not** authorize a recurring subscription.
 
-## Weekly metrics
-Leads and conversion, paid customers, average order value, contribution per sale, delivery time, refund/complaint rate, repeat purchase/renewal, and cash collected versus promised. Never confuse revenue, profit, cash balance, and gross merchandise value.
+## Validation metrics
+
+Track at minimum:
+- qualified leads;
+- inquiries by package;
+- price objections;
+- package preference;
+- paid customers;
+- payment completion;
+- average order value;
+- contribution per sale;
+- delivery time;
+- support time;
+- refund/complaint rate;
+- repeat purchase/upgrade interest;
+- cash collected versus promised.
+
+Never confuse revenue, profit, cash balance, and gross merchandise value.
+
+## Pricing review rule
+
+Keep the approved prices during the initial test unless new evidence is materially strong enough to justify a new commercial decision. Any price change should be explicitly recorded and founder-approved.
