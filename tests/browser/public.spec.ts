@@ -147,10 +147,11 @@ test("visitor follows home → barber → chosen offer → honest contact state"
     );
   } else {
     await expect(
-      page.getByRole("heading", { name: "Kami belum membuka jalur inquiry." }),
+      page.getByRole("heading", { name: "Hubungi Ranel melalui email." }),
     ).toBeVisible();
     await expect(page.locator('a[href^="/inquiry"]')).toHaveCount(0);
   }
+  await expect(page.locator('a[href="mailto:farasmuhadzib@gmail.com"]')).toBeVisible();
   await expect(page.locator("form")).toHaveCount(0);
   await expect(page.locator("textarea")).toHaveAttribute("readonly", "");
   await page
@@ -190,6 +191,10 @@ test("all rendered internal links, hash targets and assets resolve", async ({
       );
     for (const link of [...new Set(links)]) {
       const url = new URL(link);
+      if (url.protocol === "mailto:") {
+        expect(url.pathname).toBe("farasmuhadzib@gmail.com");
+        continue;
+      }
       const response = await page.request.get(link, { maxRedirects: 0 });
       if (url.pathname === "/inquiry") {
         verifyInquiryRedirect(
