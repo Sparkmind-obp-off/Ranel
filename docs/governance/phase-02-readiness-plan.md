@@ -49,6 +49,10 @@ Product catalog now references canonical IDs/SKUs, bundle manifests, preparation
 ### 9. Commerce handoff — NOT YET AUTHORIZED
 No payment, order database, checkout, webhook financial truth, refund executor, or live transaction work is authorized by Phase 02 documentation alone.
 
+## Commercial and tax decisions
+
+F01, F02, F04, and F05 are founder-approved. F03 base pricing/promo operating rules are decided, but tax applicability and seller tax status remain VALIDATION_REQUIRED.
+
 ## Founder review packet
 
 See [Phase 02 Founder Review](phase-02-founder-review.md).
