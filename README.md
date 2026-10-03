@@ -13,6 +13,12 @@ Ranel is designed to grow through three connected layers:
 
 The first vertical is **barber businesses**. Other verticals are future options, not simultaneous launch commitments.
 
+## Master commerce roadmap — Phase 00 baseline
+
+[**SYSTEM_BASELINE.md**](SYSTEM_BASELINE.md) is the current audited baseline for the founder's Business First → Product → Commerce → Transaction → Fulfillment → Operations roadmap. **Phase 00: PASS for bounded baseline; Phase 01 BUSINESS LOCK and Phase 02 PRODUCT READY: not yet PASS.** Existing POP engineering and PUBLIC are preserved. The new phase numbering does not rename historical catalog releases. No payment, infrastructure, pricing or live pilot activation in this documentation-only checkpoint.
+
+Current source checkpoint audited: `fbaddc4fc1b7fcd144fc81d3f7ae6ca90f124d17`; PUBLIC still runs `c90c1994839e1bee4fa676ed25ea848da66731ad`. Fresh baseline checks: lint/typecheck, 61 Core fixtures, 33 existing PUBLIC built-artifact tests and read-only production smoke. Details, debt, access limitations, component statuses, dependency graph and protected boundaries are in the baseline. The next gate is Business Lock—not further payment implementation or deployment.
+
 ## POP production adapter execution — 2026-10-03
 
 **NOT SUCCESS — ACTION REQUIRED.** POP production adapter and browser bridge are implemented/tested locally, but merchant authentication, production Core/persistence/deployment and customer checkout are not verified or activated. Existing PUBLIC catalog/manual inquiry remains the only customer functionality in production.
