@@ -1,106 +1,151 @@
-# Ranel — Phase 01 Pricing Decision Freeze (AI Recommendation)
+# Ranel — Phase 01 Package Pricing Decision Freeze
 
 Date: 2026-10-03
 Status: **RECOMMENDED FREEZE — FOUNDER FINAL APPROVAL REQUIRED**
 
-## 1. Decision
+## 1. Executive decision
 
-For the first Ranel Barber Starter pilot, ChatGPT recommends freezing the working price at:
+ChatGPT recommends the following initial Ranel Barber package ladder for Phase 02 planning:
 
-**Rp32.000 one-time**
+| Package | Working price | Model | Scope position |
+|---|---:|---|---|
+| **Ranel Barber Starter** | **Rp39.000** | One-time | Practical operating foundation |
+| **Ranel Barber Growth** | **Rp79.000** | One-time | Starter + simple retention/monitoring layer |
+| **Ranel Barber System** | **Rp149.000** | One-time | Starter + Growth + broader operating-system mapping/prioritization |
 
-This is a working commercial hypothesis, not a claim that Rp32.000 is proven to be the highest-converting or most profitable price.
+These are **working commercial hypotheses**, not validated conversion prices.
 
-## 2. Why Rp32.000
+## 2. Why Starter = Rp39.000
 
-Current observed Indonesian listings include:
-- Rp8.800 for a basic barbershop SOP package on Shopee. (source: current market research memo)
-- Rp15.000 for an editable Template SOP Barbershop on Digitora. (source: current market research memo)
-- Rp120.000 for a broader SOP/document package on Task Flow.
-- Rp374.250 sale price shown for a 20-file barber SOP example on Lynk, with Rp499.000 crossed-out price.
+Current Indonesian market references show a wide range:
+- basic barbershop SOP template at Rp15.000;
+- broader SOP/document packages at substantially higher prices;
+- recurring barbershop software around Rp49.000–Rp99.000/month at entry/introductory levels, with higher tiers above that.
 
-The earlier Ranel hypothesis was Rp49.000 launch / Rp79.000 normal. The user requested a more accessible first-ticket position and explicitly allowed taking the midpoint between Rp15.000 and Rp49.000.
+Ranel Starter is intended to sit between a cheap generic template and a recurring software subscription.
 
-Exact midpoint:
+Rp39.000 is therefore preferred over the earlier Rp32.000 midpoint because:
+1. Rp32.000 was mathematically convenient but not a strong commercial anchor.
+2. Rp39.000 remains below Rp40.000 and preserves a low first-ticket barrier.
+3. It gives Ranel enough room to position Starter as a curated operating kit rather than a commodity template.
+4. Rp49.000 remains a plausible future test price, but there is not enough transaction evidence to make it the initial working price.
 
-(Rp15.000 + Rp49.000) / 2 = **Rp32.000**
+## 3. Growth = Rp79.000
 
-Therefore Rp32.000 is selected as the working first-ticket price.
+### Recommended scope
+Starter plus:
+- simple customer/visit summary spreadsheet;
+- basic repeat-visit tracking structure;
+- manual follow-up/review workflow;
+- simple monthly review checklist;
+- practical guidance for using the added tracking assets.
 
-## 3. Market interpretation
+### Why Rp79.000
+- It creates a clear step-up from Starter without becoming expensive for a small barber operator.
+- It remains below many recurring software entry prices on a one-time basis.
+- It creates approximately a 2x value ladder from Starter, which is easy to understand.
+- It does not require Ranel to promise software automation.
 
-Rp32.000 places Ranel:
-- above ultra-low/basic template listings;
-- below broader SOP/document packages;
-- far below recurring barbershop software subscriptions, which currently show entry points around Rp49.000–Rp99.000/month depending on provider and introductory period. 
-
-This is appropriate only if Starter remains a **bounded digital operating kit**, not software.
-
-## 4. What Rp32.000 must buy
-
-The price must not silently expand scope.
-
-Candidate Starter:
-- practical SOP foundation;
-- service/menu and price-list structure;
-- opening/closing checklist;
-- permission-based customer-return follow-up guidance;
-- PDF + editable files;
-- bounded preparation/tailoring;
-- bounded support.
-
-It must NOT include:
+### Explicit exclusions
+Growth does not include:
+- live CRM;
+- automated WhatsApp;
+- booking;
 - POS;
-- booking system;
-- CRM;
 - loyalty automation;
 - dashboard;
-- custom application;
-- unlimited consulting;
+- custom app;
+- unlimited consulting.
+
+## 4. System = Rp149.000
+
+### Recommended scope
+Starter + Growth plus:
+- operating-system mapping;
+- prioritization of business routines;
+- customer journey mapping;
+- retention/process mapping;
+- owner review framework;
+- implementation-priority checklist;
+- bounded implementation guidance.
+
+The System package is still a **prepared operating-system package**, not a software subscription.
+
+### Why Rp149.000
+- It creates meaningful separation from Starter and Growth.
+- It is still a low absolute one-time ticket for a business-oriented operating package.
+- It prevents the System tier from being priced so low that the additional strategic work becomes commercially invisible.
+- It leaves room for a later software/system subscription or implementation service without prematurely bundling it into this product.
+
+### Explicit exclusions
+System does not automatically include:
+- custom software development;
+- hosting;
+- payment integration;
+- POS integration;
+- booking integration;
+- automated CRM;
+- automated WhatsApp;
 - unlimited revisions;
-- guaranteed business results.
+- ongoing consulting.
 
-## 5. What this price does NOT prove
+## 5. Package architecture
 
-There is currently no reliable public evidence available in this research that proves:
-- Rp32.000 is the market-clearing price;
-- Rp32.000 has the highest conversion;
-- customers will buy at Rp32.000;
-- Rp32.000 produces a target profit;
-- competitors' displayed prices equal realized transaction prices.
+The ladder is intentionally:
 
-Therefore:
+**Starter → Growth → System**
+
+Meaning:
+
+**Foundation → Measurement/Retention → Operating System**
+
+This should not become feature-bloat. Each tier must add a clearly understandable business outcome and a bounded set of deliverables.
+
+## 6. Commercial rules
+
+Until founder changes them:
+- all three packages are one-time purchases;
+- currency: IDR;
+- no recurring fee;
+- no default discount;
+- no guaranteed business results;
+- fulfillment remains bounded/manual during early validation;
+- payment activation remains governed by the roadmap and is not implied by this pricing decision.
+
+## 7. Validation status
 
 **PRICE_VALIDATION = NOT YET VALIDATED**
 
-Validation must come from actual inquiries, objections, purchases, delivery economics and post-purchase feedback.
+Public listings establish reference points, not conversion proof.
 
-## 6. Proposed commercial rule
+The first real validation signals should include:
+- qualified inquiries;
+- price objections;
+- package preference;
+- purchases;
+- payment completion;
+- delivery effort;
+- support effort;
+- refunds/cancellations;
+- post-delivery usefulness feedback;
+- upgrade interest from Starter to Growth/System.
 
-Until founder changes it:
+## 8. AI decision
 
-- Product: Ranel Barber Starter
-- Price: **Rp32.000**
-- Model: one-time
-- Currency: IDR
-- Discount: none by default
-- Recurring fee: none
-- Automatic payment: not enabled
-- Fulfillment: bounded/manual until later commerce phases are ready
+**AI DECISION — WORKING PRICE FREEZE:**
+- Starter = **Rp39.000**
+- Growth = **Rp79.000**
+- System = **Rp149.000**
 
-## 7. AI decision status
+These prices are frozen for Phase 02 planning unless the founder changes them or new evidence materially changes the recommendation.
 
-**AI DECISION: FREEZE Rp32.000 AS WORKING PRICE**
-
-This freezes the working assumption for Phase 02 planning. It does **not** freeze the founder's final commercial decision.
-
-## 8. Founder final authority
+## 9. Founder final authority
 
 Founder may respond:
 
-- **APPROVE** — Rp32.000 becomes the approved Phase 02 working price.
-- **CHANGE: RpX** — replace the working price.
+- **APPROVE** — adopt the three working prices for Phase 02.
+- **CHANGE: RpX / RpY / RpZ** — replace one or more prices.
 - **PENDING** — research more pricing/demand evidence.
-- **REJECT** — reject this pricing direction and require a new pricing model.
+- **REJECT** — reject the package ladder and require a new pricing model.
 
-No other technical decision is required from the founder.
+No founder decision is required for ordinary implementation details inside the approved scope.
