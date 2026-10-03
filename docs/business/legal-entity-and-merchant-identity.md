@@ -109,4 +109,4 @@ These remain evidence-gated checks before live commerce.
 
 **FOUNDER-REPORTED:** entity registration and supporting legal documents exist.
 
-**VALIDATION_REQUIRED:** exact AHU registration record, current OSS/NIB data, applicable KBLI/PMSE licensing, tax status, and merchant-provider alignment before publishing specific registration/permit numbers or claiming full regulatory readiness.
+**PUBLIC REFERENCE APPROVED:** publish AHU-066746.AH.01.30.Tahun 2025 and the 1 December 2025 registration date in the Legal identity card based on the founder-controlled SparkMind legal source and the founder-reported underlying documents. This is not an independent live AHU registry verification. **VALIDATION_REQUIRED:** current OSS/NIB data, applicable KBLI/PMSE licensing, tax status, and merchant-provider alignment before claiming full regulatory readiness.
