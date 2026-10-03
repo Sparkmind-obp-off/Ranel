@@ -21,7 +21,7 @@ Latest code/test commits:
 - `c2ebebb8768f8674bf2b0c9d38251a421b02deb1` — update worker tests.
 - `2b58261ef3af8764688c46f7e024553713fe9dcc` — update browser tests and mailto-link handling.
 
-These source changes are **committed but not yet test/build/live-deployment verified**.
+These source changes are **committed but not yet test/build/live-deployment verified**. The founder also authorized the AHU reference already used by the founder-controlled SparkMind legal source: `AHU-066746.AH.01.30.Tahun 2025`, registration date 1 December 2025. The current shared Legal identity card source includes this reference. Do not claim an independent live AHU lookup.
 
 ## Required execution
 
@@ -30,7 +30,7 @@ These source changes are **committed but not yet test/build/live-deployment veri
 3. Run the complete PUBLIC worker test suite.
 4. Run the complete browser/Axe suite at the existing viewports.
 5. Run the preserved Core/POP regression suite to prove Core remains unchanged.
-6. Check all legal routes render an official email `mailto:` link.
+6. Check all legal routes render an official email `mailto:` link and the AHU registration reference/date in the shared entity card.
 7. Check `/contact` when `INQUIRY_WHATSAPP_NUMBER` is absent:
    - clearly states email is available and WhatsApp is not configured;
    - has a working `mailto:farasmuhadzib@gmail.com` link;
@@ -61,6 +61,7 @@ Do not:
 
 - tests/build are actually run and pass;
 - official email appears in public contact/footer/legal pages;
+- AHU reference appears in the legal identity card and ownership page without implying independent live AHU verification;
 - missing WhatsApp config does not imply there is no contact route;
 - no broken links/accessibility regressions;
 - production deployment is independently smoke-tested;
