@@ -1,11 +1,11 @@
 # Ranel — Phase 02 Readiness Plan
 
 Date: 2026-10-03
-Status: **PREPARED — PRICING APPROVED; REMAINING COMMERCIAL TERMS OPEN**
+Status: **IN PROGRESS — PRODUCT DEFINITION COMPLETED; FOUNDER REVIEW PENDING ON MATERIAL COMMERCIAL TERMS**
 
 ## Objective
 
-Turn the approved Ranel Barber offer into a concrete, sale-ready product definition without activating payment or production commerce prematurely.
+Turn the approved Ranel Barber price ladder into concrete product specifications and a verifiable fulfillment package without activating payment or production commerce prematurely.
 
 ## Current approved commercial baseline
 
@@ -17,43 +17,71 @@ Turn the approved Ranel Barber offer into a concrete, sale-ready product definit
 
 Currency: IDR. Price validation remains open.
 
-## Execution order
+## Phase 02 work completed by ChatGPT
 
-1. Product identity — Product ID, SKU, canonical name, version and availability state.
-2. Deliverables — exact PDF/editable files, structure, required inputs, compatibility and versioning.
-3. Preparation boundary — define what is standard, what is manually tailored, and what is out of scope.
-4. Customer experience — inquiry → agreement → payment requirement → preparation → delivery → acceptance/defect path.
-5. Commercial truth — approved price, currency, fee/tax treatment, discount rules and payable amount calculation.
-6. Terms — cancellation, refund/remedy, support, licence, revisions and updates.
-7. Evidence of deliverability — ensure the actual files can be produced and delivered within the promised boundary.
-8. Catalog handoff — update public product representation only after the commercial truth is internally consistent.
-9. Commerce handoff — provide the exact product/price/terms contract to later commerce phases; do not implement payment merely because the product is defined.
+### 1. Product identity — DECIDED
+Stable product IDs and SKU baselines are defined for all three Barber packages.
 
-## Required Phase 02 outputs
+### 2. Deliverables — DECIDED
+Canonical bundle manifest and file naming are defined for Starter, Growth, and System.
 
-- canonical product specification;
-- approved SKU/product identifier;
-- approved price/currency/payable rules;
-- product contents/version manifest;
-- delivery/support/acceptance rules;
-- cancellation/refund/remedy policy;
-- licence/ownership/update/revision policy;
-- customer-facing product facts suitable for later PUBLIC copy;
-- evidence checklist showing every promised deliverable is actually available;
-- Phase 02 decision record and explicit gate result.
+### 3. Preparation boundary — DECIDED
+Standard reusable content plus bounded business-specific tailoring. Minimum inputs are defined; private customer data and credentials are excluded.
 
-## Non-goals
+### 4. Customer experience — DECIDED PROVISIONAL
+Internal flow is:
+**need/scope → selected product → approved commercial terms → verified payment → required inputs → preparation/QC → delivery → acceptance/defect handling → outcome/support record**
 
-Phase 02 must not silently become payment activation, production credential validation or rotation, order/database implementation, checkout implementation, webhook financial truth, fulfillment automation, auth rollout, Cloudflare billing/DNS changes, or live transaction testing.
+The preparation target is internally designed around 2 business days after verified payment and complete required inputs, but it is not a public SLA until support/terms are approved.
 
-## Current gate
+### 5. Commercial truth — PARTIAL
+Approved prices and one-time IDR model are locked. Fee/tax/discount treatment remains founder review.
 
-**Pricing decision: APPROVED.**
+### 6. Terms — PARTIAL / FOUNDER REVIEW
+Cancellation, refund/remedy, support/revision, licence/ownership/update entitlement remain material decisions.
 
-**Full business lock: NOT YET APPROVED.** D01–D08 remain unresolved except for the pricing decision covered by the founder approval.
+### 7. Deliverability evidence — SPECIFICATION READY / ARTIFACT BUILD REQUIRED
+The product specification and manifest are canonical. The actual source files still need to be produced, tested, versioned, and reconciled against the manifest before the products can move to Available.
 
-Therefore Phase 02 may proceed with product-definition work that does not require unresolved commercial terms, while remaining terms must be explicitly resolved before a sale-ready/payment handoff.
+### 8. Catalog handoff — COMPLETED
+Product catalog now references canonical IDs/SKUs, bundle manifests, preparation boundary, and hold state.
 
-## Decision principle
+### 9. Commerce handoff — NOT YET AUTHORIZED
+No payment, order database, checkout, webhook financial truth, refund executor, or live transaction work is authorized by Phase 02 documentation alone.
 
-ChatGPT decides ordinary product/technical details and presents only material commercial choices for founder approval. Genspark handles implementation details after an approved execution brief and reports exact verification evidence back to ChatGPT.
+## Founder review packet
+
+See [Phase 02 Founder Review](phase-02-founder-review.md).
+
+Material decisions escalated:
+- F01 initial market/first-sale focus;
+- F02 public entry-package sequencing;
+- F03 price display + fees/tax/discount rule;
+- F04 cancellation/refund/remedy;
+- F05 support + revisions + licence/ownership/update policy.
+
+ChatGPT intentionally did not convert these into silent defaults because they create customer-facing commercial commitments or business-direction choices.
+
+## Legal/commerce dependency
+
+Before live selling to Indonesian consumers, customer-facing electronic-contract/PMSE terms must be checked against currently applicable rules. PP No. 80 Tahun 2019 remains listed as in force, while Permendag No. 19 Tahun 2026 is currently in force for PMSE and replaced Permendag No. 31 Tahun 2023. Phase 02 therefore keeps cancellation/refund/contract commitments behind founder/legal review rather than inventing a blanket policy.
+
+## Remaining execution
+
+Genspark / later product-production execution may:
+- create the actual source files from the manifest;
+- render/validate PDF, DOCX, and XLSX artifacts;
+- run file/link/formula quality checks;
+- create the product asset version register and deliverability evidence;
+- avoid payment, order, DB, auth, DNS, billing, and production activation.
+
+## Completion condition
+
+Phase 02 becomes **READY FOR REVIEW** when:
+- canonical product specifications are committed;
+- actual promised files exist and pass QC;
+- founder-review commercial decisions are recorded;
+- public product facts match internal commercial truth;
+- a canonical product/price/terms contract is ready for Phase 03.
+
+Phase 02 does not authorize payment activation.
