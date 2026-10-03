@@ -1,68 +1,106 @@
 # Ranel — Phase 02 Founder Review Packet
 
 Date: 2026-10-03
-Status: **FOUNDER REVIEW REQUIRED — MATERIAL COMMERCIAL DECISIONS ONLY**
+Status: **PARTIALLY APPROVED — F01, F02, F04, F05 APPROVED; F03 TAX APPLICABILITY VALIDATION OPEN**
 
-## Decision packet
-
-ChatGPT has completed the reversible product-definition work. Only the following items are escalated because they create customer-facing commercial commitments or set business direction.
+## Decisions already approved by founder
 
 ### F01 — Initial market and first-sale focus
+**APPROVED.**
 
-**Recommendation:** start the paid market test with Indonesian-speaking independent barber operators and small barber teams, with Ranel Barber Starter as the narrowest entry package. Growth and System remain available as higher-scope packages.
-
-**Why:** this matches the locked barber wedge, current Indonesian-language public surface, IDR pricing, and the smallest testable offer. It keeps the first learning loop narrow.
-
-**Status:** FOUNDER_REVIEW.
+Indonesian-speaking independent barber operators and small barber teams. Ranel Barber Starter is the narrowest initial entry offer.
 
 ### F02 — Public entry-package sequencing
+**APPROVED.**
 
-**Recommendation:** make **Ranel Barber Starter — Rp39.000** the default entry offer in the first sales experiment. Growth and System remain explicit upgrades/alternatives rather than forcing customers through Starter first.
-
-**Why:** Starter has the smallest scope and therefore gives the cleanest early evidence on problem, willingness to pay, and delivery effort.
-
-**Status:** FOUNDER_REVIEW.
-
-### F03 — Price display, fees, tax and discount rule
-
-**Current fact:** Rp39.000 / Rp79.000 / Rp149.000 are founder-approved base prices; all are one-time IDR.
-
-**Still requires founder policy:** whether displayed prices are tax-inclusive, how provider/payment fees are treated, whether discounts are allowed, who can authorize a discount, and how the payable amount is calculated.
-
-**Recommendation:** keep the public list price equal to the approved price, use no default discount, and require any discount to be an explicit controlled commercial rule rather than ad-hoc negotiation.
-
-**Status:** FOUNDER_REVIEW.
+Ranel Barber Starter — Rp39.000 is the default entry offer for the initial sales experiment. Growth and System remain upgrade/alternative options.
 
 ### F04 — Cancellation, refund and remedy
+**APPROVED — POLICY DIRECTION.**
 
-**Recommendation:** do not use a blanket “no refund after payment” rule. Define explicit remedies for non-delivery, corrupt/missing files and material mismatch against agreed scope; define customer-change/cancellation treatment separately; preserve any rights that applicable law requires.
-
-**Reason for escalation:** this is a customer-rights/legal/commercial commitment and must be finalized against current Indonesian PMSE requirements before live selling.
-
-**Status:** FOUNDER_REVIEW.
+Use explicit cancellation/refund/remedy terms rather than a blanket no-refund rule. Protect statutory consumer rights and define operational handling for non-delivery, corrupt/inaccessible files, and material scope mismatch. Final customer-facing legal wording remains subject to applicable-law verification.
 
 ### F05 — Support, revisions and licence
+**APPROVED — POLICY DIRECTION.**
 
-**Recommendation:** bounded support for using the purchased files, one consolidated correction pass for genuine in-scope defects, no unlimited consulting/revisions, internal business use for the purchasing business, no resale/redistribution of Ranel templates, buyer ownership of its own supplied business information, and continued Ranel ownership of the reusable Ranel template/IP layer.
+- bounded support;
+- no unlimited consulting/revisions;
+- internal business use for buyer;
+- no resale/redistribution of Ranel templates;
+- buyer retains its own supplied business information;
+- reusable Ranel template/IP remains Ranel's unless a later written agreement says otherwise.
 
-The exact revision entitlement, response window, update entitlement and licensing wording must be approved before becoming customer-facing terms.
+Primary support channel: 1:1 WhatsApp. Official email is the preferred formal record channel once configured. Community groups are optional later, not the support system.
 
-**Status:** FOUNDER_REVIEW.
+## F03 — Pricing, fees, tax and promotions
 
-## Founder response format
+**Base prices remain APPROVED:**
+- Starter Rp39.000
+- Growth Rp79.000
+- System Rp149.000
+- one-time IDR
 
-Reply with one consolidated decision:
+### Decided operating policy
+- no default discount;
+- discounts only through controlled promo codes;
+- initial maximum discount: 40%;
+- one code per order;
+- no stacking;
+- explicit validity period, applicable product(s), and redemption cap;
+- no hidden payment surcharge by default;
+- final payable amount must be shown before payment.
 
-`APPROVE F01-F05`
+### Tax position
 
-or identify changes, for example:
+The current official DJP guidance shows:
+- PPN nominal rate 12%;
+- for non-luxury goods/services subject to the relevant mechanism, DPP 11/12 produces an effective 11%;
+- PKP registration is generally mandatory once annual gross turnover exceeds Rp4.8 billion, while smaller businesses may voluntarily register.
 
-`F02 CHANGE: Growth may be the default`
+Ranel must **not** assume that it is PKP or that 11% PPN applies. Exact treatment depends on seller tax status and transaction classification.
 
-`F04 CHANGE: ...`
+**Status: VALIDATION_REQUIRED before live checkout.**
 
-A partial approval is valid. Unchanged recommendations do not become silently permanent; they are only locked when explicitly approved.
+Required facts:
+1. seller legal/tax identity;
+2. PKP/non-PKP status;
+3. product tax classification;
+4. tax-inclusive vs tax-exclusive display policy;
+5. invoice/tax-document treatment.
 
-## Important gate
+## Commercial/legal page decision
 
-Approval of F01-F05 **does not** activate payment, checkout, production credentials, refunds, database/order infrastructure, or live transactions. Those remain controlled by later roadmap gates.
+Ranel will have a public **Legal & Policies** hub with:
+- Terms of Service / Terms of Sale;
+- Refund, Cancellation & Remedy Policy;
+- Pricing & Payment;
+- Privacy;
+- Product Licence;
+- Complaints & Support.
+
+This structure is an implementation decision. Customer-facing legal copy remains subject to applicability/legal review.
+
+## Current support decision
+
+**Primary:** 1:1 WhatsApp.
+**Formal records:** official email once configured.
+**Future community:** WhatsApp Community/Group after there are enough buyers to justify it.
+**Not primary:** Discord, Telegram, Facebook Group, Instagram DM.
+
+Support is not unlimited consulting. Customer-specific order/payment/refund information remains private.
+
+## Gate impact
+
+F01, F02, F04, F05 are closed by founder approval.
+
+F03 is not fully closed because tax applicability must be validated.
+
+No approval here activates:
+- payment;
+- checkout;
+- production credentials;
+- order database;
+- refunds executor;
+- live transactions.
+
+Phase 02 still requires actual product asset production, QC, and legal/tax applicability validation before sale readiness.
