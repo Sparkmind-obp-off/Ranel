@@ -11,7 +11,7 @@ Create a clear customer-facing information structure for pricing, terms, refund/
 
 Ranel is the customer-facing brand operated by **PT Waskita Cakrawarti Digital**, reported by the founder as a **Perseroan Perorangan**. See [Legal Entity & Merchant Identity](../business/legal-entity-and-merchant-identity.md).
 
-Public pages should identify the legal operator/seller without publishing unnecessary personal identifiers. Exact NIB/NPWP/AHU registration numbers should only be shown after document verification and an explicit decision that publication is appropriate.
+Public pages should identify the legal operator/seller without publishing unnecessary personal identifiers. The founder has authorized publication of the source-backed AHU reference AHU-066746.AH.01.30.Tahun 2025 (1 December 2025) in the Legal identity card. This is not a claim of independent live AHU verification. Do not publish NIB/NPWP or KBLI numbers without a separate need and verified source.
 
 Duitku's current merchant guidance expects corporate legality documentation and official company/contact information on the merchant website. citeturn161636search0turn161636search2
 
@@ -191,4 +191,4 @@ Until this validation is complete:
 
 **VALIDATION_REQUIRED:** exact entity/permit/tax record before publishing registration numbers or claiming full regulatory readiness.
 
-**VALIDATION_REQUIRED:** seller licensing/PMSE role, PKP status, exact tax classification/treatment, final legal wording, official support email, and any mandatory regulatory contact blocks applicable to Ranel's final business model.
+**VALIDATION_REQUIRED:** seller licensing/PMSE role, PKP status, exact tax classification/treatment, final legal wording, and any mandatory regulatory contact blocks applicable to Ranel's final business model. The founder-confirmed official email is now committed in source; public confirmation awaits verification and redeployment.
