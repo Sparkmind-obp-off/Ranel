@@ -89,6 +89,14 @@ This structure is an implementation decision. Customer-facing legal copy remains
 
 Support is not unlimited consulting. Customer-specific order/payment/refund information remains private.
 
+## Legal entity identity
+
+Founder reports that Ranel is operated by **PT Waskita Cakrawarti Digital (Perseroan Perorangan)** and that AHU/OSS/NIB/NPWP and establishment documents are already held by the founder.
+
+**Decision:** use this entity as Ranel's legal operator/seller identity in the Legal & Policies architecture. Do not publish NIB/NPWP/AHU numbers until the exact records are reconciled and publication is appropriate.
+
+This is not treated as independent verification by ChatGPT. Exact PMSE licensing, tax status, and Duitku merchant alignment remain validation gates.
+
 ## Gate impact
 
 F01, F02, F04, F05 are closed by founder approval.
