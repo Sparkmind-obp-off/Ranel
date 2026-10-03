@@ -40,8 +40,8 @@ Approved prices and one-time IDR model are locked. Controlled promo and no-hidde
 ### 6. Terms — PARTIAL / FOUNDER REVIEW
 Cancellation/refund/remedy and bounded support/revision/licence direction are approved. Final legal applicability and executable fulfillment/support remain review gates; no unlimited support or new public SLA.
 
-### 7. Deliverability evidence — SPECIFICATION READY / ARTIFACT BUILD REQUIRED
-The canonical v1.0 sources have been produced: 31 files across three bundles, opened/rendered and formula-recalculated using synthetic/QC inputs. [Per-file QC](../implementation/phase-02-commerce/product-qc.json) and [execution evidence](../implementation/phase-02-commerce/evidence.md). State is ASSET_READY_FOR_REVIEW, not Available.
+### 7. Deliverability evidence — SOURCE BUNDLES PRODUCED / QC PASS; REAL-WORLD FULFILLMENT NOT VALIDATED
+The canonical v1.0 sources have been produced: 31 files across three bundles, opened/rendered and formula-recalculated using synthetic/QC inputs. [Per-file QC](../implementation/phase-02-commerce/product-qc.json) and [execution evidence](../implementation/phase-02-commerce/evidence.md). State is ASSET_READY_FOR_REVIEW, not Available. Buyer-specific tailoring, real customer delivery, support load and delivery economics still need a controlled pilot.
 
 ### 8. Catalog handoff — COMPLETED
 Product catalog now references canonical IDs/SKUs, bundle manifests, preparation boundary, and hold state.
@@ -70,14 +70,16 @@ ChatGPT intentionally did not convert these into silent defaults because they cr
 
 Before live selling to Indonesian consumers, customer-facing electronic-contract/PMSE terms must be checked against currently applicable rules. PP No. 80 Tahun 2019 remains listed as in force, while Permendag No. 19 Tahun 2026 is currently in force for PMSE and replaced Permendag No. 31 Tahun 2023. Phase 02 therefore keeps cancellation/refund/contract commitments behind founder/legal review rather than inventing a blanket policy.
 
-## Remaining execution
+## Remaining gates and next actions
 
-Genspark / later product-production execution may:
-- create the actual source files from the manifest;
-- render/validate PDF, DOCX, and XLSX artifacts;
-- run file/link/formula quality checks;
-- create the product asset version register and deliverability evidence;
-- avoid payment, order, DB, auth, DNS, billing, and production activation.
+1. **Immediate remediation:** run tests/build/browser QA for the founder-confirmed email + AHU identity-card source patch, then redeploy only existing PUBLIC project `ranel`. Current verified deployment remains the earlier Phase 02 release until this is confirmed. See [official email remediation handoff](../handoffs/phase-02-email-confirmation-remediation.md).
+2. **Tax:** verify seller PKP/non-PKP status, product tax classification, tax-inclusive/exclusive price treatment and invoice/document requirements before checkout.
+3. **Licensing / PMSE:** verify current OSS/NIB/KBLI scope and which PMSE obligations apply to the actual seller/channel model before live online sales. Do not infer coverage merely from PT existence.
+4. **Product operations:** dry-run one full manual preparation using synthetic data; set a realistic delivery/support capacity and document defect/remedy handling. The internal two-business-day target is not a public SLA.
+5. **Market validation:** begin lawful, permission-based discovery with Indonesian-speaking independent barber operators; record real objections, package preference and willingness to pay. Do not claim market validation from site launch or synthetic QC.
+6. **Next roadmap phase:** after email patch review, start Phase 03 Commerce Model as a specification/decision phase. Do not implement payment or create production persistence as a shortcut.
+
+Payment, order, DB, auth, DNS, billing, production credentials, checkout and live transaction gates remain closed.
 
 ## Master execution prompt
 
