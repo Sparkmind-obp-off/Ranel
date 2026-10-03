@@ -5,6 +5,8 @@ Status: **FOUNDER-REPORTED / CANONICAL BUSINESS IDENTITY — DOCUMENT VERIFICATI
 
 ## 1. Operating identity
 
+Reference source reviewed: public SparkMind legal implementation in repository `Sparkmind-obp-off/Sparkmind-web`, which its README identifies as the public SparkMind website and points to its `/legal` center.
+
 Ranel is the customer-facing brand.
 
 The founder reports that Ranel's operating/legal business entity is:
@@ -23,7 +25,19 @@ The founder reports that the entity has been registered through AHU and OSS and 
 
 ChatGPT has not independently authenticated the founder's documents or exact registration record. Therefore the repository must not claim that a specific NIB/NPWP number, KBLI, PMSE permit, tax status, or exact AHU record has been independently verified unless evidence is separately recorded.
 
-## 2. Public identity decision
+## 2. Source-backed identity values
+
+The SparkMind legal SSOT currently records:
+- Legal name: **PT WASKITA CAKRAWARTI DIGITAL**
+- Legal form: **Perseroan Perorangan (untuk Usaha Mikro dan Kecil)**
+- AHU registration: **AHU-066746.AH.01.30.Tahun 2025**
+- Registration authority: **Kementerian Hukum Republik Indonesia — Direktorat Jenderal Administrasi Hukum Umum (Ditjen AHU)**
+- Registration date: **1 Desember 2025**
+- Domicile: **Kabupaten Banyumas, Jawa Tengah, Indonesia**
+
+These values are taken from the existing SparkMind public/legal source as a founder-controlled reference. ChatGPT has not independently verified the AHU record against the AHU database.
+
+## 3. Public identity decision
 
 For Ranel's customer-facing legal information, use:
 
@@ -36,7 +50,7 @@ This separates:
 
 Do not publish the founder's personal NIK, NPWP pribadi, home address, certificate scans, payment credentials, or other unnecessary personal data.
 
-## 3. Why this identity matters
+## 4. Why this identity matters
 
 Duitku's current merchant guidance states that corporate merchants are subject to broader legality-document verification and that the merchant website should contain official company information and active contact information. citeturn161636search0turn161636search2
 
@@ -44,7 +58,7 @@ Indonesia's current PMSE rules also emphasize business licensing, transparency o
 
 A Perseroan Perorangan is a recognized legal-person form under Indonesia's current company framework; AHU describes it as a legal entity established by one individual meeting the relevant UMK criteria. AHU also states that legal-entity status is obtained when the registration certificate is issued through SABH/AHU Online. citeturn934141search0
 
-## 4. Public legal page content
+## 5. Public legal page content
 
 The future `/legal` hub should contain a section such as:
 
@@ -58,7 +72,7 @@ The future `/legal` hub should contain a section such as:
 
 Official verification/source links should point to authoritative AHU/OSS pages rather than screenshots hosted by Ranel.
 
-## 5. Payment-provider disclosure
+## 6. Payment-provider disclosure
 
 When Duitku production payment is actually active and the relevant merchant/project has been verified, Ranel may disclose:
 
@@ -67,7 +81,7 @@ with a link to the relevant official Duitku information/privacy/terms page where
 
 Do not display “powered by Duitku”, payment-method logos, or a claim of active payment processing before the corresponding production integration is actually enabled and verified.
 
-## 6. Internal evidence
+## 7. Internal evidence
 
 Keep the following as private evidence:
 - AHU registration/establishment certificate;
@@ -79,7 +93,7 @@ Keep the following as private evidence:
 
 Do not commit credential values or unnecessary personal identifiers to the repository.
 
-## 7. Tax and PMSE dependency
+## 8. Tax and PMSE dependency
 
 Possessing a PT, NIB and NPWP does not by itself prove that:
 - a specific PPN treatment applies;
@@ -89,7 +103,7 @@ Possessing a PT, NIB and NPWP does not by itself prove that:
 
 These remain evidence-gated checks before live commerce.
 
-## 8. Status
+## 9. Status
 
 **DECIDED:** Ranel should publicly identify its legal operating entity as PT Waskita Cakrawarti Digital once the founder's documents are reconciled.
 
