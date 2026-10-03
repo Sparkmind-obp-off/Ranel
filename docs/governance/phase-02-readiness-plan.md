@@ -79,6 +79,12 @@ Genspark / later product-production execution may:
 - create the product asset version register and deliverability evidence;
 - avoid payment, order, DB, auth, DNS, billing, and production activation.
 
+## Master execution prompt
+
+Canonical Genspark execution prompt: [Master System Prompt — Phase 02](../prompts/master-system-prompt-phase-02.md).
+
+The prompt consolidates approved product, pricing, legal identity, support, promotion, public-page, QC, and scope-prohibition decisions. It is the execution instruction for the remaining Phase 02 work.
+
 ## Completion condition
 
 Phase 02 becomes **READY FOR REVIEW** when:
