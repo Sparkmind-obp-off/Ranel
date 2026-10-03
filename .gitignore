@@ -11,6 +11,12 @@ dist/
 .pm2/
 coverage/
 qa-artifacts/
+# Matured paid content and offline release tools stay private: repository is PUBLIC.
+/private-products/
+*.zip
+# Chromium crash dumps may contain process memory; never publish them.
+/core
+/core.*
 # Private manual demand records; only blank templates belong in Git.
 /demand-records/
 playwright-report/

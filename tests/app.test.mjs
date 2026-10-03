@@ -60,7 +60,7 @@ test("barber presents exactly three defined pilot products with truthful scope a
   assert.match(html, /Fondasi \+ catatan &amp; review/);
   assert.match(html, /Seluruh fondasi Starter/);
   assert.match(html, /Bukan dashboard atau aplikasi aktif/);
-  assert.match(html, /sebelum pekerjaan atau pembayaran/);
+  assert.match(html, /Harga tidak mencakup jasa penyesuaian/);
 });
 
 test("Phase 02 metadata matches reviewed asset registry without serving private bundles", async () => {
@@ -69,7 +69,10 @@ test("Phase 02 metadata matches reviewed asset registry without serving private 
   for (const product of registry) {
     assert.ok(html.includes(product.sku));
     assert.ok(html.includes(`Rp${product.price.toLocaleString("id-ID")}`));
-    assert.equal(product.sellState, "HOLD_PENDING_TERMS");
+    assert.equal(product.sellState, "HOLD_PENDING_COMMERCE");
+    assert.equal(product.assetState, "PRODUCT_READY_FOR_COMMERCE_INTEGRATION");
+    assert.equal(product.manualCustomizationIncluded, false);
+    for (const file of product.files) assert.ok(html.includes(`<code>${file}</code>`));
   }
   for (const path of ["/products/registry.json", "/checkout", "/api/v1/payments", "/products/Ranel-Barber-Starter-v1.0/00-README.pdf"]) assert.equal((await request(path)).status, 404);
 });
@@ -238,7 +241,7 @@ for (const [id, name] of [
     assert.equal(url.origin, "https://wa.me");
     assert.equal(url.pathname, "/12025550123");
     const prices = { starter: "Rp39.000", growth: "Rp79.000", system: "Rp149.000" };
-    const message = `Halo Ranel, saya ingin membahas pilot ${name} dengan harga dasar ${prices[id]} (sekali bayar). Boleh konfirmasi isi, tailoring, ketentuan, waktu, dan dukungannya? Saya memahami penjualan online belum dibuka${id === "system" ? " dan System adalah paket dokumen, bukan aplikasi" : ""}.`;
+    const message = `Halo Ranel, saya ingin membahas pilot ${name} dengan harga dasar ${prices[id]} (sekali bayar). Boleh jelaskan isi file, cara pakai sendiri, ketentuan dan dukungannya? Saya memahami tailoring founder tidak termasuk harga. Saya memahami penjualan online belum dibuka${id === "system" ? " dan System adalah paket dokumen, bukan aplikasi" : ""}.`;
     assert.equal(url.searchParams.get("text"), message);
     assert.equal(url.searchParams.size, 1);
     const fallback = await request(`/inquiry?offer=${id}`);
@@ -253,6 +256,19 @@ for (const [id, name] of [
     }
   });
 }
+
+test("self-service listings expose six cropped previews but no paid downloads or transaction claims", async () => {
+  const html = await (await request('/barber')).text();
+  assert.equal((html.match(/src="\/static\/previews\//g) ?? []).length, 6);
+  assert.equal((html.match(/class="product-manifest"/g) ?? []).length, 3);
+  assert.match(html, /tanpa tailoring founder dalam harga/);
+  assert.match(html, /Pembayaran dan download aman belum aktif/);
+  assert.doesNotMatch(html, /href="[^"]*\.zip|href="[^"]*private-products|<form|<script|<button/);
+  for (const tier of ['Starter','Growth','System']) {
+    // Native Pages /static asset handling is tested through the browser HTTP server.
+    for (const prefix of ['/private-products/releases/', '/products/']) assert.equal((await request(`${prefix}Ranel-Barber-${tier}-v1.0.zip`)).status,404);
+  }
+});
 
 test("concept scope creates no private or transactional routes", async () => {
   for (const path of [

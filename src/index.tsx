@@ -5,6 +5,8 @@ import { legalPaths, legalPages, LegalContent, sellerName, supportEmail } from "
 import {
   offers,
   formatPrice,
+  productSoftware,
+  plannedDelivery,
   selectedOffer,
   inquiryMessage,
   whatsappDestination,
@@ -197,6 +199,16 @@ function OfferCards() {
             <dt>Yang Anda terima</dt>
             <dd>{offer.receives}</dd>
           </dl>
+          <figure class="product-preview">
+            <img src={`/static/previews/${offer.id}-quickstart.webp`} alt={`Pratinjau potongan panduan mulai PDF asli ${offer.name}, bukan seluruh PDF`} width="960" height="540" loading="lazy" />
+            <img src={offer.preview} alt={offer.previewAlt} width="960" height="540" loading="lazy" />
+            <figcaption>Pratinjau potongan file asli · bukan file lengkap atau tautan unduhan.</figcaption>
+          </figure>
+          <details class="product-manifest">
+            <summary>Daftar file lengkap · {offer.files.length} file</summary>
+            <ul>{offer.files.map(file => <li key={file}><code>{file}</code></li>)}</ul>
+            <p class="small">Satu ZIP berisi panduan PDF, template DOCX{offer.id !== "starter" ? ", dua workbook XLSX" : ""} dan manifest. Growth memuat Starter; System memuat Growth.</p>
+          </details>
           <details class="product-details">
             <summary>Cara pakai & batas cakupan</summary>
             <dl>
@@ -206,6 +218,9 @@ function OfferCards() {
               <dd>{offer.useCase}</dd>
               <dt>Tidak termasuk</dt>
               <dd>{offer.exclusions}</dd>
+              <dt>Aplikasi yang diperlukan</dt><dd>{productSoftware}</dd>
+              <dt>Rencana delivery</dt><dd>{plannedDelivery}</dd>
+              <dt>Lisensi, dukungan &amp; remedy</dt><dd>Untuk usaha pembeli sendiri; tanpa resale/redistribusi. Dukungan file/penggunaan terbatas; tidak termasuk tailoring founder atau konsultasi berkelanjutan. File hilang/rusak atau tidak sesuai cakupan dapat diajukan untuk pemeriksaan/remedy, tanpa larangan refund mutlak. <a href="/legal/license">Lisensi</a> · <a href="/legal/complaints">Dukungan</a> · <a href="/legal/refund-policy">Refund &amp; remedy</a>.</dd>
               <dt>Status pilot</dt>
               <dd>{offer.statusNote}</dd>
             </dl>
@@ -350,7 +365,7 @@ app.get("/", (c) =>
                 Template, SOP, checklist, dan panduan yang memberi struktur pada
                 pekerjaan sehari-hari.
               </p>
-              <span class="stage">Fokus awal · Dalam pengembangan</span>
+              <span class="stage">Paket dokumen · Penjualan belum dibuka</span>
             </article>
             <article class="model-card">
               <span class="index">02 / Bila dibutuhkan</span>
@@ -444,7 +459,7 @@ app.get("/barber", (c) =>
               cakupan yang jelas.
             </h2>
             <p>
-              Tiga paket dokumen v1.0 dengan harga dasar disetujui. Penjualan ditahan sampai terms, pajak dan fulfillment siap. Penyiapan/tailoring serta delivery tetap manual dan terbatas; System bukan aplikasi.
+              Tiga paket standar v1.0 untuk Anda isi sendiri, tanpa tailoring founder dalam harga. System bukan aplikasi. Penjualan belum dibuka: checkout, verifikasi pembayaran, delivery aman dan gate komersial masih perlu disiapkan.
             </p>
             <span class="status-label">Tanpa checkout otomatis</span>
           </aside>
@@ -529,11 +544,11 @@ app.get("/barber", (c) =>
         >
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Alur pilot manual</p>
+              <p class="eyebrow">Rencana pembelian & penggunaan</p>
               <h2 id="process-title">
-                Diskusikan dulu.
+                Pilih. Unduh.
                 <br />
-                Sepakati sebelum mulai.
+                Isi dan gunakan sendiri.
               </h2>
             </div>
             <p>
@@ -544,26 +559,18 @@ app.get("/barber", (c) =>
           <ol class="process-grid">
             <li>
               <span class="index">01</span>
-              <h3>Ceritakan kebutuhan</h3>
-              <p>
-                Jelaskan bagian usaha yang ingin ditata dan cara Anda bekerja
-                saat ini.
-              </p>
+              <h3>Pahami paket</h3>
+              <p>Lihat daftar file, potongan preview, aplikasi yang diperlukan dan batas penggunaan. Pilih sesuai kebutuhan, tanpa wajib membeli berurutan.</p>
             </li>
             <li>
               <span class="index">02</span>
-              <h3>Bahas cakupan pilot</h3>
-              <p>
-                Konfirmasi isi, input minimal, waktu delivery, dukungan dan ketentuan berdasarkan harga dasar yang disetujui.
-              </p>
+              <h3>Pembayaran diverifikasi</h3>
+              <p>Setelah checkout dan delivery aman benar-benar aktif nantinya, pembayaran diverifikasi sebelum akses ZIP privat diberikan. Langkah transaksi ini belum tersedia sekarang.</p>
             </li>
             <li>
               <span class="index">03</span>
-              <h3>Mulai jika cocok</h3>
-              <p>
-                Pilot hanya dimulai setelah kesepakatan; pelaksanaan dan tindak
-                lanjut dilakukan manual.
-              </p>
+              <h3>Buka dan isi sendiri</h3>
+              <p>Ekstrak satu ZIP, baca panduan mulai, simpan salinan template, lalu ganti contoh dengan kondisi usaha. Tidak memerlukan akun atau penyesuaian founder.</p>
             </li>
           </ol>
         </section>
@@ -587,13 +594,9 @@ app.get("/barber", (c) =>
             </p>
           </details>
           <details>
-            <summary>Bagaimana penawaran pilot disepakati?</summary>
+            <summary>Apakah paket perlu disiapkan khusus untuk usaha saya?</summary>
             <p>
-              Diskusikan kebutuhan lewat WhatsApp. Isi, format
-              dokumen/spreadsheet, harga dasar, waktu, dukungan, dan pembatalan
-              perlu disepakati tertulis sebelum pekerjaan atau pembayaran.
-              Website tidak menjual atau mengirim file secara otomatis. System
-              berupa operating-system toolkit dokumentasi, bukan aplikasi.
+              Tidak. Paket standar digunakan sendiri: panduan, contoh fiktif dan lembar kosong membantu Anda mengisi informasi usaha tanpa tailoring founder. Harga tidak mencakup jasa penyesuaian. Website sekarang belum menerima pembayaran atau menyediakan download ZIP; alur aman akan dibangun pada tahap teknis berikutnya. System berupa toolkit dokumen, bukan aplikasi.
             </p>
           </details>
           <details>

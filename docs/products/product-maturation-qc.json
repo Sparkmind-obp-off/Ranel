@@ -1,0 +1,409 @@
+{
+  "date": "2026-10-03",
+  "state": "PRODUCT_READY_FOR_COMMERCE_INTEGRATION",
+  "files": [
+    {
+      "path": "private-products/Ranel-Barber-Starter-v1.0/00-README.pdf",
+      "type": "pdf",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "e5c1863042884f74e1b162519861ec6464f7574e7c18f3c9cc3cf1746c6863ce",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-Starter-v1.0/01-SOP-Dasar.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "75445dd87fd2129ced04f58307140ff1e84207ca0155ca3268fc2356d85057e0",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-Starter-v1.0/02-Menu-dan-Daftar-Harga.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "36c107c148d70c9101543ae126843b7a032677a3622056bb01605ed2125e975c",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-Starter-v1.0/03-Checklist-Buka-Tutup.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "914e0c514762fcd668a7d7f2dbcaf747eba283f1576904cc4d6c13a131428f3b",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-Starter-v1.0/04-Follow-Up-Pelanggan-Berizin.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "6eb2ff39a1d8419de89f709b1aa9cda256f6ff2e1abf7b61b2be64279aead233",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-Starter-v1.0/MANIFEST.md",
+      "type": "md",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "cc1c39bec2c300f8f326e0f05868d5ea1910036245ca0c25f17d5f6164af8250",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-Growth-v1.0/00-README.pdf",
+      "type": "pdf",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "67c7e614a1f2bcf751559f3ca8e2e2cc946d6c59294dabe4c15d5d24069d8043",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-Growth-v1.0/01-SOP-Dasar.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "588d66f8bb94b0b4649b32a79b1188b11384e52a289394a559a742b7587a5639",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-Growth-v1.0/02-Menu-dan-Daftar-Harga.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "b3c4552f92ee25a96d85965ab10c9a33a2b349525946a8ee1ea005b2e861b772",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-Growth-v1.0/03-Checklist-Buka-Tutup.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "3a02816a9121c65dc1fae1b2eeaed6e22f4080d710d1eb16f5a85352ff1cebbe",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-Growth-v1.0/04-Follow-Up-Pelanggan-Berizin.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "33c44f3c9d36e757eceec9571f533a0dff6781e1a560312f06730797e0285802",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-Growth-v1.0/05-Rekap-Kunjungan.xlsx",
+      "type": "xlsx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "5fa09afab473ab7944d8c1344e4ab18e7eb13b8681c5f1bbede20c0dec96462d",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-Growth-v1.0/06-Tracker-Repeat-Visit.xlsx",
+      "type": "xlsx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "9a1e689b108a2965759f24ed5795cc2067b4bf0b4d51b4bce3f5a4be16ef1d77",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-Growth-v1.0/07-Review-Bulanan.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "e841e8e1857f0e26e179955a82fd19e52a026a220bb5c3b8f4677e43ecdb532f",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-Growth-v1.0/08-Panduan-Follow-Up-dan-Review.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "80d6c532cc108146b077ee2b72c2befa1e49799d4f390ac8d633cbbff4a68bb1",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-Growth-v1.0/MANIFEST.md",
+      "type": "md",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "e271f6f5a507804020c5285454720bb976f3d5997b2eb132b5f3232dc5e21284",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-System-v1.0/00-README.pdf",
+      "type": "pdf",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "e4f186d7980f24a606fed959599e5a8698247e9b2f4f1188386011239775164c",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-System-v1.0/01-SOP-Dasar.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "7f6af7c2a43873776ada7db1c1b209f6c145b916c19b3718b168afa13969aa5b",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-System-v1.0/02-Menu-dan-Daftar-Harga.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "903b4940ccf29f31776ae5536f09802a250449624159e808017f56e27dd35db8",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-System-v1.0/03-Checklist-Buka-Tutup.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "387a3e1d919772dc4f236b27c972a1ef5c30d830707536f0348c09336a02692e",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-System-v1.0/04-Follow-Up-Pelanggan-Berizin.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "7d81b8356730d77baf49c423f4f8ff2220e4e6b44b98d6a33c7c35fedcb9eba0",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-System-v1.0/05-Rekap-Kunjungan.xlsx",
+      "type": "xlsx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "292e3df3c90212310aa407bbbb4dffc0c5ca105117bf44b0cc9116e62f7d79bf",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-System-v1.0/06-Tracker-Repeat-Visit.xlsx",
+      "type": "xlsx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "98be0ed2f49bcdd0090b3aa964c499559ccbdd1b7adbd284662659082ab25ecd",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-System-v1.0/07-Review-Bulanan.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "3e4762d335ed66000882eb777ac5807e0a363cbb966d8035cb15e4abfb22d798",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-System-v1.0/08-Panduan-Follow-Up-dan-Review.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "ae7baa3990b8cad0fe7c8edf443b3084b0aab0685ec030905a40cb3fac3d6763",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-System-v1.0/09-Peta-Operating-System.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "ac6de52d303f7bd4e1929339be53b873a64084ff1241f74c181289d70d11ef73",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-System-v1.0/10-Peta-Customer-Journey.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "aa0a304118e9db341487114ccffed4935375859ed53ed9ba30c4feec031cdf3f",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-System-v1.0/11-Peta-Retention-dan-Proses.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "cebac1b30b59a5b470409ad6e3c85ddb5cb0f88db26fc5d3411fb85fd75361ee",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-System-v1.0/12-Owner-Review-Framework.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "45836a44ef13e20e65dfadc6733ca5a120e671808c15bb17b9ef8121f85c9662",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-System-v1.0/13-Prioritas-Implementasi.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "7734055f454f8772a816102bd5c1eeca04d6dff409c31d0b3acd933a301db166",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    },
+    {
+      "path": "private-products/Ranel-Barber-System-v1.0/MANIFEST.md",
+      "type": "md",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "b47aa4dfd5cd428e7d033ead07e3f47ba50c929bf58436732257ca047d536f7e",
+      "limitations": "Standard self-service content; native Microsoft Office not tested; no live payment/delivery proof."
+    }
+  ],
+  "missing": [],
+  "checks": [
+    "Exact manifests",
+    "OOXML opens and editable tables",
+    "LibreOffice DOCX to PDF",
+    "PDF readability/text bounds",
+    "LibreOffice formula recalculation: blank, synthetic, modified QC inputs",
+    "No macros/external workbook links",
+    "Metadata/version",
+    "Targeted privacy checks",
+    "Incomplete/text/zero/negative/fractional input checks",
+    "200th-row range boundary",
+    "Duplicate/missing/undated repeat codes",
+    "No spreadsheet cached errors",
+    "No internal-development copy in customer content",
+    "All workbook print views render and text stays in page bounds",
+    "Clean ZIP extraction and exact entry allowlist",
+    "Extracted PDF/DOCX/XLSX open; bytes and manifest match QC sources",
+    "Real-file cropped preview provenance",
+    "Visual contact-sheet review of all 82 rendered pages; thumbnail fine-detail limits"
+  ],
+  "limitations": [
+    "LibreOffice rendered/recalculated, not native Microsoft Office.",
+    "Asset QC is not purchase or secure-delivery readiness; ZIP/visual review separately required.",
+    "Repository is PUBLIC: matured paid sources/ZIPs are Git-ignored; historical v1.0 sources remain in public Git history.",
+    "Content readiness is not merchant/checkout/secure delivery or legal/tax clearance."
+  ],
+  "archives": [
+    {
+      "path": "private-products/releases/Ranel-Barber-Starter-v1.0.zip",
+      "sha256": "ba668d44d9e7ee4000c693f81959697bba1ece93b65a399d2cc87c666d973cf1",
+      "bytes": 154333,
+      "files": [
+        "00-README.pdf",
+        "01-SOP-Dasar.docx",
+        "02-Menu-dan-Daftar-Harga.docx",
+        "03-Checklist-Buka-Tutup.docx",
+        "04-Follow-Up-Pelanggan-Berizin.docx",
+        "MANIFEST.md"
+      ]
+    },
+    {
+      "path": "private-products/releases/Ranel-Barber-Growth-v1.0.zip",
+      "sha256": "afd43a591a25252bd2f2d55e420b233018d6d9d41932f7799a8fab95b1d611d5",
+      "bytes": 290981,
+      "files": [
+        "00-README.pdf",
+        "01-SOP-Dasar.docx",
+        "02-Menu-dan-Daftar-Harga.docx",
+        "03-Checklist-Buka-Tutup.docx",
+        "04-Follow-Up-Pelanggan-Berizin.docx",
+        "05-Rekap-Kunjungan.xlsx",
+        "06-Tracker-Repeat-Visit.xlsx",
+        "07-Review-Bulanan.docx",
+        "08-Panduan-Follow-Up-dan-Review.docx",
+        "MANIFEST.md"
+      ]
+    },
+    {
+      "path": "private-products/releases/Ranel-Barber-System-v1.0.zip",
+      "sha256": "64e66f0310c3540f66cd8379faf81ad5879c64be14c6a964ed59a237ec697fde",
+      "bytes": 477110,
+      "files": [
+        "00-README.pdf",
+        "01-SOP-Dasar.docx",
+        "02-Menu-dan-Daftar-Harga.docx",
+        "03-Checklist-Buka-Tutup.docx",
+        "04-Follow-Up-Pelanggan-Berizin.docx",
+        "05-Rekap-Kunjungan.xlsx",
+        "06-Tracker-Repeat-Visit.xlsx",
+        "07-Review-Bulanan.docx",
+        "08-Panduan-Follow-Up-dan-Review.docx",
+        "09-Peta-Operating-System.docx",
+        "10-Peta-Customer-Journey.docx",
+        "11-Peta-Retention-dan-Proses.docx",
+        "12-Owner-Review-Framework.docx",
+        "13-Prioritas-Implementasi.docx",
+        "MANIFEST.md"
+      ]
+    }
+  ],
+  "previews": [
+    {
+      "path": "public/static/previews/starter-quickstart.webp",
+      "source": "private-products/Ranel-Barber-Starter-v1.0/00-README.pdf",
+      "page": 1,
+      "clip": [
+        35.0,
+        45.0,
+        560.0,
+        285.0
+      ],
+      "sha256": "e51c824a8397bbd181e01fbe049e2687e02cb417074f14168e378b9ab41a8a5b"
+    },
+    {
+      "path": "public/static/previews/starter-document.webp",
+      "source": "qa-artifacts/product-maturation-qc/Ranel-Barber-Starter-v1.0/rendered-docx/03-Checklist-Buka-Tutup.pdf",
+      "page": 2,
+      "clip": [
+        35.0,
+        45.0,
+        560.0,
+        285.0
+      ],
+      "sha256": "11e950dac83f8bdaf915f374c3b050b4e3c9d79d5650a493931b502d5c31d763"
+    },
+    {
+      "path": "public/static/previews/growth-quickstart.webp",
+      "source": "private-products/Ranel-Barber-Growth-v1.0/00-README.pdf",
+      "page": 1,
+      "clip": [
+        35.0,
+        45.0,
+        560.0,
+        285.0
+      ],
+      "sha256": "b1dcfeb7139ff47962922fc305cd6e3a229809c862f45425074c980ee10000cd"
+    },
+    {
+      "path": "public/static/previews/growth-spreadsheet.webp",
+      "source": "qa-artifacts/product-maturation-qc/Ranel-Barber-Growth-v1.0/rendered-xlsx/05-Rekap-Kunjungan.pdf",
+      "page": 4,
+      "clip": [
+        20.0,
+        20.0,
+        821.8897705078125,
+        340.0
+      ],
+      "sha256": "23853437ec30dee2539ef5818d304d7cf64b7fc3373e6cf0e8468cf0552199fa"
+    },
+    {
+      "path": "public/static/previews/system-quickstart.webp",
+      "source": "private-products/Ranel-Barber-System-v1.0/00-README.pdf",
+      "page": 1,
+      "clip": [
+        35.0,
+        45.0,
+        560.0,
+        285.0
+      ],
+      "sha256": "7a7e8b234588974a38bc18db81151f40c67f634f7236e57520927eb8629dc69f"
+    },
+    {
+      "path": "public/static/previews/system-map.webp",
+      "source": "qa-artifacts/product-maturation-qc/Ranel-Barber-System-v1.0/rendered-docx/09-Peta-Operating-System.pdf",
+      "page": 2,
+      "clip": [
+        35.0,
+        45.0,
+        560.0,
+        285.0
+      ],
+      "sha256": "8d8a192308545f80b1190db315373a57d6fd7094c3d65e582875682ef6a00138"
+    }
+  ]
+}

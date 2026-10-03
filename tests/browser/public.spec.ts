@@ -100,11 +100,17 @@ for (const path of ["/", "/barber", "/contact", "/privacy"]) {
     ).toBe("solid");
     expect(errors).toEqual([]);
     expect(failedRequests).toEqual([]);
-    await page.screenshot({
-      path: `qa-artifacts/${contactConfigured ? "configured" : "unconfigured"}-${testInfo.project.name}-${path === "/" ? "home" : path.slice(1)}.png`,
-      fullPage: true,
-      scale: "css",
-    });
+    const screenshotBase = `qa-artifacts/${contactConfigured ? "configured" : "unconfigured"}-${testInfo.project.name}-${path === "/" ? "home" : path.slice(1)}`;
+    if (path === "/barber") {
+      // The longer real-preview listing needs bounded viewport tiles on the 1GB sandbox.
+      // Keep full vertical coverage without a single giant Chromium raster allocation.
+      const height=await page.evaluate(()=>document.documentElement.scrollHeight);
+      const step=page.viewportSize()!.height;
+      for (let y=0, tile=0;y<height;y+=step,tile++) {
+        await page.evaluate(offset=>window.scrollTo(0,offset),y);
+        await page.screenshot({path:`${screenshotBase}-tile-${tile}.png`,fullPage:false,scale:"css"});
+      }
+    } else await page.screenshot({path:`${screenshotBase}.png`,fullPage:true,scale:"css"});
   });
 }
 
@@ -288,6 +294,28 @@ test("three pilot products expose deliverables, distinctions and contextual CTAs
       product.id,
     );
   }
+});
+
+test("standard bundles show exact filenames and loaded cropped previews without purchase/download controls", async ({ page }) => {
+  await page.goto('/barber');
+  const expected = {starter:6,growth:10,system:15};
+  for (const [id,count] of Object.entries(expected)) {
+    const card=page.locator(`#offer-${id}`);
+    await card.locator('.product-manifest summary').click();
+    await expect(card.locator('.product-manifest li')).toHaveCount(count);
+    await expect(card.locator('.product-manifest')).toContainText('00-README.pdf');
+    await expect(card.locator('.product-manifest')).toContainText('MANIFEST.md');
+    await expect(card.locator('.product-preview figcaption')).toContainText('bukan file lengkap');
+    for (const image of await card.locator('.product-preview img').all()) {
+      await image.scrollIntoViewIfNeeded();
+      await expect(image).toBeVisible();
+      expect(await image.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth===960)).toBe(true);
+    }
+  }
+  await expect(page.locator('a[href$=".zip"], a[href*="checkout"], button, form, script')).toHaveCount(0);
+  for (const tier of ['Starter','Growth','System']) for (const prefix of ['/static/', '/private-products/releases/', '/products/']) expect((await page.request.get(`${prefix}Ranel-Barber-${tier}-v1.0.zip`)).status()).toBe(404);
+  expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()).violations).toEqual([]);
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });
 
 test("approved prices and Starter default entry stay informational with no checkout", async ({ page }) => {

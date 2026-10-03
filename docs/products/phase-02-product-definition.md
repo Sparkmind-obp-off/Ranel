@@ -1,7 +1,9 @@
 # Ranel — Phase 02 Product Definition
 
 Date: 2026-10-03
-Status: **ASSET_READY_FOR_REVIEW — SOURCE BUNDLES PRODUCED/QC-PASSED; F01/F02/F04/F05 APPROVED; TAX/LEGAL/FULFILLMENT LIVE GATES OPEN**
+Status: **PRODUCT_READY_FOR_COMMERCE_INTEGRATION — STANDARD SELF-SERVICE ASSETS/ZIP/PREVIEWS QC PASS; SALE HOLD_PENDING_COMMERCE; PAYMENT/SECURE DELIVERY INACTIVE**
+
+Current founder instruction (Product Maturation, 2026-10-03) supersedes the prior bounded-tailoring delivery model: all three approved products are standard digital kits that the buyer fills in, without founder customization included in price. Product IDs/SKUs/version1.0/prices/file hierarchy remain unchanged. Revision `self-service-maturation-2026-10-03` is hash-distinguished from historical v1.0 sources; no delivered customer release is claimed. Prior Phase02/03 evidence remains historical, not rewritten.
 
 ## 1. Purpose
 
@@ -17,9 +19,9 @@ Use stable product IDs and SKU-style identifiers:
 
 | Product | Product ID | SKU | Version baseline | Current state |
 |---|---|---|---|---|
-| Ranel Barber Starter | `ranel.barber.starter` | `RBS-STARTER-001` | 1.0 | SPEC_DEFINED / PILOT |
-| Ranel Barber Growth | `ranel.barber.growth` | `RBS-GROWTH-001` | 1.0 | SPEC_DEFINED / PILOT |
-| Ranel Barber System | `ranel.barber.system` | `RBS-SYSTEM-001` | 1.0 | SPEC_DEFINED / PILOT |
+| Ranel Barber Starter | `ranel.barber.starter` | `RBS-STARTER-001` | 1.0 | CONTENT_READY / SALE_HOLD |
+| Ranel Barber Growth | `ranel.barber.growth` | `RBS-GROWTH-001` | 1.0 | CONTENT_READY / SALE_HOLD |
+| Ranel Barber System | `ranel.barber.system` | `RBS-SYSTEM-001` | 1.0 | CONTENT_READY / SALE_HOLD |
 
 The product ID is stable. The SKU identifies the current sellable packaging revision. A substantive packaging change creates a new SKU or version according to the later product registry.
 
@@ -70,19 +72,11 @@ Required top-level files:
 
 The bundle is the canonical delivery unit; individual files are components, not separate products.
 
-### P04 — Standard versus tailored preparation
+### P04 — Standard self-service product
 
-Default fulfillment is **standard template + bounded business-specific tailoring**.
+Current fulfillment contract: **one complete standard ZIP; buyer copies/fills/uses templates independently**. No founder tailoring, data-entry service or custom preparation is included in listed prices. Previous bounded-tailoring model is superseded by the latest user instruction.
 
-Standard content must remain reusable and version-controlled.
-
-Permitted tailoring:
-- business name and basic identity fields;
-- service names and approved customer-provided prices;
-- operating days/hours;
-- existing contact channel supplied by the buyer;
-- simple local wording;
-- optional logo/brand asset supplied by the buyer.
+Buyer may edit their own copy: business name, menu/services/prices, days/hours, contact, local wording and optional logo. Instructions/examples/blank worksheets are supplied; no need to send these inputs to Ranel. Standard reusable content and versioning are preserved.
 
 Out of scope:
 - new custom software;
@@ -95,7 +89,7 @@ Out of scope:
 
 ### P05 — Minimum required buyer inputs
 
-Only collect inputs required to prepare the selected product:
+The buyer fills these only in their own local files, as relevant to the selected product; Ranel does not require collecting them to customize the kit:
 
 - business/shop name;
 - service/menu list;
@@ -109,11 +103,9 @@ Do not request customer-level data, passwords, payment credentials, or unrelated
 
 ### P06 — Delivery structure
 
-Prepare a versioned bundle, run the product QC checklist, then deliver through an agreed manual channel.
+Delivery unit: `Ranel-Barber-{Starter,Growth,System}-v1.0.zip`, containing the exact corresponding product folder/files, quick-start PDF and MANIFEST.md with component hashes. No dependency on a founder preparation queue.
 
-Internal target: the preparation queue should be designed so a complete standard/tailored package can normally be prepared within **2 business days after verified payment and receipt of required inputs**.
-
-The 2-business-day target is an internal operating target, not a public SLA until the founder-approved support/terms policy exists.
+Future journey: product facts → actual checkout → verified payment → recipient-bound private ZIP download → extract/copy/fill/use. Checkout, payment verification, entitlement/storage and secure delivery must be implemented/tested separately; not operational now. Previous internal 2-business-day tailoring target is historical, not a promise or prerequisite for these standard products.
 
 ### P07 — Acceptance definition
 
@@ -149,9 +141,11 @@ Before delivery:
 
 Until all applicable commercial terms are founder-approved and the fulfillment path is executable:
 
-**SELL_STATE = HOLD_PENDING_TERMS**
+**SELL_STATE = HOLD_PENDING_COMMERCE**
 
-The product can be described internally as **SPEC_DEFINED / PILOT**, but must not be represented as fully Available merely because a product specification exists.
+Content readiness is independently **PRODUCT_READY_FOR_COMMERCE_INTEGRATION** only after source, render/formula, ZIP/extraction/manifest/hash and preview QC. Availability still requires a working purchasing/private-delivery path, commercial/legal/tax/support prerequisites and release verification.
+
+The product can be described internally as **CONTENT_READY / SALE_HOLD**, but must not be represented as fully Available merely because a product specification exists.
 
 ## 3. Product scope decisions
 
@@ -228,4 +222,6 @@ Phase 02 does not authorize payment activation.
 
 ## 8. Produced v1.0 assets
 
-Actual sources are under `products/Ranel-Barber-Starter-v1.0/`, `products/Ranel-Barber-Growth-v1.0/`, and `products/Ranel-Barber-System-v1.0/`. [Registry](../../products/registry.json) holds exact canonical metadata/manifests; [per-file QC](../implementation/phase-02-commerce/product-qc.json) records all 31 files. All remain `HOLD_PENDING_TERMS`, not Available. [Execution evidence](../implementation/phase-02-commerce/evidence.md) distinguishes artifact QC, PUBLIC deployment and open legal/tax/fulfillment gates.
+Historical Phase02 sources remain under `products/Ranel-Barber-*-v1.0/` with [original QC](../implementation/phase-02-commerce/product-qc.json) and [historical evidence](../implementation/phase-02-commerce/evidence.md). Repository visibility is PUBLIC; these earlier sources are already in Git history and not confidential.
+
+Current matured sources live at Git-ignored `private-products/Ranel-Barber-*-v1.0/`; private release ZIPs at `private-products/releases/`. [Current registry](../../products/registry.json) contains metadata/file list/hash/state only, never contents. [Maturation QC](product-maturation-qc.json) and [current evidence](../implementation/product-maturation/evidence.md) record complete 31-file, three-ZIP, actual cropped-preview verification. New sources/ZIPs are not in Git, build or PUBLIC download routes. Current content ready, sale hold; no payment or secure-delivery claim.

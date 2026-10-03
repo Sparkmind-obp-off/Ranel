@@ -13,7 +13,15 @@ Ranel is designed to grow through three connected layers:
 
 The first vertical is **barber businesses**. Other verticals are future options, not simultaneous launch commitments.
 
-## Current Commerce Phase 02 — product assets & PUBLIC policy readiness
+## Current Product Maturation — standard self-service kits
+
+**PRODUCT_READY_FOR_COMMERCE_INTEGRATION / HOLD_PENDING_COMMERCE.** Latest founder instruction supersedes manual-tailoring preparation: Starter Rp39.000, Growth Rp79.000 and System Rp149.000 are one-time IDR standard kits, filled in by the buyer; customization by founder is not included. Three private ZIP releases contain exactly 6/10/15 files. All 31 components opened/rendered/recalculated, expanded formula edge cases, clean extraction/manifest/hash checks and actual cropped-preview QC PASS. Native Microsoft Office/mobile/web/Google Sheets remain untested compatibility limits, not required Ranel accounts/software.
+
+[Current catalog](docs/products/product-catalog.md) · [Product definition](docs/products/phase-02-product-definition.md) · [Registry metadata](products/registry.json) · [Maturation QC](docs/products/product-maturation-qc.json) · [Current execution/release evidence](docs/implementation/product-maturation/evidence.md). Prepared source listing `/barber` includes exact filenames, formats/software, exclusions/policies and six limited real-file previews. Lint/typecheck/build, 45 PUBLIC worker tests, 61 unchanged Core/POP tests and final39 local browser/Axe tests PASS. New listing is **NOT DEPLOYED in this wrap-up**; live production remains the earlier `7b8a1f1` / immutable `b0be6036` release. No purchase/paid-download button or automatic-delivery claim.
+
+**Repository PUBLIC:** historical v1.0 sources remain publicly present in Git history; new paid sources/ZIPs/private generator overlay stay Git-ignored in `private-products/`, not public assets/GitHub. Review artifacts are protected signed-in downloads provided in chat, not customer entitlement links. Never run historical `scripts/produce_products.py` over current metadata as a new release. Current offline flow and restore-from-review-ZIP instructions are in maturation evidence; runtime never executes Python. All required payment/checkout/secure delivery and commercial/legal/tax gates remain closed; no Phase04/financial activation in this task.
+
+## Historical Commerce Phase 02 — product assets & PUBLIC policy readiness
 
 **ASSET_READY_FOR_REVIEW; payment remains disabled.** Founder-approved one-time IDR prices: Starter Rp39.000, Growth Rp79.000, System Rp149.000. Starter is the default entry; Growth/System remain alternatives without required prior purchase. System is a complete operating-system document package, not software. F01/F02/F04/F05 and pricing/promo directions are approved; tax/legal applicability and live fulfillment readiness are still gates. Older pending/no-price language below is historical, not a reason to reopen approvals.
 
@@ -25,7 +33,7 @@ Offline production: `python3 scripts/produce_products.py`, then `python3 scripts
 
 Current email/AHU remediation gates: lint/typecheck/build PASS; 44 PUBLIC worker tests, 61 preserved Core/POP tests, 36 local and 36 immutable-production responsive/Axe browser tests PASS; runtime audit 0 reported vulnerabilities. PUBLIC released to https://ranel.pages.dev and https://b0be6036.ranel.pages.dev, deployment `b0be6036-2a9b-4c51-a880-69dff59bc109`, source `7b8a1f17ab97e6f5818ba4ff5e995361c3707b7e`. Required pages.dev release gate PASS. Domain/binding names unchanged; no Core/DB/secret/checkout/promo engine/DNS/billing/live transaction change. Overall **PASS WITH ISSUES** for tax/legal/fulfillment and custom-domain email usability. Mailto verification does not prove mailbox delivery; AHU disclosure is not independent registry verification.
 
-## Current Commerce Phase 03 — specification only
+## Historical Commerce Phase 03 — specification only
 
 Executed after the required Phase02 pages.dev gate under explicit user authorization. [Commerce Model](docs/technology/commerce-model.md) defines canonical product/offer/channel/read-model boundaries, immutable commercial snapshots, logical entities and orthogonal state machines, trustworthy payment evidence, future idempotency/reconciliation, promo constraints, manual delivery/remedy, privacy and financial dimensions plus 22 future acceptance/negative scenarios. [Limited official applicability review](docs/business/phase-03-compliance-assessment.md) records evidence/source-access limits and PENDING_VERIFICATION legal/tax/OSS/KBLI/PSE findings. [Single founder packet](docs/governance/phase-03-founder-review.md) preserves approved decisions and new pending material review items.
 

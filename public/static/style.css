@@ -762,6 +762,14 @@ textarea {
 .error-section .button {
   margin-top: 20px;
 }
+/* Cropped real-file previews only; no paid bundle links. */
+.product-preview { margin: 24px 0; }
+.product-preview img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+.product-preview figcaption { margin-top: 8px; font-size: .78rem; line-height: 1.5; color: var(--muted); }
+.product-manifest { margin: 16px 0; }
+.product-manifest ul { padding-left: 20px; }
+.product-manifest li { margin: 8px 0; }
+.product-manifest code { font-size: .76rem; overflow-wrap: anywhere; }
 /* Phase 2: extend the existing cards; comparison is a short path, not a pricing table. */
 .product-path {
   display: grid;

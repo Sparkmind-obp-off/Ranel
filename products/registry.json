@@ -4,12 +4,15 @@
     "id": "ranel.barber.starter",
     "sku": "RBS-STARTER-001",
     "version": "1.0",
+    "revision": "self-service-maturation-2026-10-03",
     "date": "2026-10-03",
     "price": 39000,
     "currency": "IDR",
-    "sellState": "HOLD_PENDING_TERMS",
-    "assetState": "ASSET_READY_FOR_REVIEW",
-    "path": "products/Ranel-Barber-Starter-v1.0",
+    "sellState": "HOLD_PENDING_COMMERCE",
+    "assetState": "PRODUCT_READY_FOR_COMMERCE_INTEGRATION",
+    "deliveryModel": "standard_self_service_zip",
+    "manualCustomizationIncluded": false,
+    "path": "private-products/Ranel-Barber-Starter-v1.0",
     "files": [
       "00-README.pdf",
       "01-SOP-Dasar.docx",
@@ -17,6 +20,14 @@
       "03-Checklist-Buka-Tutup.docx",
       "04-Follow-Up-Pelanggan-Berizin.docx",
       "MANIFEST.md"
+    ],
+    "releaseArtifact": "private-products/releases/Ranel-Barber-Starter-v1.0.zip",
+    "artifactSha256": "ba668d44d9e7ee4000c693f81959697bba1ece93b65a399d2cc87c666d973cf1",
+    "artifactBytes": 154333,
+    "privateSource": true,
+    "previews": [
+      "public/static/previews/starter-quickstart.webp",
+      "public/static/previews/starter-document.webp"
     ]
   },
   {
@@ -24,12 +35,15 @@
     "id": "ranel.barber.growth",
     "sku": "RBS-GROWTH-001",
     "version": "1.0",
+    "revision": "self-service-maturation-2026-10-03",
     "date": "2026-10-03",
     "price": 79000,
     "currency": "IDR",
-    "sellState": "HOLD_PENDING_TERMS",
-    "assetState": "ASSET_READY_FOR_REVIEW",
-    "path": "products/Ranel-Barber-Growth-v1.0",
+    "sellState": "HOLD_PENDING_COMMERCE",
+    "assetState": "PRODUCT_READY_FOR_COMMERCE_INTEGRATION",
+    "deliveryModel": "standard_self_service_zip",
+    "manualCustomizationIncluded": false,
+    "path": "private-products/Ranel-Barber-Growth-v1.0",
     "files": [
       "00-README.pdf",
       "01-SOP-Dasar.docx",
@@ -41,6 +55,14 @@
       "07-Review-Bulanan.docx",
       "08-Panduan-Follow-Up-dan-Review.docx",
       "MANIFEST.md"
+    ],
+    "releaseArtifact": "private-products/releases/Ranel-Barber-Growth-v1.0.zip",
+    "artifactSha256": "afd43a591a25252bd2f2d55e420b233018d6d9d41932f7799a8fab95b1d611d5",
+    "artifactBytes": 290981,
+    "privateSource": true,
+    "previews": [
+      "public/static/previews/growth-quickstart.webp",
+      "public/static/previews/growth-spreadsheet.webp"
     ]
   },
   {
@@ -48,12 +70,15 @@
     "id": "ranel.barber.system",
     "sku": "RBS-SYSTEM-001",
     "version": "1.0",
+    "revision": "self-service-maturation-2026-10-03",
     "date": "2026-10-03",
     "price": 149000,
     "currency": "IDR",
-    "sellState": "HOLD_PENDING_TERMS",
-    "assetState": "ASSET_READY_FOR_REVIEW",
-    "path": "products/Ranel-Barber-System-v1.0",
+    "sellState": "HOLD_PENDING_COMMERCE",
+    "assetState": "PRODUCT_READY_FOR_COMMERCE_INTEGRATION",
+    "deliveryModel": "standard_self_service_zip",
+    "manualCustomizationIncluded": false,
+    "path": "private-products/Ranel-Barber-System-v1.0",
     "files": [
       "00-README.pdf",
       "01-SOP-Dasar.docx",
@@ -70,6 +95,14 @@
       "12-Owner-Review-Framework.docx",
       "13-Prioritas-Implementasi.docx",
       "MANIFEST.md"
+    ],
+    "releaseArtifact": "private-products/releases/Ranel-Barber-System-v1.0.zip",
+    "artifactSha256": "64e66f0310c3540f66cd8379faf81ad5879c64be14c6a964ed59a237ec697fde",
+    "artifactBytes": 477110,
+    "privateSource": true,
+    "previews": [
+      "public/static/previews/system-quickstart.webp",
+      "public/static/previews/system-map.webp"
     ]
   }
 ]
