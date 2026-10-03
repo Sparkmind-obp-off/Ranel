@@ -69,7 +69,7 @@ created → pending → paid → fulfilled
 
 with explicit exception or terminal states for failed, cancelled, and refunded.
 
-The valid transition table must exist in domain code/tests before production activation.
+The valid transition table must exist in domain code/tests before production activation. The current [Phase 03 Commerce Model](commerce-model.md) separates order/payment/attempt/fulfillment/refund/settlement lifecycles; the linear example above is not a single executable aggregate enum. POP authenticated notification is not authoritative payment confirmation: corroboration and durable atomic processing are required before paid/audit/fulfillment facts. No Phase 03 API implementation is authorized.
 
 ## 6. Webhook handling
 

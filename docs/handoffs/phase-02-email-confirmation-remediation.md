@@ -1,7 +1,7 @@
 # Ranel — Phase 02 Official Email Confirmation Remediation
 
 Date: 2026-10-03
-Status: **READY FOR GENSPARK VERIFICATION AND PUBLIC-ONLY REDEPLOY**
+Status: **CLOSED FOR REQUIRED pages.dev VERIFICATION/REDEPLOY — PASS; CUSTOM-DOMAIN EMAIL ISSUE OPEN; OVERALL PHASE 02 PASS WITH ISSUES**
 
 ## Founder decision
 
@@ -21,7 +21,7 @@ Latest code/test commits:
 - `c2ebebb8768f8674bf2b0c9d38251a421b02deb1` — update worker tests.
 - `2b58261ef3af8764688c46f7e024553713fe9dcc` — update browser tests and mailto-link handling.
 
-These source changes are **committed but not yet test/build/live-deployment verified**. The founder also authorized the AHU reference already used by the founder-controlled SparkMind legal source: `AHU-066746.AH.01.30.Tahun 2025`, registration date 1 December 2025. The current shared Legal identity card source includes this reference. Do not claim an independent live AHU lookup.
+At handoff these source changes were **committed but not yet test/build/live-deployment verified**. The closure below records subsequent actual verification; this sentence preserves the historical input state. The founder also authorized the AHU reference already used by the founder-controlled SparkMind legal source: `AHU-066746.AH.01.30.Tahun 2025`, registration date 1 December 2025. The current shared Legal identity card source includes this reference. Do not claim an independent live AHU lookup.
 
 ## Required execution
 
@@ -79,4 +79,10 @@ Return:
 - confirmation that payment remains disabled;
 - remaining material gaps.
 
-Final Phase 02 status remains **PASS WITH ISSUES** until this remediation is verified and the tax/legal/fulfillment gates are addressed.
+## Verified closure — 2026-10-03
+
+Required immutable/mutable pages.dev release gate **PASS**. Actual source `7b8a1f17ab97e6f5818ba4ff5e995361c3707b7e`; deployment `b0be6036-2a9b-4c51-a880-69dff59bc109`, created `2026-10-03T07:59:53.324803Z`, https://b0be6036.ranel.pages.dev and https://ranel.pages.dev. Lint/typecheck/build, 44 PUBLIC tests, 61 unchanged Core/POP tests, 36 local and 36 production browser/Axe tests PASS. 21 HTTP checks on each required origin PASS. Email/AHU/date render, missing-WhatsApp email fallback and configured inquiry continuity verified without messages or mailbox login/send/receive.
+
+Read-only `ranel.biz.id` statuses/AHU/date pass, but Cloudflare email obfuscation and injected scripts conflict with CSP: formal email/link usability is **ISSUE OPEN**, not a verified equal release. No DNS/zone/CSP/security weakening performed. See [consolidated evidence](../implementation/phase-02-commerce/evidence.md) for scans, failed verification-tool attempts/recovery, metadata and limitations.
+
+Overall Phase02 remains **PASS WITH ISSUES** for regulatory/tax/fulfillment and custom-domain email gates. Explicit user authorization allowed subsequent [Phase03 specification](../technology/commerce-model.md) after required pages.dev gate PASS; no live-commerce/Phase04 activation or new founder material approval.

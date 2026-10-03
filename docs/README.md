@@ -20,6 +20,14 @@
 - [Risks and assumptions](business/risks-and-assumptions.md)
 - [Go-to-market plan](go-to-market.md)
 
+## Commerce Phase 03 — specification only
+- [Commerce Model: canonical releases, snapshots, logical entities, transitions and future tests](technology/commerce-model.md)
+- [Limited official Indonesian applicability assessment — PENDING_VERIFICATION](business/phase-03-compliance-assessment.md)
+- [Single founder review packet — existing approvals/new pending decisions](governance/phase-03-founder-review.md)
+- [Consolidated Phase02 remediation + Phase03 execution evidence](implementation/phase-02-commerce/evidence.md)
+
+Phase03 specification completion is not founder approval, Phase04 authorization or live-commerce readiness.
+
 ## Products and delivery
 - [Commerce Phase 02 execution/release evidence](implementation/phase-02-commerce/evidence.md)
 - [Actual v1.0 bundle registry](../products/registry.json)

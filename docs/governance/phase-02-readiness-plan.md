@@ -1,7 +1,7 @@
 # Ranel — Phase 02 Readiness Plan
 
 Date: 2026-10-03
-Status: **PHASE 02 PASS WITH ISSUES — EMAIL SOURCE PATCH COMMITTED; VERIFICATION/REDEPLOY PENDING; TAX/LEGAL/FULFILLMENT GATES OPEN**
+Status: **PHASE 02 REQUIRED PUBLIC pages.dev RELEASE GATE PASS — EMAIL/AHU DEPLOYED AND VERIFIED; OVERALL PASS WITH ISSUES. PHASE 03 SPECIFICATION COMPLETE / READY_FOR_CHATGPT_REVIEW; TAX/LEGAL/FULFILLMENT AND CUSTOM-DOMAIN EMAIL GATES OPEN.**
 
 ## Objective
 
@@ -72,12 +72,12 @@ Before live selling to Indonesian consumers, customer-facing electronic-contract
 
 ## Remaining gates and next actions
 
-1. **Immediate remediation:** run tests/build/browser QA for the founder-confirmed email + AHU identity-card source patch, then redeploy only existing PUBLIC project `ranel`. Current verified deployment remains the earlier Phase 02 release until this is confirmed. See [official email remediation handoff](../handoffs/phase-02-email-confirmation-remediation.md).
+1. **Remediation completed:** approved email/AHU/date deployed and verified on immutable `b0be6036` and `ranel.pages.dev`, source `7b8a1f17ab97e6f5818ba4ff5e995361c3707b7e`. 44 worker/61 Core/36 local/36 production browser tests PASS. Custom-domain read-only check found Cloudflare-obfuscated email blocked by CSP; separate scoped remediation needed, no DNS/zone/CSP mutation. [Evidence](../implementation/phase-02-commerce/evidence.md).
 2. **Tax:** verify seller PKP/non-PKP status, product tax classification, tax-inclusive/exclusive price treatment and invoice/document requirements before checkout.
 3. **Licensing / PMSE:** verify current OSS/NIB/KBLI scope and which PMSE obligations apply to the actual seller/channel model before live online sales. Do not infer coverage merely from PT existence.
 4. **Product operations:** dry-run one full manual preparation using synthetic data; set a realistic delivery/support capacity and document defect/remedy handling. The internal two-business-day target is not a public SLA.
 5. **Market validation:** begin lawful, permission-based discovery with Indonesian-speaking independent barber operators; record real objections, package preference and willingness to pay. Do not claim market validation from site launch or synthetic QC.
-6. **Next roadmap phase:** after email patch review, start Phase 03 Commerce Model as a specification/decision phase. Do not implement payment or create production persistence as a shortcut.
+6. **Phase 03 executed after pages.dev gate PASS under explicit user authorization:** [Commerce Model](../technology/commerce-model.md), [limited official applicability assessment](../business/phase-03-compliance-assessment.md), and [single founder review packet](phase-03-founder-review.md) are specification-only complete. Material new decisions PENDING; no payment/persistence/Phase04 implementation. Next action is review and separately authorized scope, not automatic Core/DB.
 
 Payment, order, DB, auth, DNS, billing, production credentials, checkout and live transaction gates remain closed.
 
@@ -89,7 +89,7 @@ The prompt consolidates approved product, pricing, legal identity, support, prom
 
 ## Post-release email correction
 
-Founder confirmed `farasmuhadzib@gmail.com` as the public Ranel email. Source and tests are committed; Genspark must run full verification and redeploy the existing PUBLIC app according to [email remediation handoff](../handoffs/phase-02-email-confirmation-remediation.md). Until then, the verified production deployment is still the previous Phase 02 release.
+Founder confirmed `farasmuhadzib@gmail.com` as the public Ranel email and approved source-backed AHU/date disclosure. Full verification and PUBLIC-only redeployment are complete; see [email remediation handoff](../handoffs/phase-02-email-confirmation-remediation.md) closure and consolidated evidence. Mailbox reachability and independent AHU/OSS/tax verification are not claimed. Machine release/spec PASS does not constitute founder approval or live-commerce readiness.
 
 ## Completion condition
 

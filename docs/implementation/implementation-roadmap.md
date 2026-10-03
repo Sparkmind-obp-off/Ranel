@@ -8,6 +8,15 @@
 
 This roadmap describes intended work. A phase is complete only when its acceptance criteria and evidence are recorded. A document or generated code is not proof of deployment, integration, sales, or market validation.
 
+## Current Business First commerce roadmap — 2026-10-03
+
+The historical phase numbering below remains for provenance; it does not authorize execution. Current sequence: **Baseline → Business Lock → Product/Price → Commerce Model → Core/DB → Provider → Checkout → Reconciliation → Fulfillment → Operations/Security → Real Pilot → Release**.
+
+- Phase00 baseline preserved; Phase01 approvals evolved in founder records, not silently rewritten.
+- Phase02 product sources/QC and informational PUBLIC complete; email/AHU pages.dev remediation release gate PASS on `7b8a1f17ab97e6f5818ba4ff5e995361c3707b7e` / immutable `b0be6036`. Overall PASS WITH ISSUES: tax/legal/fulfillment and custom-domain email parity remain open.
+- **Phase03 Commerce Model specification complete / READY_FOR_CHATGPT_REVIEW**, executed only after required pages.dev gate under explicit user authorization. [Model](../technology/commerce-model.md) · [Applicability](../business/phase-03-compliance-assessment.md) · [Single founder packet](../governance/phase-03-founder-review.md) · [Evidence](phase-02-commerce/evidence.md).
+- Phase04 Core/DB and every later phase **NOT AUTHORIZED / NOT STARTED in this session**. Model approval, privacy/access/storage/recovery/cost scope and separate authorization precede implementation. Provider/checkout/reconciliation/real-pilot gates remain distinct; existing adapter tests are not live evidence.
+
 ## Delivery principles
 
 1. GitHub is the source of truth for requirements, decisions, and implementation evidence.
