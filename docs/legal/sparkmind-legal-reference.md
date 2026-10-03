@@ -53,4 +53,4 @@ Before publishing registration identifiers on Ranel, reconcile them against the 
 
 Use the SparkMind legal architecture as the visual/information-architecture reference for Ranel.
 
-Use the source-backed AHU number as a **candidate verified value pending document reconciliation**, not as independent ChatGPT verification.
+Founder has authorized publication of the source-backed AHU number in Ranel's legal operator card because the underlying registration documents are reported to exist and the same value is already used by the founder-controlled SparkMind legal source. This is a disclosed source-backed reference, not an independent live AHU lookup verification.
