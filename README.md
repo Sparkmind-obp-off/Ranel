@@ -13,6 +13,20 @@ Ranel is designed to grow through three connected layers:
 
 The first vertical is **barber businesses**. Other verticals are future options, not simultaneous launch commitments.
 
+## Bounded Core integration seam — 2026-10-03
+
+**BUILT / TESTED locally; NOT DEPLOYED / NOT INTEGRATED.** The Core foundation is separate from the unchanged PUBLIC Pages application. No price, checkout, invoice client, signing adapter, database, authorization system or payment activation has been added.
+
+- `src/core.ts`: proposed Core Worker with minimal `/health` (200), `/ready` (503), disabled `POST /api/v1/payments` (503), unavailable `POST /api/v1/webhooks/duitku` (503), and an unverified browser-return view at `/api/v1/payments/return` (202). No public order lookup, provider requests, body logging or callback-success acknowledgement. Even `PAYMENTS_ENABLED=true` cannot activate an incomplete integration.
+- `src/payment-domain.ts`: pure correlation/transition planner, manual-pending fulfillment after a verified payment, minimal audit plan, and adapter/atomic durable-store interfaces. These interfaces are not implemented signature verification, durable idempotency, audit storage or financial truth. Fixtures never become production orders.
+- `core.wrangler.jsonc`: proposed `ranel-core`, production target, `PAYMENTS_ENABLED=false`, no secrets/bindings; existing `wrangler.jsonc` remains PUBLIC-only.
+- Developer commands: `npm run test:core` compiles to ignored `qa-artifacts/core-build` and runs deterministic tests; `npm run build:core` is explicitly a Wrangler **dry-run**, not deployment.
+- Current checks: 27 Core tests and 33 PUBLIC built-worker regression tests passed; lint/typecheck and both builds passed. Browser E2E was not rerun because PUBLIC source was unchanged and no deployment occurred. Preview restored and checked HTTP 200.
+- Read-only Cloudflare audit: authenticated sole account; no `ranel-core` Worker or Ranel D1 database observed. Subscription/plan endpoint returned HTTP 403, so cost/plan readiness remains unknown. No unrelated database reused. PUBLIC `ranel` production binding names contained only `INQUIRY_WHATSAPP_NUMBER`; preview names empty.
+- Credential file parsed programmatically without displaying values or copying it into the repo. Shape passed, **not authentication**. No Duitku request or secret provisioning occurred because merchant API family/target prerequisites were unresolved. The exposed key still requires containment; founder authorization to use the file does not make it unexposed.
+
+See [Core execution evidence and exact next gates](docs/technology/duitku-production-integration-contract.md#11-bounded-core-seam-execution--2026-10-03). Next: obtain merchant-family evidence and account plan/cost evidence, approve a Ranel persistence design, provision safe credentials only into verified Core, then implement family-specific signing/callback and transactional audit/idempotency. Keep pricing/fulfillment/commercial activation gated. No Core deployment URL or production-ready claim exists.
+
 ## Final launcher alignment and bounded PUBLIC hardening
 
 Canonical revenue cycle: **Demand → Opportunity → Product → Distribution → Transaction → Fulfillment → Outcome → Learning**. Business model remains **Kits → Systems → Supply**. The lock defines the destination, not implementation/validation evidence.

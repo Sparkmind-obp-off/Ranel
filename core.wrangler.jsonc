@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Proposed target only; deployment requires verified account plan/cost.
+  "name": "ranel-core",
+  "main": "src/core.ts",
+  "account_id": "a167a50f1272635d3c1145aab3cd8f98",
+  "compatibility_date": "2025-09-20",
+  "workers_dev": true,
+  "preview_urls": false,
+  "vars": {
+    "PAYMENTS_ENABLED": "false",
+    "DUITKU_ENV": "production"
+  }
+}
