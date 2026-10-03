@@ -1,7 +1,7 @@
 # Ranel — Phase 02 Readiness Plan
 
 Date: 2026-10-03
-Status: **ASSET_READY_FOR_REVIEW — F01/F02/F04/F05 AND PRICING/PROMO APPROVED; TAX/LEGAL/LIVE FULFILLMENT GATES OPEN**
+Status: **PHASE 02 PASS WITH ISSUES — EMAIL SOURCE PATCH COMMITTED; VERIFICATION/REDEPLOY PENDING; TAX/LEGAL/FULFILLMENT GATES OPEN**
 
 ## Objective
 
@@ -84,6 +84,10 @@ Genspark / later product-production execution may:
 Canonical Genspark execution prompt: [Master System Prompt — Phase 02](../prompts/master-system-prompt-phase-02.md).
 
 The prompt consolidates approved product, pricing, legal identity, support, promotion, public-page, QC, and scope-prohibition decisions. It is the execution instruction for the remaining Phase 02 work.
+
+## Post-release email correction
+
+Founder confirmed `farasmuhadzib@gmail.com` as the public Ranel email. Source and tests are committed; Genspark must run full verification and redeploy the existing PUBLIC app according to [email remediation handoff](../handoffs/phase-02-email-confirmation-remediation.md). Until then, the verified production deployment is still the previous Phase 02 release.
 
 ## Completion condition
 
