@@ -102,4 +102,14 @@ Fresh read-only custom-domain check at `2026-10-03T13:23:50.150271+00:00`: pages
 
 Verification-tool issue: Node-built worker has no native Pages static binding; direct `/static/*.zip` unit request gave500 despite no asset. Moved native-static negative check to real Pages browser HTTP test; kept protected/product path404 unit checks, no security assertion weakened. Preview HTTP readiness needed waiting beyond initial3s; restarted via PM2 and verified HTTP200 before rerunning browser. No test failure hidden or current PASS inferred from process masking.
 
+## 9. Closing provenance and remaining work
+
+- Tested application/listing + content/QC/metadata source snapshot: **`c0921203b115e130cdcd658b3e76d7c17af7e70c`**, local main commit. Closing evidence/README amendments are documentation-only; Git reports their exact final SHA.
+- Local gates: asset/ZIP/manifest/hash/render/formula PASS; lint/typecheck/build PASS; **45 worker / 61 Core / 39 local browser/Axe PASS**. Initial browser failure retained and remedied with bounded tiled capture; source/browser assertions unchanged in purpose. Paid sources/ZIPs excluded from all22 staged files; archive hashes still match reviewed copies.
+- **New production deployment and configured-production QA NOT RUN.** No new deployment ID/URL invented. Prepared listing awaits existing-project PUBLIC-only rollout and immutable/mutable smoke/browser verification. Current production remains `7b8a1f1` / `b0be6036`; custom-domain email/CSP issue and historical public source exposure remain explicit.
+- Initial push authentication failed after local commit; refresh the authorized GitHub setup and retry only normal push. Remote sync must be verified before claiming pushed; no force/history rewrite.
+- Remaining technical/commercial work: PUBLIC rollout; separately authorized payment/checkout/durable reconciliation and recipient-bound ZIP delivery; legal/tax/support gates. No new tasks or financial phase started during user-requested wrap-up. No observed asset-quality blocker within recorded QC; native Microsoft Office/mobile/web compatibility limitations disclosed.
+
+**HANDOFF: PRODUCT_READY_FOR_COMMERCE_INTEGRATION / READY FOR CONTENT REVIEW; PUBLIC RELEASE PENDING, NOT LIVE-SALE READY.**
+
 Payment/provider flags/config, Core/Control/database/auth/secrets/DNS/billing unchanged; no real invoice/payment/refund/payout/email/WhatsApp message or customer-data processing. Historical public-source exposure and custom-domain issue remain explicit release concerns, not reasons to invent content defects or live-sale capability.
