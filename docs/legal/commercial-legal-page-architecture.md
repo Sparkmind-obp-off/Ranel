@@ -17,11 +17,23 @@ Duitku's current merchant guidance expects corporate legality documentation and 
 
 ## Recommended public structure
 
+The SparkMind implementation provides a useful reference pattern: a central Legal Hub, an entity/status card, individual policy pages, effective/update dates, and a footer Legal section. Ranel should reuse this information architecture while rewriting all content for Ranel's actual business model.
+
 ### /legal
 Legal & policies hub. Links to all customer-facing policies and identifies the version/update date of each policy.
 
+Recommended hub blocks:
+1. Legal operator identity card.
+2. Document cards for each policy.
+3. Legal/regulatory reference links where useful.
+4. Effective date and last-updated date.
+5. Clear note that documents describe Ranel's current business model.
+
 Also show the legal operator identity:
 **Ranel — dioperasikan oleh PT Waskita Cakrawarti Digital (Perseroan Perorangan).**
+
+### /legal/ownership
+Ownership / operator declaration. Identify Ranel as the customer-facing brand operated by PT Waskita Cakrawarti Digital and state the scope of brand/business ownership without publishing unnecessary founder personal data.
 
 ### /legal/terms
 Terms of Service / Terms of Sale:
