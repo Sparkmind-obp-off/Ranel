@@ -1,7 +1,7 @@
 # Ranel — Phase 02 Product Definition
 
 Date: 2026-10-03
-Status: **IN PROGRESS — PRODUCT DEFINITION DECIDED; MATERIAL COMMERCIAL TERMS PENDING FOUNDER REVIEW**
+Status: **IN PROGRESS — PRODUCT DEFINITION DECIDED; F01/F02/F04/F05 APPROVED; F03 TAX VALIDATION OPEN**
 
 ## 1. Purpose
 
@@ -192,7 +192,11 @@ Core use:
 
 It is a prepared operating-system package, not a software system.
 
-## 4. Decisions intentionally not made by ChatGPT
+## 4. Founder-approved commercial decisions
+
+F01, F02, F04, and F05 are approved as recorded in the Founder Review Packet. F03 operational promotion rules are decided with a 40% maximum controlled promo-code discount; tax applicability remains validation-required.
+
+## 5. Decisions intentionally not made by ChatGPT
 
 These are material founder decisions and remain **FOUNDER_REVIEW**:
 
@@ -207,11 +211,11 @@ These are material founder decisions and remain **FOUNDER_REVIEW**:
 
 The product specifications above are designed so those decisions can be inserted without redesigning the package architecture.
 
-## 5. Current legal/commerce note
+## 6. Current legal/commerce note
 
 For Indonesian PMSE, current regulation must be reflected in the final customer terms before live selling. PP No. 80 Tahun 2019 remains listed as in force, and it addresses digital goods/services, cancellation/exchange periods and mechanisms for returning consumer funds. Permendag No. 19 Tahun 2026 is currently in force and replaced Permendag No. 31 Tahun 2023 for PMSE. This document therefore does not hard-code a refund/cancellation policy before the applicable legal/terms review.
 
-## 6. Phase 02 completion condition
+## 7. Phase 02 completion condition
 
 Phase 02 can reach **READY FOR REVIEW** when:
 - product IDs/SKUs and manifests are frozen;
