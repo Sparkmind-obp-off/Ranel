@@ -2,11 +2,13 @@ import { offers, formatPrice } from "./inquiry";
 
 export const sellerName = "PT Waskita Cakrawarti Digital";
 export const supportEmail = "farasmuhadzib@gmail.com";
+export const registrationNo = "AHU-066746.AH.01.30.Tahun 2025";
+export const registrationDate = "1 Desember 2025";
 export const policyDate = "3 Oktober 2026";
 export const taxNotice = "Pajak yang berlaku akan dihitung dan ditampilkan sesuai status perpajakan penjual dan ketentuan yang berlaku.";
 export const legalPages = [
   { slug: "ownership", title: "Identitas & kepemilikan", description: "Identitas operator Ranel, bentuk badan usaha, kepemilikan materi dan batas verifikasi informasi legal.", sections: [
-    { title: "Brand dan operator", text: ["Ranel adalah brand yang dioperasikan oleh PT Waskita Cakrawarti Digital, Perseroan Perorangan. Identitas ini bersumber dari informasi dan referensi legal yang dikendalikan founder; bukan hasil autentikasi registrasi independen oleh pelaksana website.", "Domisili referensi operator: Kabupaten Banyumas, Jawa Tengah, Indonesia. Nomor registrasi AHU tidak dipublikasikan sampai rekonsiliasi dokumen dan keputusan publikasinya selesai. NIB, NPWP, KBLI, status perpajakan dan izin PMSE tidak dinyatakan terverifikasi di halaman ini."] },
+    { title: "Brand dan operator", text: ["Ranel adalah brand yang dioperasikan oleh PT Waskita Cakrawarti Digital, Perseroan Perorangan. Identitas ini bersumber dari informasi dan referensi legal yang dikendalikan founder; bukan hasil autentikasi registrasi independen oleh pelaksana website.", "Domisili referensi operator: Kabupaten Banyumas, Jawa Tengah, Indonesia. Nomor pendaftaran pendirian yang dicantumkan dalam referensi legal SparkMind dan dokumen founder: AHU-066746.AH.01.30.Tahun 2025, tanggal 1 Desember 2025. NIB, NPWP, KBLI, status perpajakan dan izin PMSE tidak dinyatakan terverifikasi di halaman ini."] },
     { title: "Hak atas informasi dan materi", text: ["Pembeli tetap memiliki hak atas informasi usahanya sendiri. Template, brand dan metodologi reusable Ranel tetap milik Ranel kecuali kesepakatan tertulis lain. Penggunaan materi mengikuti Lisensi Produk; keberadaan badan usaha bukan klaim merek dagang terdaftar."] },
     { title: "Referensi resmi", text: ["Referensi AHU dan OSS tersedia pada hub legal untuk informasi umum. Tautan bukan sertifikasi kepatuhan atau bukti izin tertentu untuk setiap kegiatan Ranel."] },
   ] },
@@ -57,6 +59,7 @@ export function LegalIdentity() {
   return <aside class="legal-identity" aria-label="Identitas operator">
     <p class="eyebrow">Ranel / Identitas operator</p>
     <p><strong>Dioperasikan oleh {sellerName}</strong><br />Perseroan Perorangan</p>
+    <p class="small">No. pendaftaran pendirian AHU: <code>{registrationNo}</code> · {registrationDate}</p>
     <p class="small">Email resmi: <a href={`mailto:${supportEmail}`}>{supportEmail}</a></p>
     <p class="small">Referensi identitas founder; bukan verifikasi legal independen. Registrasi/izin dan tax applicability tetap membutuhkan validasi sebelum live commerce.</p>
   </aside>;
