@@ -1,0 +1,4 @@
+# Product document formats are binary; preserve bytes and PDF xref spacing.
+products/**/*.pdf binary
+products/**/*.docx binary
+products/**/*.xlsx binary

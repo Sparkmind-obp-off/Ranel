@@ -1,8 +1,10 @@
 import { Hono } from "hono";
 import { serveStatic } from "hono/cloudflare-workers";
 import type { Child } from "hono/jsx";
+import { legalPaths, legalPages, LegalContent, sellerName } from "./legal";
 import {
   offers,
+  formatPrice,
   selectedOffer,
   inquiryMessage,
   whatsappDestination,
@@ -33,6 +35,7 @@ const readOnlyPublicPaths = new Set([
   "/contact",
   "/privacy",
   "/inquiry",
+  ...legalPaths,
 ]);
 app.use("*", async (c, next) => {
   // Bound input before query parsing; never echo a rejected URL or body.
@@ -139,6 +142,7 @@ function Layout({
               </span>
             </a>
             <p>Practical systems for better-run businesses.</p>
+            <p class="small">Dioperasikan oleh {sellerName} · Perseroan Perorangan</p>
             <p class="small">
               Dimulai dari usaha barber. Dibangun selangkah demi selangkah.
             </p>
@@ -146,9 +150,16 @@ function Layout({
           <nav aria-label="Navigasi footer">
             <a href="/barber">Penawaran barber</a>
             <a href="/contact">Informasi kontak</a>
-            <a href="/privacy">Privasi</a>
+            <a href="/privacy">Privasi website</a>
+            <a href="/legal">Legal &amp; Policies</a>
+            <a href="/legal/terms">Ketentuan produk</a>
+            <a href="/legal/pricing-payment">Harga &amp; pembayaran</a>
+            <a href="/legal/refund-policy">Refund &amp; pembatalan</a>
+            <a href="/legal/privacy">Privasi &amp; data</a>
+            <a href="/legal/license">Lisensi produk</a>
+            <a href="/legal/complaints">Keluhan &amp; dukungan</a>
           </nav>
-          <p class="footer-note">Fase awal · Rencana penawaran pilot</p>
+          <p class="footer-note">Fase awal · Pilot / hold · Penjualan online dan pembayaran belum dibuka</p>
         </footer>
       </body>
     </html>
@@ -158,12 +169,15 @@ function OfferCards() {
   return (
     <div class="offer-grid">
       {offers.map((offer) => (
-        <article class="offer-card" id={`offer-${offer.id}`} key={offer.id}>
+        <article class="offer-card" data-entry={offer.id === "starter" ? "true" : undefined} id={`offer-${offer.id}`} key={offer.id}>
           <div class="card-top">
             <span class="index">{offer.number}</span>
             <span class="status-label">{offer.status}</span>
           </div>
+          {offer.id === "starter" && <p class="entry-label">Paket awal / default entry</p>}
           <h3>{offer.name}</h3>
+          <p class="offer-price">{formatPrice(offer.price)} <span>sekali bayar · IDR</span></p>
+          <p class="small">{offer.sku} · v{offer.version}</p>
           <p class="card-intro">{offer.short}</p>
           <p>{offer.description}</p>
           <p class="product-target">
@@ -171,9 +185,7 @@ function OfferCards() {
           </p>
           <p>{offer.problem}</p>
           <h4>
-            {offer.id === "system"
-              ? "Area konsep, bukan fitur aktif"
-              : "Isi pilot"}
+            Isi paket dokumen
           </h4>
           <ul>
             {offer.items.map((item) => (
@@ -198,7 +210,7 @@ function OfferCards() {
             </dl>
           </details>
           <div class="card-bottom">
-            <p class="small">Harga pilot — diskusikan kebutuhan</p>
+            <a class="small" href="/legal/pricing-payment">Harga, pajak &amp; ketentuan</a>
             <a class="text-link" href={`/contact?offer=${offer.id}`}>
               {offer.cta} <Arrow />
             </a>
@@ -226,7 +238,7 @@ function PilotCTA() {
       <div>
         <Action href="/contact">Lihat cara diskusi pilot</Action>
         <p class="small">
-          Isi, harga, dan kesiapan kit perlu dikonfirmasi sebelum kesepakatan.
+          Harga dasar telah disetujui; ketentuan dan kesiapan fulfillment dikonfirmasi sebelum kesepakatan. Pembayaran belum dibuka.
         </p>
       </div>
     </section>
@@ -265,7 +277,7 @@ app.get("/", (c) =>
             </div>
             <p class="hero-note">
               <span class="tiny-dot" aria-hidden="true" /> Fase awal · Starter &
-              Growth untuk diskusi pilot; System masih konsep
+              Growth dan System adalah paket dokumen pilot, bukan software. Starter mulai Rp39.000 sekali bayar; pembayaran belum dibuka.
             </p>
           </div>
           <aside
@@ -400,7 +412,7 @@ app.get("/barber", (c) =>
     (
       <Layout
         title="Ranel Barber Starter, Growth & System — Katalog pilot"
-        description="Pilih cakupan pilot Ranel Barber: Starter untuk dasar operasional, Growth untuk pencatatan dan retensi, System untuk pemetaan konsep digital. Harga dibahas sesuai kebutuhan."
+        description="Paket dokumen pilot Ranel Barber: Starter Rp39.000, Growth Rp79.000, System Rp149.000. Sekali bayar IDR; penjualan online belum dibuka."
         path="/barber"
       >
         <section class="hero barber-hero" aria-labelledby="barber-title">
@@ -414,8 +426,7 @@ app.get("/barber", (c) =>
             <p class="hero-description">
               Tiga cakupan untuk usaha barber: rapikan fondasi dengan Starter,
               tambah catatan dan review dengan Growth, atau petakan kebutuhan
-              digital lewat konsep System. Pilih yang relevan, bukan yang paling
-              besar.
+              kerja lewat paket System. Starter adalah entry offer; Growth/System tetap alternatif tanpa wajib membeli paket sebelumnya.
             </p>
             <div class="hero-actions">
               <Action href="#rencana-kit">Lihat katalog pilot</Action>
@@ -432,10 +443,7 @@ app.get("/barber", (c) =>
               cakupan yang jelas.
             </h2>
             <p>
-              Starter dan Growth dibahas sebagai paket pilot manual; bahan
-              disiapkan setelah kesepakatan. System hanya pemetaan konsep, belum
-              aplikasi aktif. Harga, waktu, dukungan, dan ketentuan pembatalan
-              disepakati lebih dulu.
+              Tiga paket dokumen v1.0 dengan harga dasar disetujui. Penjualan ditahan sampai terms, pajak dan fulfillment siap. Penyiapan/tailoring serta delivery tetap manual dan terbatas; System bukan aplikasi.
             </p>
             <span class="status-label">Tanpa checkout otomatis</span>
           </aside>
@@ -511,11 +519,7 @@ app.get("/barber", (c) =>
           </div>
           <OfferCards />
           <p class="catalog-note">
-            Tidak harus naik paket. Starter/Growth adalah penawaran pilot dengan
-            deliverable yang disepakati, bukan file yang sudah tersedia untuk
-            unduh. System adalah konsep, bukan software yang sudah dibangun.
-            Tidak ada harga tetap, langganan wajib, atau jaminan peningkatan
-            kunjungan maupun pendapatan.
+            Tidak harus naik paket atau membeli Starter sebelum Growth/System. Harga dasar sekali bayar; paket tetap pilot/hold, bukan unduhan instan atau software subscription. Tidak ada jaminan kunjungan, pendapatan atau hasil usaha. Pelajari <a href="/legal">Legal &amp; Policies</a> sebelum diskusi.
           </p>
         </section>
         <section
@@ -549,8 +553,7 @@ app.get("/barber", (c) =>
               <span class="index">02</span>
               <h3>Bahas cakupan pilot</h3>
               <p>
-                Konfirmasi kesiapan, isi, harga, waktu, dan batas dukungan
-                bersama.
+                Konfirmasi isi, input minimal, waktu delivery, dukungan dan ketentuan berdasarkan harga dasar yang disetujui.
               </p>
             </li>
             <li>
@@ -579,18 +582,17 @@ app.get("/barber", (c) =>
             <p>
               Starter menata dasar kerja harian. Growth mencakup Starter plus
               catatan pelanggan, follow-up berizin, dan review sederhana. System
-              memetakan kebutuhan digital sebelum membangun; dashboard, booking,
-              loyalty, database, dan otomasi belum tersedia.
+              mencakup Growth ditambah peta kerja, customer journey, retensi, owner review dan prioritas. Semua berupa dokumen; dashboard, booking, loyalty, database, dan otomasi belum tersedia.
             </p>
           </details>
           <details>
             <summary>Bagaimana penawaran pilot disepakati?</summary>
             <p>
               Diskusikan kebutuhan lewat WhatsApp. Isi, format
-              dokumen/spreadsheet, harga pilot, waktu, dukungan, dan pembatalan
+              dokumen/spreadsheet, harga dasar, waktu, dukungan, dan pembatalan
               perlu disepakati tertulis sebelum pekerjaan atau pembayaran.
               Website tidak menjual atau mengirim file secara otomatis. System
-              dibatasi pada dokumen pemetaan konsep.
+              berupa operating-system toolkit dokumentasi, bukan aplikasi.
             </p>
           </details>
           <details>
@@ -643,15 +645,11 @@ app.get("/contact", (c) => {
             {offer
               ? `Anda tertarik pada ${offer.name}.`
               : "Cari tahu rencana kit yang paling relevan untuk usaha barber Anda."}{" "}
-            Isi, harga, kesiapan, dan waktu pilot perlu dikonfirmasi terlebih
-            dahulu.
+            Harga dasar Starter Rp39.000, Growth Rp79.000, System Rp149.000, sekali bayar IDR. Ketentuan dan kesiapan pilot dikonfirmasi terlebih dahulu; penjualan online belum dibuka. <a href="/legal">Baca Legal &amp; Policies</a>.
           </p>
           {offer?.id === "system" && (
             <p class="contact-scope-note">
-              Anda membahas konsep System. Yang dibahas adalah pemetaan
-              kebutuhan; aplikasi, dashboard, booking, database, loyalty, dan
-              otomasi belum tersedia. Tidak ada akses demo atau pembangunan
-              otomatis.
+                System adalah paket dokumen lengkap Growth plus pemetaan kerja, bukan software; aplikasi, dashboard, booking, database, loyalty, dan otomasi belum tersedia. Tidak ada akses demo atau pembangunan otomatis.
             </p>
           )}
           <div class="contact-grid">
@@ -750,7 +748,8 @@ app.get("/privacy", (c) =>
         path="/privacy"
       >
         <article class="section prose">
-          <p class="eyebrow">Informasi website / Fase 1</p>
+          <p class="eyebrow">Informasi website / Privasi</p>
+          <p><a href="/legal/privacy">Kebijakan privasi &amp; data pribadi lengkap</a></p>
           <h1>Privasi, dengan jelas.</h1>
           <p class="lead">
             Website ini membantu Anda memahami rencana penawaran Ranel. Tidak
@@ -795,7 +794,7 @@ app.get("/privacy", (c) =>
             Lihat status kontak resmi
           </Action>
           <p class="small">
-            Diperbarui untuk fase awal, 2 Oktober 2026. Informasi ini bukan
+            Diperbarui 3 Oktober 2026. Informasi ini bukan
             klaim sertifikasi atau kepatuhan hukum.
           </p>
         </article>
@@ -803,6 +802,14 @@ app.get("/privacy", (c) =>
     ),
   ),
 );
+
+for (const path of legalPaths) {
+  app.get(path, (c) => {
+    const slug = path.split("/")[2];
+    const page = legalPages.find(p => p.slug === slug);
+    return c.html("<!DOCTYPE html>" + <Layout title={`${page?.title ?? "Legal & Policies"} — Ranel`} description={page?.description ?? "Legal & Policies Ranel: identitas operator, harga, ketentuan, privasi, lisensi dan dukungan untuk paket barber pilot yang belum membuka pembayaran."} path={path}><LegalContent slug={slug} /></Layout>);
+  });
+}
 
 // Register the fallback as a route so the Pages adapter preserves it with current Hono.
 app.all("*", (c) =>

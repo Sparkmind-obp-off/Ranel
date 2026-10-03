@@ -215,19 +215,19 @@ test("three pilot products expose deliverables, distinctions and contextual CTAs
       id: "starter",
       name: "Ranel Barber Starter",
       cta: "Bahas pilot Starter",
-      status: "Pilot — diskusi cakupan",
+      status: "Pilot — penjualan belum dibuka",
     },
     {
       id: "growth",
       name: "Ranel Barber Growth",
       cta: "Bahas pilot Growth",
-      status: "Pilot — diskusi cakupan",
+      status: "Pilot — penjualan belum dibuka",
     },
     {
       id: "system",
       name: "Ranel Barber System",
-      cta: "Bahas konsep System",
-      status: "Konsep — belum tersedia",
+      cta: "Bahas pilot System",
+      status: "Pilot — penjualan belum dibuka",
     },
   ];
   for (const product of products) {
@@ -242,9 +242,8 @@ test("three pilot products expose deliverables, distinctions and contextual CTAs
       "Yang Anda terima",
     );
     await expect(card.locator(".product-delivery dd")).not.toBeEmpty();
-    await expect(
-      card.getByText("Harga pilot — diskusikan kebutuhan", { exact: true }),
-    ).toBeVisible();
+    const prices = { starter: "Rp39.000", growth: "Rp79.000", system: "Rp149.000" };
+    await expect(card.locator(".offer-price")).toContainText(prices[product.id as keyof typeof prices]);
     await card.getByText("Cara pakai & batas cakupan", { exact: true }).click();
     for (const label of [
       "Cara kerja",
@@ -265,7 +264,7 @@ test("three pilot products expose deliverables, distinctions and contextual CTAs
       await expect(card).toContainText("Seluruh fondasi Starter");
     if (product.id === "system") {
       await expect(card).toContainText("Bukan dashboard atau aplikasi aktif");
-      await expect(card).toContainText("Fitur digital belum dibangun");
+      await expect(card).toContainText("fitur digital belum dibangun");
     }
     await card.getByRole("link", { name: product.cta, exact: true }).click();
     await expect(page).toHaveURL(new RegExp(`/contact\\?offer=${product.id}$`));
@@ -283,6 +282,38 @@ test("three pilot products expose deliverables, distinctions and contextual CTAs
       product.id,
     );
   }
+});
+
+test("approved prices and Starter default entry stay informational with no checkout", async ({ page }) => {
+  await page.goto("/barber");
+  await expect(page.locator('#offer-starter[data-entry="true"]')).toBeVisible();
+  await expect(page.locator('.entry-label')).toHaveText('Paket awal / default entry');
+  await expect(page.locator('a[href*="checkout"], form, script')).toHaveCount(0);
+  await expect(page.locator('.catalog-note')).toContainText('Tidak harus naik paket');
+  await page.locator('footer a[href="/legal"]').click();
+  await expect(page).toHaveURL(/\/legal$/);
+});
+
+test("legal hub and eight policies are accessible, dated and truthful on each viewport", async ({ page }, testInfo) => {
+  test.setTimeout(120000);
+  for (const slug of ['', 'ownership', 'terms', 'pricing-payment', 'refund-policy', 'privacy', 'license', 'complaints', 'payment-provider']) {
+    const response = await page.goto('/legal' + (slug ? '/' + slug : ''));
+    expect(response?.status()).toBe(200);
+    await expect(page.locator('h1')).toHaveCount(1);
+    await expect(page.locator('.legal-identity')).toContainText('PT Waskita Cakrawarti Digital');
+    await expect(page.locator('.policy-dates')).toContainText('3 Oktober 2026');
+    await expect(page.locator('.legal-status')).toContainText('Penjualan online dan pembayaran belum dibuka');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()).violations).toEqual([]);
+    await expect(page.locator('a[href^="mailto:"], script, form')).toHaveCount(0);
+    const method = await page.request.post('/legal' + (slug ? '/' + slug : ''), {data: 'fixture_no_action'});
+    expect(method.status()).toBe(405);
+  }
+  await page.goto('/legal');
+  await page.screenshot({path: `qa-artifacts/legal-${testInfo.project.name}.png`,fullPage:true,scale:'css'});
+  await page.getByRole('navigation', {name: 'Dokumen kebijakan'}).getByRole('link', {name: /Harga & pembayaran/}).click();
+  await expect(page.locator('main')).toContainText('maksimum 40%');
+  await expect(page.locator('main')).toContainText('Pajak yang berlaku akan dihitung dan ditampilkan');
 });
 
 test("read-only PUBLIC rejects oversized and ambiguous input without external effects", async ({

@@ -1,0 +1,75 @@
+[
+  {
+    "name": "Ranel Barber Starter",
+    "id": "ranel.barber.starter",
+    "sku": "RBS-STARTER-001",
+    "version": "1.0",
+    "date": "2026-10-03",
+    "price": 39000,
+    "currency": "IDR",
+    "sellState": "HOLD_PENDING_TERMS",
+    "assetState": "ASSET_READY_FOR_REVIEW",
+    "path": "products/Ranel-Barber-Starter-v1.0",
+    "files": [
+      "00-README.pdf",
+      "01-SOP-Dasar.docx",
+      "02-Menu-dan-Daftar-Harga.docx",
+      "03-Checklist-Buka-Tutup.docx",
+      "04-Follow-Up-Pelanggan-Berizin.docx",
+      "MANIFEST.md"
+    ]
+  },
+  {
+    "name": "Ranel Barber Growth",
+    "id": "ranel.barber.growth",
+    "sku": "RBS-GROWTH-001",
+    "version": "1.0",
+    "date": "2026-10-03",
+    "price": 79000,
+    "currency": "IDR",
+    "sellState": "HOLD_PENDING_TERMS",
+    "assetState": "ASSET_READY_FOR_REVIEW",
+    "path": "products/Ranel-Barber-Growth-v1.0",
+    "files": [
+      "00-README.pdf",
+      "01-SOP-Dasar.docx",
+      "02-Menu-dan-Daftar-Harga.docx",
+      "03-Checklist-Buka-Tutup.docx",
+      "04-Follow-Up-Pelanggan-Berizin.docx",
+      "05-Rekap-Kunjungan.xlsx",
+      "06-Tracker-Repeat-Visit.xlsx",
+      "07-Review-Bulanan.docx",
+      "08-Panduan-Follow-Up-dan-Review.docx",
+      "MANIFEST.md"
+    ]
+  },
+  {
+    "name": "Ranel Barber System",
+    "id": "ranel.barber.system",
+    "sku": "RBS-SYSTEM-001",
+    "version": "1.0",
+    "date": "2026-10-03",
+    "price": 149000,
+    "currency": "IDR",
+    "sellState": "HOLD_PENDING_TERMS",
+    "assetState": "ASSET_READY_FOR_REVIEW",
+    "path": "products/Ranel-Barber-System-v1.0",
+    "files": [
+      "00-README.pdf",
+      "01-SOP-Dasar.docx",
+      "02-Menu-dan-Daftar-Harga.docx",
+      "03-Checklist-Buka-Tutup.docx",
+      "04-Follow-Up-Pelanggan-Berizin.docx",
+      "05-Rekap-Kunjungan.xlsx",
+      "06-Tracker-Repeat-Visit.xlsx",
+      "07-Review-Bulanan.docx",
+      "08-Panduan-Follow-Up-dan-Review.docx",
+      "09-Peta-Operating-System.docx",
+      "10-Peta-Customer-Journey.docx",
+      "11-Peta-Retention-dan-Proses.docx",
+      "12-Owner-Review-Framework.docx",
+      "13-Prioritas-Implementasi.docx",
+      "MANIFEST.md"
+    ]
+  }
+]

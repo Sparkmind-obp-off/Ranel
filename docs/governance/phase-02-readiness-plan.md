@@ -1,7 +1,7 @@
 # Ranel — Phase 02 Readiness Plan
 
 Date: 2026-10-03
-Status: **IN PROGRESS — PRODUCT DEFINITION COMPLETED; FOUNDER REVIEW PENDING ON MATERIAL COMMERCIAL TERMS**
+Status: **ASSET_READY_FOR_REVIEW — F01/F02/F04/F05 AND PRICING/PROMO APPROVED; TAX/LEGAL/LIVE FULFILLMENT GATES OPEN**
 
 ## Objective
 
@@ -35,13 +35,13 @@ Internal flow is:
 The preparation target is internally designed around 2 business days after verified payment and complete required inputs, but it is not a public SLA until support/terms are approved.
 
 ### 5. Commercial truth — PARTIAL
-Approved prices and one-time IDR model are locked. Fee/tax/discount treatment remains founder review.
+Approved prices and one-time IDR model are locked. Controlled promo and no-hidden-surcharge direction are approved; tax applicability is validation-required before live checkout.
 
 ### 6. Terms — PARTIAL / FOUNDER REVIEW
-Cancellation, refund/remedy, support/revision, licence/ownership/update entitlement remain material decisions.
+Cancellation/refund/remedy and bounded support/revision/licence direction are approved. Final legal applicability and executable fulfillment/support remain review gates; no unlimited support or new public SLA.
 
 ### 7. Deliverability evidence — SPECIFICATION READY / ARTIFACT BUILD REQUIRED
-The product specification and manifest are canonical. The actual source files still need to be produced, tested, versioned, and reconciled against the manifest before the products can move to Available.
+The canonical v1.0 sources have been produced: 31 files across three bundles, opened/rendered and formula-recalculated using synthetic/QC inputs. [Per-file QC](../implementation/phase-02-commerce/product-qc.json) and [execution evidence](../implementation/phase-02-commerce/evidence.md). State is ASSET_READY_FOR_REVIEW, not Available.
 
 ### 8. Catalog handoff — COMPLETED
 Product catalog now references canonical IDs/SKUs, bundle manifests, preparation boundary, and hold state.
@@ -57,7 +57,7 @@ F01, F02, F04, and F05 are founder-approved. F03 base pricing/promo operating ru
 
 See [Phase 02 Founder Review](phase-02-founder-review.md).
 
-Material decisions escalated:
+Historical material review list (F01/F02/F04/F05 now approved; F03 tax still validation-required):
 - F01 initial market/first-sale focus;
 - F02 public entry-package sequencing;
 - F03 price display + fees/tax/discount rule;

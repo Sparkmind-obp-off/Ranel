@@ -1,7 +1,7 @@
 # Ranel — Phase 02 Product Definition
 
 Date: 2026-10-03
-Status: **IN PROGRESS — PRODUCT DEFINITION DECIDED; F01/F02/F04/F05 APPROVED; F03 TAX VALIDATION OPEN**
+Status: **ASSET_READY_FOR_REVIEW — SOURCE BUNDLES PRODUCED/QC-PASSED; F01/F02/F04/F05 APPROVED; TAX/LEGAL/FULFILLMENT LIVE GATES OPEN**
 
 ## 1. Purpose
 
@@ -198,7 +198,7 @@ F01, F02, F04, and F05 are approved as recorded in the Founder Review Packet. F0
 
 ## 5. Decisions intentionally not made by ChatGPT
 
-These are material founder decisions and remain **FOUNDER_REVIEW**:
+Historical review list below is superseded by the 2026-10-03 Founder Review Packet and master execution prompt: F01/F02/F04/F05 and base pricing/promo are approved. Tax applicability and final legal/live fulfillment readiness remain validation gates; do not reopen settled directions. Historical items:
 
 - first-sale market/geography and exact primary microsegment;
 - whether Starter is the public default entry offer for the initial test;
@@ -225,3 +225,7 @@ Phase 02 can reach **READY FOR REVIEW** when:
 - commerce receives one canonical product/price/terms contract.
 
 Phase 02 does not authorize payment activation.
+
+## 8. Produced v1.0 assets
+
+Actual sources are under `products/Ranel-Barber-Starter-v1.0/`, `products/Ranel-Barber-Growth-v1.0/`, and `products/Ranel-Barber-System-v1.0/`. [Registry](../../products/registry.json) holds exact canonical metadata/manifests; [per-file QC](../implementation/phase-02-commerce/product-qc.json) records all 31 files. All remain `HOLD_PENDING_TERMS`, not Available. [Execution evidence](../implementation/phase-02-commerce/evidence.md) distinguishes artifact QC, PUBLIC deployment and open legal/tax/fulfillment gates.

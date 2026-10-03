@@ -2,6 +2,8 @@
 export const offers = [
   {
     id: "starter",
+    productId: "ranel.barber.starter", sku: "RBS-STARTER-001", version: "1.0", price: 39000,
+    sellState: "HOLD_PENDING_TERMS",
     number: "01",
     name: "Ranel Barber Starter",
     short: "Rapikan dasar operasional.",
@@ -22,9 +24,9 @@ export const offers = [
     how: "Bahas cara kerja saat ini → sepakati cakupan → siapkan dokumen pilot → coba satu rutinitas dan tinjau bersama.",
     useCase:
       "Mulai dari checklist buka/tutup dan menu layanan yang dipakai oleh operator setiap hari.",
-    status: "Pilot — diskusi cakupan",
+    status: "Pilot — penjualan belum dibuka",
     statusNote:
-      "Dokumen pilot disiapkan setelah cakupan, harga, waktu, dan dukungan disepakati; bukan file siap unduh.",
+      "Materi sumber v1.0 untuk review; penjualan ditahan sampai ketentuan dan fulfillment siap. Harga dasar disetujui, bukan checkout aktif.",
     exclusions:
       "Tidak termasuk aplikasi kasir, booking, database terpusat, atau pengiriman pesan otomatis.",
     cta: "Bahas pilot Starter",
@@ -32,6 +34,8 @@ export const offers = [
   },
   {
     id: "growth",
+    productId: "ranel.barber.growth", sku: "RBS-GROWTH-001", version: "1.0", price: 79000,
+    sellState: "HOLD_PENDING_TERMS",
     number: "02",
     name: "Ranel Barber Growth",
     short: "Tinjau pelanggan dan cara kerja.",
@@ -53,9 +57,9 @@ export const offers = [
     how: "Mulai dari fondasi Starter → pilih catatan yang diperlukan → coba follow-up berizin → review data dan pilih satu aksi berikutnya.",
     useCase:
       "Tinjau catatan layanan dan pelanggan kembali dalam review mingguan; uji satu langkah perbaikan, bukan semua sekaligus.",
-    status: "Pilot — diskusi cakupan",
+    status: "Pilot — penjualan belum dibuka",
     statusNote:
-      "Materi dan format disiapkan sesuai kesepakatan pilot; hasil kunjungan atau pendapatan tidak dijamin.",
+      "Materi sumber v1.0 untuk review dan tailoring terbatas; penjualan masih ditahan. Hasil kunjungan atau pendapatan tidak dijamin.",
     exclusions:
       "Bukan CRM, analytics real-time, loyalty engine, atau kampanye pesan otomatis. Catatan dikelola operator, bukan website Ranel.",
     cta: "Bahas pilot Growth",
@@ -63,33 +67,36 @@ export const offers = [
   },
   {
     id: "system",
+    productId: "ranel.barber.system", sku: "RBS-SYSTEM-001", version: "1.0", price: 149000,
+    sellState: "HOLD_PENDING_TERMS",
     number: "03",
     name: "Ranel Barber System",
     short: "Petakan kebutuhan sebelum membangun.",
     description:
-      "Diskusi konsep sistem digital untuk operator yang membutuhkan alur kerja lebih terstruktur, bukan aplikasi yang sudah tersedia.",
+      "Paket dokumen operating system: seluruh Growth ditambah peta alur, customer journey, retensi, review owner dan prioritas perbaikan. Bukan software.",
     target:
       "Operator yang telah memiliki rutinitas dasar dan ingin menentukan kebutuhan sistem digital sebelum investasi pembangunan.",
     problem:
       "Jika kebutuhan digital mulai melibatkan beberapa alur, tentukan prioritas dan batas sistem agar tidak membangun fitur yang belum perlu.",
     items: [
-      "Konsep dashboard & pelaporan",
-      "Peta inquiry/booking dan alur pelanggan",
-      "Kebutuhan database & histori pelanggan",
-      "Prioritas konsep loyalty & otomasi",
+      "Seluruh isi Growth, termasuk fondasi Starter",
+      "Peta operating system & customer journey",
+      "Peta retention dan proses",
+      "Owner review framework",
+      "Prioritas implementasi praktis",
     ],
     receives:
-      "Dokumen pemetaan kebutuhan: alur operasional, prioritas kemampuan, dan batas ruang lingkup. Bukan dashboard atau aplikasi aktif.",
+      "Seluruh materi Growth serta lima dokumen editable untuk peta kerja, journey, retensi, review owner dan prioritas. Bukan dashboard atau aplikasi aktif.",
     how: "Bahas rutinitas dan bukti kebutuhan → petakan alur → tentukan prioritas → putuskan lanjut/tunda pembangunan berdasarkan evidence.",
     useCase:
       "Menilai apakah booking, histori pelanggan, atau laporan digital memang diperlukan sebelum menyetujui pembangunan.",
-    status: "Konsep — belum tersedia",
+    status: "Pilot — penjualan belum dibuka",
     statusNote:
-      "Fitur digital belum dibangun. Diskusi ini tidak menjanjikan aplikasi, jadwal engineering, atau akses demo.",
+      "Paket dokumen sumber v1.0 untuk review; fitur digital belum dibangun. Tidak menjanjikan aplikasi, engineering, hosting atau akses demo.",
     exclusions:
       "Implementasi dashboard, booking, database, loyalty, integrasi, dan otomasi tidak termasuk Phase 2 atau diskusi konsep ini.",
-    cta: "Bahas konsep System",
-    focus: "Peta kebutuhan digital",
+    cta: "Bahas pilot System",
+    focus: "Growth + peta operating system",
   },
 ] as const;
 
@@ -136,6 +143,10 @@ const legacyOffers = [
   },
 ] as const;
 
+export function formatPrice(price: number) {
+  return `Rp${price.toLocaleString("id-ID")}`;
+}
+
 export function selectedOffer(id?: string) {
   return (
     offers.find((offer) => offer.id === id) ??
@@ -145,11 +156,8 @@ export function selectedOffer(id?: string) {
 
 export function inquiryMessage(id?: string) {
   const offer = selectedOffer(id);
-  if (offer?.id === "system") {
-    return `Halo Ranel, saya ingin membahas konsep ${offer.name}. Boleh diskusikan kebutuhan, pemetaan alur, dan batas cakupannya? Saya memahami aplikasi dan fitur digitalnya belum tersedia.`;
-  }
-  if (offer?.id === "starter" || offer?.id === "growth") {
-    return `Halo Ranel, saya tertarik dengan pilot ${offer.name}. Boleh jelaskan isi yang diterima, cakupan, harga pilot, waktu, dan dukungannya sebelum kesepakatan?`;
+  if (offer && "price" in offer) {
+    return `Halo Ranel, saya ingin membahas pilot ${offer.name} dengan harga dasar ${formatPrice(offer.price)} (sekali bayar). Boleh konfirmasi isi, tailoring, ketentuan, waktu, dan dukungannya? Saya memahami penjualan online belum dibuka${offer.id === "system" ? " dan System adalah paket dokumen, bukan aplikasi" : ""}.`;
   }
   return `Halo Ranel, saya ingin berdiskusi tentang ${offer ? offer.name : "rencana kit pilot untuk usaha barber"}. Boleh jelaskan rencana isi, cakupan, dan harga pilotnya?`;
 }

@@ -103,12 +103,13 @@ Acceptance covers receipt, file accessibility, manifest match, and core workflow
 
 Approved prices are current initial-market-test prices only. They do not by themselves activate payment or create a sale authorization.
 
-Founder review remains required for:
-- first-sale market/microsegment;
-- public entry-package sequencing;
-- fee/tax/discount treatment;
-- cancellation/refund/remedy policy;
-- support/revision/licence/update terms.
+Current Founder Review/master prompt approves F01/F02/F04/F05 and base pricing/promo direction: Indonesian-speaking independent operators/small barber teams; Starter default entry; explicit cancellation/refund/remedy; bounded support and own-business licence; controlled promo max 40%, one code, no stacking; no hidden payment surcharge. Historical pending wording is superseded, not a reason to reopen those approvals.
+
+Still gated before live sale: tax applicability, final legal applicability, executable fulfillment/support and all later payment/persistence gates. No public SLA or unconfigured email is promised.
+
+## Produced source assets — v1.0
+
+All 31 canonical files are produced under `products/Ranel-Barber-{Starter,Growth,System}-v1.0/`, outside PUBLIC assets. [Exact registry](../../products/registry.json) and [per-file QC evidence](../implementation/phase-02-commerce/product-qc.json). State: **ASSET_READY_FOR_REVIEW**; sell state remains **HOLD_PENDING_TERMS**. Asset existence is not automatic customer download, delivery proof, Available status or market validation.
 
 ## Validation
 

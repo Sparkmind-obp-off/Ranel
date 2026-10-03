@@ -1,0 +1,270 @@
+{
+  "date": "2026-10-03",
+  "state": "ASSET_READY_FOR_REVIEW",
+  "files": [
+    {
+      "path": "products/Ranel-Barber-Starter-v1.0/00-README.pdf",
+      "type": "pdf",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "6f7e3f02f1d80b062a0d4be8dc420e6c369d192a6d9a7a24e7666e3230a6f81e",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-Starter-v1.0/01-SOP-Dasar.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "25dda4c780f136b68ef4d0249678b8acf24f20b9e91c1e73e15910184e0a62f6",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-Starter-v1.0/02-Menu-dan-Daftar-Harga.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "8208802c4f4b20eb62d2e150fcf0d23d2382e82d8de6c5bf774c2ff48203e090",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-Starter-v1.0/03-Checklist-Buka-Tutup.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "6f882722baf10a197cc8f47d4fd6e57cbb778986d756019fc817d540dac19663",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-Starter-v1.0/04-Follow-Up-Pelanggan-Berizin.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "4f641a4f2da8acc18502d02d339446f5fabf4b61b343993aa10fdc90243b5840",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-Starter-v1.0/MANIFEST.md",
+      "type": "md",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "f13318154385c51578f11f54a91dce378214e91e2782ba50e035f0537277114c",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-Growth-v1.0/00-README.pdf",
+      "type": "pdf",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "ac7897b59e4f2ee7d41744285f0ccad492f59cd64c56eef07bc5e0f44be76d38",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-Growth-v1.0/01-SOP-Dasar.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "36cf87ac1123df61dde68be634b27748ae05cdf23bee066996abc84da0d1d0fd",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-Growth-v1.0/02-Menu-dan-Daftar-Harga.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "04c8a57578327ad28c215018369a23bc498211f004dc1513cfae59ece0410758",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-Growth-v1.0/03-Checklist-Buka-Tutup.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "72f60bf69b519bfb6ba1f31775355f955e9a3676bb4b94ccb70a3789baf955e3",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-Growth-v1.0/04-Follow-Up-Pelanggan-Berizin.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "7bc3ba340628ff767a63bfa4b41ec59fa88f536f116e55becdbe1148b3be8981",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-Growth-v1.0/05-Rekap-Kunjungan.xlsx",
+      "type": "xlsx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "6b31cf379326f5c0e01c6aa821f8c4c55951b2ec8740da3760f8ab264cf5a96e",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-Growth-v1.0/06-Tracker-Repeat-Visit.xlsx",
+      "type": "xlsx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "6b26d3c49da7a97b7af00c27f0344f73fa3f178ff02c644ab7e0d77365c776b8",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-Growth-v1.0/07-Review-Bulanan.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "460c13d44f3563e7a9dce9e97d69010836fbdb6096baff722bf319a1438a5222",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-Growth-v1.0/08-Panduan-Follow-Up-dan-Review.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "ce36a345fdf16c8f54b82b8a3fefafa029f75dcc3fd53cf680853eb991fa75a1",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-Growth-v1.0/MANIFEST.md",
+      "type": "md",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "f344225eb95b79ed4b30479e59b59a368cf2f92e59ed71af30b4fd45fef29c5e",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-System-v1.0/00-README.pdf",
+      "type": "pdf",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "78245b90cd0b58489b47393eef433f3709c7836c71d8b3208a6a4f0eeb6667e4",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-System-v1.0/01-SOP-Dasar.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "3cb5c6d902511f19d1c1cee4e2193f251967c2b7f3ae84b0adbf7301adc37695",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-System-v1.0/02-Menu-dan-Daftar-Harga.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "07105bf44efa6a09bc07226f0b1bee4b69e66315048e601b187ed32dc718c8ec",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-System-v1.0/03-Checklist-Buka-Tutup.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "287227162435936cb58109b69537f0ef022659e066de06670d18962312abf3f8",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-System-v1.0/04-Follow-Up-Pelanggan-Berizin.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "b8749d1a3bd8c5dc5a1477115a3b622fe6f3a72c45a375dd60873daab2f3579d",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-System-v1.0/05-Rekap-Kunjungan.xlsx",
+      "type": "xlsx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "57b356d69cd170878e9808355345f4f97b891f9f785b55edb3753258a7efcf2e",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-System-v1.0/06-Tracker-Repeat-Visit.xlsx",
+      "type": "xlsx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "75bf8dc3a8c6c3ee8363e238fe7545f3168391d15bf2faa9a4af2903167cc7ce",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-System-v1.0/07-Review-Bulanan.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "27abe8c0c265ffe525419cb466fbeda1c89ae2d1dca667029828fd0eb6581738",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-System-v1.0/08-Panduan-Follow-Up-dan-Review.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "49c9c945c97f7ba8764dbd6b4ec6ca4be3dfb4d537cdd5ec58d578310b6e390a",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-System-v1.0/09-Peta-Operating-System.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "4649b7b7480dae6bb110d026223e6566a80343efff9714c2cbde95b1dc92049d",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-System-v1.0/10-Peta-Customer-Journey.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "8c387c88abcb47420666aee6b23d2f7f8bb36242197eaeb6b74316de851cb95b",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-System-v1.0/11-Peta-Retention-dan-Proses.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "24671c1236ab4f0aa3d92767f246b4a86cb3950e56febbff4cb18072f56aaae5",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-System-v1.0/12-Owner-Review-Framework.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "2e8638d2382170232d5a24edf0d2ddcfeafdbe6baf6f0a758ce75b0d60e074c3",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-System-v1.0/13-Prioritas-Implementasi.docx",
+      "type": "docx",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "3446dfc20836d4bb537c80f94a1bd593ef2874622c5a67712c22b5e1f866820a",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    },
+    {
+      "path": "products/Ranel-Barber-System-v1.0/MANIFEST.md",
+      "type": "md",
+      "version": "1.0",
+      "qc": "PASS",
+      "sha256": "5449f2737bf33b06a44a6d78de6293b2de4e4b4e5cb3de48c88d68179d57ac6b",
+      "limitations": "Review template and approved tailoring before delivery; no real customer data or live fulfillment."
+    }
+  ],
+  "missing": [],
+  "checks": [
+    "Exact manifests",
+    "OOXML opens and editable tables",
+    "LibreOffice DOCX to PDF",
+    "PDF readability/text bounds",
+    "LibreOffice formula recalculation: blank, synthetic, modified QC inputs",
+    "No macros/external workbook links",
+    "Metadata/version",
+    "Targeted privacy checks"
+  ],
+  "limitations": [
+    "QC templates are synthetic, not a buyer-tailored delivery.",
+    "Not legal/tax or provider verification; products remain HOLD_PENDING_TERMS.",
+    "Native Excel was not available; formulas were evaluated by LibreOffice."
+  ]
+}

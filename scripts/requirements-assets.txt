@@ -1,0 +1,6 @@
+# Offline production/QC only; not Cloudflare runtime dependencies.
+python-docx==1.1.2
+openpyxl==3.1.5
+reportlab==5.0.1
+PyMuPDF==1.28.2
+# Also requires LibreOffice CLI for actual DOCX rendering/XLSX recalculation.

@@ -21,6 +21,9 @@
 - [Go-to-market plan](go-to-market.md)
 
 ## Products and delivery
+- [Commerce Phase 02 execution/release evidence](implementation/phase-02-commerce/evidence.md)
+- [Actual v1.0 bundle registry](../products/registry.json)
+- [Per-file product QC](implementation/phase-02-commerce/product-qc.json)
 - [Product catalog](products/product-catalog.md)
 - [Product requirements template](products/product-requirements-template.md)
 - [Barber vertical plan](verticals/barber/vertical-plan.md)

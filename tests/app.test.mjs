@@ -5,7 +5,8 @@ import app from "../dist/_worker.js";
 
 const request = (path, env = {}, init = {}) =>
   app.fetch(new Request(`https://test.invalid${path}`, init), env, {});
-const routes = ["/", "/barber", "/contact", "/privacy"];
+const legalRoutes = ["/legal", ...["ownership", "terms", "pricing-payment", "refund-policy", "privacy", "license", "complaints", "payment-provider"].map(slug => `/legal/${slug}`)];
+const routes = ["/", "/barber", "/contact", "/privacy", ...legalRoutes];
 
 for (const route of routes) {
   test(`${route} renders semantic Indonesian HTML and unique metadata`, async () => {
@@ -41,11 +42,9 @@ test("barber presents exactly three defined pilot products with truthful scope a
   assert.equal((html.match(/class="offer-card"/g) ?? []).length, 3);
   assert.equal((html.match(/class="product-delivery"/g) ?? []).length, 3);
   assert.equal((html.match(/class="product-details"/g) ?? []).length, 3);
-  assert.equal(
-    (html.match(/Harga pilot — diskusikan kebutuhan/g) ?? []).length,
-    3,
-  );
-  assert.doesNotMatch(html, /Rp\s?\d|testimoni|dipercaya oleh|beli sekarang/i);
+  for (const price of ["Rp39.000", "Rp79.000", "Rp149.000"]) assert.match(html, new RegExp(price.replace(".", "\\.")));
+  assert.match(html, /data-entry="true" id="offer-starter"/);
+  assert.doesNotMatch(html, /Harga pilot — diskusikan kebutuhan|Tidak ada harga tetap|testimoni|dipercaya oleh|beli sekarang/i);
   for (const [id, name] of [
     ["starter", "Ranel Barber Starter"],
     ["growth", "Ranel Barber Growth"],
@@ -55,12 +54,42 @@ test("barber presents exactly three defined pilot products with truthful scope a
     assert.match(html, new RegExp(`href="/contact\\?offer=${id}"`));
     assert.match(html, new RegExp(`id="offer-${id}"`));
   }
-  assert.match(html, /Pilot — diskusi cakupan/);
-  assert.match(html, /Konsep — belum tersedia/);
+  assert.match(html, /Pilot — penjualan belum dibuka/);
+  assert.match(html, /Rp39.000/);
+  assert.match(html, /sekali bayar/);
   assert.match(html, /Fondasi \+ catatan &amp; review/);
   assert.match(html, /Seluruh fondasi Starter/);
   assert.match(html, /Bukan dashboard atau aplikasi aktif/);
   assert.match(html, /sebelum pekerjaan atau pembayaran/);
+});
+
+test("Phase 02 metadata matches reviewed asset registry without serving private bundles", async () => {
+  const registry = JSON.parse(readFileSync(new URL("../products/registry.json", import.meta.url), "utf8"));
+  const html = await (await request("/barber")).text();
+  for (const product of registry) {
+    assert.ok(html.includes(product.sku));
+    assert.ok(html.includes(`Rp${product.price.toLocaleString("id-ID")}`));
+    assert.equal(product.sellState, "HOLD_PENDING_TERMS");
+  }
+  for (const path of ["/products/registry.json", "/checkout", "/api/v1/payments", "/products/Ranel-Barber-Starter-v1.0/00-README.pdf"]) assert.equal((await request(path)).status, 404);
+});
+
+test("legal content has consistent identity/dates, no invented tax/email/registration or active payment", async () => {
+  for (const route of legalRoutes) {
+    const html = await (await request(route)).text();
+    assert.match(html, /PT Waskita Cakrawarti Digital/);
+    assert.match(html, /Perseroan Perorangan/);
+    assert.match(html, /3 Oktober 2026/);
+    assert.match(html, /Penjualan online dan pembayaran belum dibuka/);
+    assert.doesNotMatch(html, /AHU-066746|mailto:|\b\d{16}\b|PPN\s*(11|12)%|Pembayaran diproses melalui Duitku|registered trademark|<script|<form/);
+  }
+  const price = await (await request("/legal/pricing-payment")).text();
+  assert.match(price, /maksimum 40%/); assert.match(price, /tidak stacking/);
+  assert.match(price, /Pajak yang berlaku akan dihitung dan ditampilkan/);
+  const refund = await (await request("/legal/refund-policy")).text();
+  assert.match(refund, /Hak konsumen/); assert.match(refund, /Non-delivery/);
+  const license = await (await request("/legal/license")).text();
+  assert.match(license, /usahanya sendiri/); assert.match(license, /mensublisensikan/);
 });
 
 test("all internal HTML links resolve and anchors exist", async () => {
@@ -70,7 +99,11 @@ test("all internal HTML links resolve and anchors exist", async () => {
       const href = match[1].replaceAll("&amp;", "&");
       if (href.startsWith("/static/")) continue; // Static asset serving checked through Wrangler/browser.
       const url = new URL(href, `https://test.invalid${route}`);
-      assert.equal(url.hostname, "test.invalid");
+      if (url.hostname !== "test.invalid") {
+        assert.equal(url.protocol, "https:");
+        assert.ok(["ahu.go.id", "oss.go.id", "jdih.kemendag.go.id", "jdih.komdigi.go.id", "www.duitku.com"].includes(url.hostname));
+        continue;
+      }
       const result = await request(url.pathname + url.search);
       assert.equal(result.status, 200, `broken link ${route} → ${href}`);
       if (url.hash)
@@ -195,10 +228,8 @@ for (const [id, name] of [
     const url = new URL(response.headers.get("location"));
     assert.equal(url.origin, "https://wa.me");
     assert.equal(url.pathname, "/12025550123");
-    const message =
-      id === "system"
-        ? `Halo Ranel, saya ingin membahas konsep ${name}. Boleh diskusikan kebutuhan, pemetaan alur, dan batas cakupannya? Saya memahami aplikasi dan fitur digitalnya belum tersedia.`
-        : `Halo Ranel, saya tertarik dengan pilot ${name}. Boleh jelaskan isi yang diterima, cakupan, harga pilot, waktu, dan dukungannya sebelum kesepakatan?`;
+    const prices = { starter: "Rp39.000", growth: "Rp79.000", system: "Rp149.000" };
+    const message = `Halo Ranel, saya ingin membahas pilot ${name} dengan harga dasar ${prices[id]} (sekali bayar). Boleh konfirmasi isi, tailoring, ketentuan, waktu, dan dukungannya? Saya memahami penjualan online belum dibuka${id === "system" ? " dan System adalah paket dokumen, bukan aplikasi" : ""}.`;
     assert.equal(url.searchParams.get("text"), message);
     assert.equal(url.searchParams.size, 1);
     const fallback = await request(`/inquiry?offer=${id}`);
