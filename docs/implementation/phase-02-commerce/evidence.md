@@ -71,13 +71,26 @@ Refund/remedy covers non-delivery, file/access issues, material mismatch, duplic
 - Typecheck: PASS.
 - Core/POP regression: **61 passed, 0 failed**, existing Core/adapter unchanged.
 - Built PUBLIC worker: **44 passed, 0 failed**, including all legal routes, safe methods/headers, approved pricing/asset metadata, legal identity/date/no-claim controls, no private bundle or commerce API serving, canonical/legacy inquiries and safe errors.
-- PUBLIC build: PASS (exact build size in local build log; not a deployment claim).
+- PUBLIC build: PASS, 54 transformed modules, `dist/_worker.js` 87.67 kB uncompressed; not alone a deployment claim.
+- `npm audit --omit=dev`: 0 reported runtime vulnerabilities. Dependencies unchanged.
+- Pre-release scoped configured-token scan: 53 changed/build files, including expanded OOXML entries; no configured-token matches. PUBLIC build contains no Duitku secret binding or invoice client. This is a scoped scan, not an independent credential-rotation assurance. Binary attributes preserve PDF/DOCX/XLSX bytes and PDF xref spacing; no whitespace stripping of document binaries.
 - Local browser QA: **36 passed, 0 failed** across 320/390/1440 viewports, configured expectation unconfigured. Existing navigation/contact/assets/FAQ preserved; all 9 legal routes checked for identity/dates/overflow, Axe WCAG A/AA, POST 405, policy navigation, prices and Starter default; no WhatsApp request/message.
 - Screenshot review: mobile Legal Hub, desktop catalog, Starter/System README first pages. Readable hierarchy; no observed overlap/clipping or false active-payment/instant-delivery indication. Automated image review's date caution was not applicable: preparation/policy date matches explicit user date 2026-10-03. This first-page/selected-view check is not a claim of inspecting every page manually; full file render/text/formula QC is separate.
 
 ## Production release
 
-Pending until actual existing-project BYOK deployment and live verification complete. No Core deployment is part of this release. Previous known-good PUBLIC deployment: `a071fcab-4df7-466d-be7e-68d56274f780`, `https://a071fcab.ranel.pages.dev`, source `c90c1994839e1bee4fa676ed25ea848da66731ad`; preserve as rollback reference.
+**PUBLIC deployment/live informational verification: PASS. Phase result: PASS WITH ISSUES (open gates below), not commerce/payment-ready.**
+
+- BYOK deployed only existing project `ranel`, production/main. Source commit: `d17426d901d8842e293f4f4ba7e843810e9eed25`.
+- Deployment ID: `2601f448-7037-4753-8f14-311a4c92a416`; created `2026-10-03T07:08:38.686868Z`, provider stage `success`.
+- Mutable origin: https://ranel.pages.dev. Immutable release: https://2601f448.ranel.pages.dev.
+- 14 page/asset smoke checks returned 200 on each origin. Live `/checkout`, product registry/README bundle paths and `/api/v1/payments` returned 404; no public delivery/commerce exposure.
+- Production browser suite: **36 passed / 0 failed**, 2.6 minutes, configured inquiry expectation, 320/390/1440 viewports, all 9 legal routes and accessibility checks. No WhatsApp redirect followed or message sent.
+- Provider metadata before/after confirms domain names unchanged (`ranel.pages.dev`, `ranel.biz.id`) and env names unchanged: production only `INQUIRY_WHATSAPP_NUMBER`, preview empty. This is metadata parity, not a DNS-record audit. No domain/secret operation invoked.
+- Final 31 source file hashes match committed per-file QC evidence; docs references resolve. Native source assets remain outside build/public.
+- Review-only archive: `qa-artifacts/Ranel_Phase02_Assets_v1.0.zip`, 33 entries (31 assets + registry + QC), archive integrity passed. [Download review archive](https://www.genspark.ai/api/files/s/MOJVurHz); signed-in review delivery only, not PUBLIC customer fulfillment.
+- No Core deployment is part of this release. Previous known-good PUBLIC deployment: `a071fcab-4df7-466d-be7e-68d56274f780`, `https://a071fcab.ranel.pages.dev`, source `c90c1994839e1bee4fa676ed25ea848da66731ad`; preserved as rollback reference. Rollback concerns PUBLIC code only, not secrets/DNS/data; this release introduced no persisted financial state.
+- Closing evidence/README update is documentation-only and does not change the deployed application SHA. Final state: **READY_FOR_CHATGPT_REVIEW**, assets **ASSET_READY_FOR_REVIEW**, products **HOLD_PENDING_TERMS**.
 
 ## Open gates / review packet
 

@@ -23,7 +23,7 @@ PUBLIC `/`, `/barber`, `/contact`, `/privacy` synchronize price/status. Added `/
 
 Offline production: `python3 scripts/produce_products.py`, then `python3 scripts/qc_products.py`. Python tools pinned in `scripts/requirements-assets.txt`; QC also requires LibreOffice CLI. All DOCX rendered/opened, PDF text/layout bounded and XLSX recalculated with blank/synthetic/modified QC inputs. Buyer tools: PDF reader, DOCX editor, Excel/LibreOffice; no macros/external data connections. Formula capacity is explicitly 200 rows. No Python/filesystem operations in Cloudflare runtime. Native Microsoft Office and real buyer fulfillment not verified.
 
-Local gates: lint/typecheck PASS; 44 PUBLIC worker tests, 61 preserved Core/POP tests and 36 responsive/Axe browser tests PASS. PUBLIC-only release metadata/live verification are tracked in the execution evidence; no Core/DB/secret/checkout/promo engine/DNS/billing/live transaction change. Stop after review; no automatic Phase 03.
+Gates: lint/typecheck PASS; 44 PUBLIC worker tests, 61 preserved Core/POP tests, 36 local and 36 production responsive/Axe browser tests PASS; runtime audit 0 reported vulnerabilities. PUBLIC released to https://ranel.pages.dev and https://2601f448.ranel.pages.dev, deployment `2601f448-7037-4753-8f14-311a4c92a416`, source `d17426d901d8842e293f4f4ba7e843810e9eed25`. Domain/binding names unchanged; no Core/DB/secret/checkout/promo engine/DNS/billing/live transaction change. Final **READY_FOR_CHATGPT_REVIEW / PASS WITH ISSUES** for open tax/legal/email/fulfillment gates. Stop after review; no automatic Phase 03.
 
 ## Historical Commerce Phase 01 — Business Lock
 
@@ -94,8 +94,8 @@ Only blank templates are committed. Keep real anonymized interaction records in 
 - Local Pages preview: `http://localhost:3000`.
 - Temporary sandbox preview: https://3000-iy1qof0t6pdsmm8bh8q31-82b888ba.sandbox.novita.ai — verified HTTP 200 for homepage/barber; not a production URL and may expire.
 - Production URL: **https://ranel.pages.dev**; project exactly `ranel`, production branch `main`.
-- Current immutable deployment: https://a071fcab.ranel.pages.dev; ID `a071fcab-4df7-466d-be7e-68d56274f780`.
-- Deployed commit: `c90c1994839e1bee4fa676ed25ea848da66731ad`; created `2026-10-02T10:25:38.112262Z`, Cloudflare stage `success`. Subsequent documentation-only commits do not change this provenance. Previous Phase 2/1B releases remain recorded in their historical evidence; current execution details are in the release runbook.
+- Current immutable PUBLIC deployment: https://2601f448.ranel.pages.dev; ID `2601f448-7037-4753-8f14-311a4c92a416`.
+- Deployed PUBLIC commit: `d17426d901d8842e293f4f4ba7e843810e9eed25`; created `2026-10-03T07:08:38.686868Z`, Cloudflare stage `success`. Closing documentation-only commits do not change this provenance. Previous releases remain recorded historically; current proof and rollback reference are in [Phase 02 commerce evidence](docs/implementation/phase-02-commerce/evidence.md).
 - Custom-domain observation: initial release lookup listed only `ranel.pages.dev`; final read-only lookup at `2026-10-02T04:41:33Z` also listed `ranel.biz.id`, with Cloudflare status **active** and creation time `2026-10-02T04:32:09.411016Z`. The release agent did **not** attach it or change DNS; the actor is not verified. Its actual DNS/TLS/redirect/browser behavior was not tested in this phase. Phase 2 retained both observed domain names without domain/DNS mutation; it changed only the application deployment, as recorded above.
 
 | Route | Purpose |
