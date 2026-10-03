@@ -189,6 +189,6 @@ Until this validation is complete:
 
 **FOUNDER-REPORTED:** PT Waskita Cakrawarti Digital is the Ranel operating entity and has NIB/NPWP/AHU/OSS documentation.
 
-**VALIDATION_REQUIRED:** exact entity/permit/tax record before publishing registration numbers or claiming full regulatory readiness.
+**PUBLIC REFERENCE APPROVED:** the founder-authorized AHU reference is published in source based on the founder-controlled SparkMind legal source and founder-reported documents; it is not an independent live AHU lookup. **VALIDATION_REQUIRED:** current OSS/NIB data, applicable KBLI/PMSE licensing, tax status, and merchant-provider alignment before claiming full regulatory readiness.
 
 **VALIDATION_REQUIRED:** seller licensing/PMSE role, PKP status, exact tax classification/treatment, final legal wording, and any mandatory regulatory contact blocks applicable to Ranel's final business model. The founder-confirmed official email is now committed in source; public confirmation awaits verification and redeployment.
