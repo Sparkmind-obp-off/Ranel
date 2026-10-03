@@ -74,14 +74,15 @@ test("Phase 02 metadata matches reviewed asset registry without serving private 
   for (const path of ["/products/registry.json", "/checkout", "/api/v1/payments", "/products/Ranel-Barber-Starter-v1.0/00-README.pdf"]) assert.equal((await request(path)).status, 404);
 });
 
-test("legal content has consistent identity/dates, no invented tax/email/registration or active payment", async () => {
+test("legal content has consistent identity/dates and confirmed official email without unsupported tax/registration/payment claims", async () => {
   for (const route of legalRoutes) {
     const html = await (await request(route)).text();
     assert.match(html, /PT Waskita Cakrawarti Digital/);
     assert.match(html, /Perseroan Perorangan/);
     assert.match(html, /3 Oktober 2026/);
     assert.match(html, /Penjualan online dan pembayaran belum dibuka/);
-    assert.doesNotMatch(html, /AHU-066746|mailto:|\b\d{16}\b|PPN\s*(11|12)%|Pembayaran diproses melalui Duitku|registered trademark|<script|<form/);
+    assert.match(html, /href="mailto:farasmuhadzib@gmail\.com"/);
+    assert.doesNotMatch(html, /AHU-066746|\b\d{16}\b|PPN\s*(11|12)%|Pembayaran diproses melalui Duitku|registered trademark|<script|<form/);
   }
   const price = await (await request("/legal/pricing-payment")).text();
   assert.match(price, /maksimum 40%/); assert.match(price, /tidak stacking/);
@@ -99,6 +100,10 @@ test("all internal HTML links resolve and anchors exist", async () => {
       const href = match[1].replaceAll("&amp;", "&");
       if (href.startsWith("/static/")) continue; // Static asset serving checked through Wrangler/browser.
       const url = new URL(href, `https://test.invalid${route}`);
+      if (url.protocol === "mailto:") {
+        assert.equal(url.pathname, "farasmuhadzib@gmail.com");
+        continue;
+      }
       if (url.hostname !== "test.invalid") {
         assert.equal(url.protocol, "https:");
         assert.ok(["ahu.go.id", "oss.go.id", "jdih.kemendag.go.id", "jdih.komdigi.go.id", "www.duitku.com"].includes(url.hostname));
@@ -115,10 +120,11 @@ test("all internal HTML links resolve and anchors exist", async () => {
   }
 });
 
-test("unconfigured contact is honest, with no send CTA", async () => {
+test("unconfigured WhatsApp falls back to official email without a form", async () => {
   const html = await (await request("/contact")).text();
-  assert.match(html, /Kontak belum aktif/);
-  assert.match(html, /belum ada cara mengirim inquiry/);
+  assert.match(html, /Email resmi tersedia · WhatsApp belum dikonfigurasi/);
+  assert.match(html, /Hubungi Ranel melalui email/);
+  assert.match(html, /href="mailto:farasmuhadzib@gmail\.com"/);
   assert.match(html, /readonly=""/);
   assert.doesNotMatch(html, /href="\/inquiry|wa\.me|Buka WhatsApp/);
 });
@@ -162,7 +168,7 @@ for (const value of [
   test(`invalid/missing contact configuration fails closed (${value === undefined ? "undefined" : value.length})`, async () => {
     const env = { INQUIRY_WHATSAPP_NUMBER: value };
     const html = await (await request("/contact?offer=operations", env)).text();
-    assert.match(html, /Kontak belum aktif/);
+    assert.match(html, /Email resmi tersedia · WhatsApp belum dikonfigurasi/);
     assert.doesNotMatch(html, /href="\/inquiry/);
     const result = await request("/inquiry?offer=operations", env);
     assert.equal(result.status, 303);
@@ -190,6 +196,7 @@ test("privacy explains no application persistence and third-party handoff", asyn
   const html = await (await request("/privacy")).text();
   assert.match(html, /Tidak ada akun, database inquiry/);
   assert.match(html, /kebijakan layanan tersebut/);
+  assert.match(html, /farasmuhadzib@gmail\.com/);
   assert.match(html, /retensi dan penghapusan pesan belum ditetapkan/);
 });
 
