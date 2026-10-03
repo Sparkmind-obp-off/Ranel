@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { serveStatic } from "hono/cloudflare-workers";
 import type { Child } from "hono/jsx";
-import { legalPaths, legalPages, LegalContent, sellerName } from "./legal";
+import { legalPaths, legalPages, LegalContent, sellerName, supportEmail } from "./legal";
 import {
   offers,
   formatPrice,
@@ -143,6 +143,7 @@ function Layout({
             </a>
             <p>Practical systems for better-run businesses.</p>
             <p class="small">Dioperasikan oleh {sellerName} · Perseroan Perorangan</p>
+            <p class="small">Email resmi: <a href={`mailto:${supportEmail}`}>{supportEmail}</a></p>
             <p class="small">
               Dimulai dari usaha barber. Dibangun selangkah demi selangkah.
             </p>
@@ -628,7 +629,7 @@ app.get("/contact", (c) => {
     (
       <Layout
         title="Diskusi pilot & informasi kontak — Ranel"
-        description="Informasi jalur inquiry Ranel dan rancangan pesan untuk membahas kit pilot usaha barber. Ketersediaan kontak ditampilkan secara transparan."
+        description="Informasi kontak resmi Ranel melalui email dan WhatsApp bila dikonfigurasi, untuk pertanyaan tentang kit pilot usaha barber."
         path="/contact"
       >
         <section
@@ -658,31 +659,31 @@ app.get("/contact", (c) => {
               aria-labelledby="contact-status-title"
             >
               <span class="status-label">
-                {ready ? "Jalur WhatsApp tersedia" : "Kontak belum aktif"}
+                {ready ? "Jalur WhatsApp tersedia" : "Email resmi tersedia · WhatsApp belum dikonfigurasi"}
               </span>
               <h2 id="contact-status-title">
                 {ready
                   ? "Lanjutkan di WhatsApp."
-                  : "Kami belum membuka jalur inquiry."}
+                  : "Hubungi Ranel melalui email."}
               </h2>
               <p>
                 {ready
                   ? "Tombol berikut membuka WhatsApp dengan rancangan pesan. Periksa isinya dan kirim sendiri. Website ini tidak mengirim atau menyimpan pesan Anda."
-                  : "Tujuan kontak resmi belum dikonfigurasi. Saat ini belum ada cara mengirim inquiry melalui website ini. Rancangan pesan di samping belum dikirim atau disimpan."}
+                  : "WhatsApp belum dikonfigurasi, tetapi email resmi tersedia. Klik tombol email untuk membuka aplikasi email Anda; website ini tidak mengirim pesan atau menyimpan inquiry."}
               </p>
               {ready ? (
                 <Action href={`/inquiry${offer ? `?offer=${offer.id}` : ""}`}>
                   Buka WhatsApp untuk diskusi
                 </Action>
               ) : (
-                <Action href="/barber#rencana-kit" secondary>
-                  Lihat kembali rencana kit
+                <Action href={`mailto:${supportEmail}`} secondary>
+                  Kirim email ke Ranel
                 </Action>
               )}
               <p class="small">
                 {ready
-                  ? "Anda akan meninggalkan website Ranel. Penggunaan WhatsApp mengikuti kebijakan layanan tersebut."
-                  : "Jalur inquiry akan tersedia setelah kontak resmi diaktifkan oleh pengelola."}
+                  ? "Anda akan meninggalkan website Ranel. Penggunaan WhatsApp mengikuti kebijakan layanan tersebut. Email resmi juga tersedia di footer."
+                  : "Aplikasi email akan terbuka; Anda dapat meninjau dan mengirim pesan sendiri."}
               </p>
               <a class="text-link" href="/privacy">
                 Baca informasi privasi <Arrow />
@@ -786,12 +787,12 @@ app.get("/privacy", (c) =>
           </p>
           <h2>Pertanyaan tentang informasi Anda</h2>
           <p>
-            Gunakan jalur kontak resmi bila sudah tersedia. Selama belum
-            dikonfigurasi, website akan menampilkan status kontak belum aktif
-            dan tidak menyediakan form pengiriman.
+            Untuk pertanyaan tentang informasi Anda, gunakan email resmi
+            farasmuhadzib@gmail.com atau kanal privat yang tersedia di halaman
+            kontak. Tidak ada form penyimpanan inquiry di website.
           </p>
-          <Action href="/contact" secondary>
-            Lihat status kontak resmi
+          <Action href={`mailto:${supportEmail}`} secondary>
+            Hubungi melalui email resmi
           </Action>
           <p class="small">
             Diperbarui 3 Oktober 2026. Informasi ini bukan
