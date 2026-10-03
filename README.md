@@ -13,6 +13,10 @@ Ranel is designed to grow through three connected layers:
 
 The first vertical is **barber businesses**. Other verticals are future options, not simultaneous launch commitments.
 
+## Commerce Phase 01 — Business Lock
+
+[Canonical Business Lock](docs/business/business-lock.md): **PHASE 01 = PASS WITH DECISIONS REQUIRED**; full `BUSINESS_LOCK_APPROVED=false`. Strategic identity/model/barber vertical are source-backed; Starter is a recommended first-offer candidate, not an approved sale. Founder decisions D01–D08 cover segment/offer, delivery, payment model, cancellation/refund, support/owner and access terms. Price remains `PHASE_02_DECISION`; no validation, production activation or code change. Phase 02 does not start automatically.
+
 ## Master commerce roadmap — Phase 00 baseline
 
 [**SYSTEM_BASELINE.md**](SYSTEM_BASELINE.md) is the current audited baseline for the founder's Business First → Product → Commerce → Transaction → Fulfillment → Operations roadmap. **Phase 00: PASS for bounded baseline; Phase 01 BUSINESS LOCK and Phase 02 PRODUCT READY: not yet PASS.** Existing POP engineering and PUBLIC are preserved. The new phase numbering does not rename historical catalog releases. No payment, infrastructure, pricing or live pilot activation in this documentation-only checkpoint.

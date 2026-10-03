@@ -13,6 +13,7 @@
 - [Visual identity direction](brand/brand-identity.md)
 
 ## Business and market
+- [Phase 01 Business Lock — decisions required; no commerce activation](business/business-lock.md)
 - [Business model](business/business-model.md)
 - [Customer discovery](business/customer-discovery.md)
 - [Pricing and unit economics](business/pricing-and-unit-economics.md)
