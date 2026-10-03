@@ -92,11 +92,15 @@ Refund/remedy covers non-delivery, file/access issues, material mismatch, duplic
 - No Core deployment is part of this release. Previous known-good PUBLIC deployment: `a071fcab-4df7-466d-be7e-68d56274f780`, `https://a071fcab.ranel.pages.dev`, source `c90c1994839e1bee4fa676ed25ea848da66731ad`; preserved as rollback reference. Rollback concerns PUBLIC code only, not secrets/DNS/data; this release introduced no persisted financial state.
 - Closing evidence/README update is documentation-only and does not change the deployed application SHA. Final state: **READY_FOR_CHATGPT_REVIEW**, assets **ASSET_READY_FOR_REVIEW**, products **HOLD_PENDING_TERMS**.
 
+## Founder-confirmed email remediation (post-release source patch)
+
+On 2026-10-03 the founder confirmed `farasmuhadzib@gmail.com` as the official public Ranel email. Source changes now expose it in the footer, contact page, Legal identity card, privacy contact guidance, and complaints policy; unconfigured WhatsApp falls back to a mailto link. Regression tests were updated. Source/test commits: `d5b0005d30f6268ec3df8d081740df1b6249b4fa`, `6440a17eb93a231a66bfe2ea1380b4bdb18f630a`, `c2ebebb8768f8674bf2b0c9d38251a421b02deb1`, `2b58261ef3af8764688c46f7e024553713fe9dcc`. **These changes are committed but not yet test/build/redeployment verified**; see [email remediation handoff](../../handoffs/phase-02-email-confirmation-remediation.md). The earlier production release remains the last verified deployed build until Genspark completes this follow-up.
+
 ## Open gates / review packet
 
 - Seller tax status, PKP/non-PKP, product classification, tax-inclusive/exclusive and invoice/tax treatment before live checkout.
 - Exact legal/permit/PMSE applicability and final terms review; no certification claim. AHU publication pending reconciliation/approval.
-- Formal official email not configured/verified; private existing WhatsApp remains available.
+- Official email is founder-confirmed and present in current source; run regression/build and deploy the email-remediation patch before considering the current public release synchronized. WhatsApp remains optional and configuration-dependent.
 - Real tailoring/delivery/support capacity and final operational expectations before Available/live fulfillment; internal 2-business-day target is not published as SLA.
 - Asset acceptance and PUBLIC policy review by ChatGPT/founder, then next authorized phase; no automatic Phase 03.
 - Later Core/persistence/merchant/payment/reconciliation/live-pilot gates all unchanged. Phase 02 output is not payment-ready.
