@@ -13,7 +13,20 @@ Ranel is designed to grow through three connected layers:
 
 The first vertical is **barber businesses**. Other verticals are future options, not simultaneous launch commitments.
 
-## Bounded Core integration seam — 2026-10-03
+## POP production adapter execution — 2026-10-03
+
+**NOT SUCCESS — ACTION REQUIRED.** POP production adapter and browser bridge are implemented/tested locally, but merchant authentication, production Core/persistence/deployment and customer checkout are not verified or activated. Existing PUBLIC catalog/manual inquiry remains the only customer functionality in production.
+
+- `src/duitku-pop.ts`: exact production `createInvoice` client, current-doc HMAC-SHA256 request/callback contracts, bounded input/response bodies, timeout, single-attempt/unknown-outcome handling and fixed checkout-host/reference validation. Tested using fictional transports only; no actual invoice request made.
+- `src/pop-checkout.ts`: production script loader and `checkout.process` bridge. Every browser outcome only requests server-status refresh. Not wired into PUBLIC because no approved priced/deliverable offer exists.
+- `src/core.ts`: callback authentication can run only for explicitly verified POP configuration; invalid fixture signatures receive 401. Authenticated callbacks still receive 503 because corroborating provider status and durable receipt storage are absent. No paid/fulfilled mutation or false callback acknowledgement.
+- Critical source finding: official [browser comparison](https://docs.duitku.com/payment-gateway/api-browser/) separates **Duitku V2** from **Duitku POP**. POP documents the production `duitku.js` URL without a JS v2 version marker. Current POP docs specify HMAC-SHA256, while the pinned official older PHP SDK uses a different request-signing algorithm. Merchant-specific contract/version cannot be inferred from either a name or credential-file shape.
+- Checks: 61 Core/POP tests, 33 PUBLIC worker tests, 30 local and 30 production PUBLIC browser tests passed. Lint/typecheck and Core dry-run build passed (69.13 KiB / 17.99 KiB gzip). Production browser regression is not payment E2E proof.
+- Rechecked Cloudflare: no Ranel Core Worker/database; subscription read still 403. Account usage model `standard` is not evidence of plan/quota/cost. PUBLIC binding names remain inquiry-only. No new resources, secret provisioning, DNS, billing or live financial actions.
+
+Read [execution evidence / current limitations / operating safeguards](docs/technology/duitku-production-integration-contract.md#12-pop-production-adapter-execution--2026-10-03). Do not activate with an environment flag alone. Merchant contract and safe reconciliation, authorized infrastructure and durable audit/idempotency, plus one approved product/price/terms are required. Never reuse another project's database or mix classic V2/legacy signatures as fallback.
+
+## Historical checkpoint: bounded Core integration seam — 2026-10-03
 
 **BUILT / TESTED locally; NOT DEPLOYED / NOT INTEGRATED.** The Core foundation is separate from the unchanged PUBLIC Pages application. No price, checkout, invoice client, signing adapter, database, authorization system or payment activation has been added.
 
@@ -31,7 +44,7 @@ See [Core execution evidence and exact next gates](docs/technology/duitku-produc
 
 Canonical revenue cycle: **Demand → Opportunity → Product → Distribution → Transaction → Fulfillment → Outcome → Learning**. Business model remains **Kits → Systems → Supply**. The lock defines the destination, not implementation/validation evidence.
 
-**Scoped PUBLIC hardening: DEPLOYED/VERIFIED. Overall engine: PARTIAL.** 33 built-worker, 30 local and 30 production browser tests pass; current reviewed release is recorded in the [release runbook](docs/production/release-runbook.md#9-final-launcher-execution--2026-10-02). Existing catalog/contact/brand look preserved. CONTROL/CORE, payment, AI and other providers remain unimplemented/not integrated; no full-engine production-ready claim or automatic next-phase build.
+**Scoped PUBLIC hardening: DEPLOYED/VERIFIED. Overall engine: PARTIAL.** 33 built-worker, 30 local and 30 production browser tests pass; current reviewed release is recorded in the [release runbook](docs/production/release-runbook.md#9-final-launcher-execution--2026-10-02). Existing catalog/contact/brand look preserved. At that release, CONTROL/CORE, payment, AI and other providers remained unimplemented/not integrated; no full-engine production-ready claim or automatic next-phase build.
 
 PUBLIC request contract: GET/HEAD only on existing pages and `/inquiry`; other methods 405, URL length over 2048 characters including origin 414, duplicate `offer` or decoded topic over 64 characters 400. Short unknown topics retain general fallback. Requests rejected without body parsing/storage or external redirect. Worker pages/redirects/errors and native `/static/*` assets receive mirrored CSP, nosniff, referrer/permissions, X-Frame-Options DENY and host-only HSTS (no preload/includeSubDomains). These are HTTP/input protections, not identity/role admission or Core authorization. No new sensitive submission endpoint or provider activation.
 

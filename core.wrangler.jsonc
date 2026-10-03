@@ -9,6 +9,9 @@
   "preview_urls": false,
   "vars": {
     "PAYMENTS_ENABLED": "false",
-    "DUITKU_ENV": "production"
+    "DUITKU_ENV": "production",
+    "DUITKU_API_FAMILY": "pop",
+    "DUITKU_SIGNING_PROFILE": "pop-docs-hmac-sha256-2026-10-03",
+    "DUITKU_CONTRACT_VERIFIED": "false"
   }
 }

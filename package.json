@@ -9,7 +9,7 @@
     "test": "npm run build && node --test tests/app.test.mjs",
     "lint": "eslint src tests *.config.*",
     "test:e2e": "playwright test",
-    "test:core": "tsc --noEmit false --outDir qa-artifacts/core-build && node --test tests/core.test.mjs",
+    "test:core": "tsc --noEmit false --outDir qa-artifacts/core-build && node --test tests/core.test.mjs tests/pop.test.mjs",
     "build:core": "wrangler deploy --config core.wrangler.jsonc --dry-run --outdir qa-artifacts/core-worker",
     "preview": "wrangler pages dev dist --ip 0.0.0.0 --port 3000"
   },
