@@ -5,6 +5,15 @@ Status: **READY FOR EXECUTION — PUBLIC IDENTITY DISCLOSURE, NO PAYMENT ACTIVAT
 
 ## Canonical legal identity
 
+Reference snapshot from SparkMind public/legal source:
+- **PT Waskita Cakrawarti Digital**
+- **Perseroan Perorangan**
+- **AHU-066746.AH.01.30.Tahun 2025**
+- Registered 1 December 2025
+- Domicile: Kabupaten Banyumas, Jawa Tengah, Indonesia
+
+Treat these as founder-controlled reference values until documentary verification is completed.
+
 **Brand:** Ranel  
 **Legal operator/seller:** PT Waskita Cakrawarti Digital  
 **Legal form:** Perseroan Perorangan
@@ -16,8 +25,11 @@ Source of identity: founder-reported legal documents. Exact registration numbers
 Prepare the future Legal & Policies hub to show:
 **Ranel — dioperasikan oleh PT Waskita Cakrawarti Digital (Perseroan Perorangan).**
 
+Use the SparkMind-style legal information architecture: central Legal Hub + entity/status card + individual policy pages + effective/last-updated dates.
+
 Provide links/sections for:
 - Legal & Policies;
+- Ownership / operator declaration;
 - Terms;
 - Pricing & Payment;
 - Refund/Cancellation;
@@ -31,7 +43,7 @@ Keep the identity disclosure factual. Do not publish the founder's NIK, personal
 
 Where relevant, link to authoritative AHU and OSS pages, not unofficial verification sites.
 
-Do not claim a specific NIB, NPWP, AHU number, KBLI, SIUPMSE/PMSE permission, or tax status without verified evidence.
+Do not claim a specific NIB, NPWP, KBLI, SIUPMSE/PMSE permission, or tax status without verified evidence. The AHU number above comes from the existing SparkMind legal SSOT and should be reconciled to the founder's actual document before public publication.
 
 ## Duitku disclosure
 
