@@ -7,10 +7,21 @@ Status: **DECIDED STRUCTURE — LEGAL/TAX APPLICABILITY VALIDATION REQUIRED BEFO
 
 Create a clear customer-facing information structure for pricing, terms, refund/remedy, privacy, licensing, and complaints without publishing unsupported legal claims.
 
+## Legal identity
+
+Ranel is the customer-facing brand operated by **PT Waskita Cakrawarti Digital**, reported by the founder as a **Perseroan Perorangan**. See [Legal Entity & Merchant Identity](../business/legal-entity-and-merchant-identity.md).
+
+Public pages should identify the legal operator/seller without publishing unnecessary personal identifiers. Exact NIB/NPWP/AHU registration numbers should only be shown after document verification and an explicit decision that publication is appropriate.
+
+Duitku's current merchant guidance expects corporate legality documentation and official company/contact information on the merchant website. citeturn161636search0turn161636search2
+
 ## Recommended public structure
 
 ### /legal
 Legal & policies hub. Links to all customer-facing policies and identifies the version/update date of each policy.
+
+Also show the legal operator identity:
+**Ranel — dioperasikan oleh PT Waskita Cakrawarti Digital (Perseroan Perorangan).**
 
 ### /legal/terms
 Terms of Service / Terms of Sale:
@@ -74,6 +85,9 @@ Product licence:
 - updates/revisions are governed by the product's published terms.
 
 Trademark registration is not claimed by this policy.
+
+### /legal/payment-provider
+Payment provider disclosure, but only after the production merchant integration is actually enabled and verified. Until then, do not present Duitku as an active payment channel.
 
 ### /legal/complaints
 Customer complaints & support:
@@ -159,6 +173,10 @@ Until this validation is complete:
 
 ## Status
 
-**DECIDED:** page structure, support channel architecture, no-hidden-fee principle, controlled promo policy.
+**DECIDED:** legal-page structure, legal-entity disclosure architecture, support channel architecture, no-hidden-fee principle, controlled promo policy.
+
+**FOUNDER-REPORTED:** PT Waskita Cakrawarti Digital is the Ranel operating entity and has NIB/NPWP/AHU/OSS documentation.
+
+**VALIDATION_REQUIRED:** exact entity/permit/tax record before publishing registration numbers or claiming full regulatory readiness.
 
 **VALIDATION_REQUIRED:** seller licensing/PMSE role, PKP status, exact tax classification/treatment, final legal wording, official support email, and any mandatory regulatory contact blocks applicable to Ranel's final business model.
