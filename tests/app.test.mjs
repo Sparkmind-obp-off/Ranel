@@ -82,7 +82,8 @@ test("legal content has consistent identity/dates and confirmed official email w
     assert.match(html, /3 Oktober 2026/);
     assert.match(html, /Penjualan online dan pembayaran belum dibuka/);
     assert.match(html, /href="mailto:farasmuhadzib@gmail\.com"/);
-    assert.doesNotMatch(html, /AHU-066746|\b\d{16}\b|PPN\s*(11|12)%|Pembayaran diproses melalui Duitku|registered trademark|<script|<form/);
+    assert.match(html, /AHU-066746\.AH\.01\.30\.Tahun 2025/);
+    assert.doesNotMatch(html, /\b\d{16}\b|PPN\s*(11|12)%|Pembayaran diproses melalui Duitku|registered trademark|<script|<form/);
   }
   const price = await (await request("/legal/pricing-payment")).text();
   assert.match(price, /maksimum 40%/); assert.match(price, /tidak stacking/);
